@@ -1,0 +1,29 @@
+{
+  "name": "gasyori100knockjs",
+  "version": "1.0.0",
+  "description": "画像処理100本ノックをJSで解いてみる",
+  "main": "app.js",
+  "scripts": {
+    "start": "http-server -o",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s-yoshiki/Gasyori100knockJS.git"
+  },
+  "author": "Yoshiki Shinagawa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/s-yoshiki/Gasyori100knockJS/issues"
+  },
+  "homepage": "https://github.com/s-yoshiki/Gasyori100knockJS#readme",
+  "dependencies": {
+    "css-loader": "^2.1.0",
+    "file-loader": "^3.0.1",
+    "http-server": "^0.11.1",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1"
+  }
+}
