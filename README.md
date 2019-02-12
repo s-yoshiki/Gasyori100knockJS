@@ -1,8 +1,10 @@
 # gasyori100knockjs
 
-> 画像処理100本ノックをJSで解いてみる
+> 画像処理100本ノックをJavaScriptで解いてみる
 
 ## Build Setup
+
+webpackを利用してbuildします。
 
 ``` bash
 # install dependencies
@@ -18,4 +20,3 @@ npm run build
 npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
