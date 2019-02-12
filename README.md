@@ -1,4 +1,4 @@
-# gasyori100knockjs
+# Gasyori100knockJS
 
 > 画像処理100本ノックをJavaScriptで解いてみる
 
