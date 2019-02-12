@@ -1,33 +1,37 @@
 
 import Vue from 'vue'
 
-import answers from './answers/answer1.js'
-import Controller from './common.js'
-
 import { DefaultTemplate } from './templates.js'
 import CanvasUtility from '@/lib/CanvasTools'
-import config from './configure.js'
- 
 
-/**
- * 共通コンポーネント作成
- * 
- * @param {String} key コンポーネント名 
- * @param {function} callback 実行されるコールバック
- * @return {Object} vue.component
- */
-function getDefaultComponet(key, callback) {
-  return Vue.component(key, {
+import config from './configure.js'
+import answer1 from './answers/answer1.js';
+import answer2 from './answers/answer2.js';
+
+
+let answerSrc = [
+  answer1,
+  answer2,
+]
+let answers = {}
+let exportComponents = {};
+
+answerSrc.forEach((v) => {
+  for (let key in v) {
+    answers[key] = v[key]
+  }
+})
+
+for (let key in answers) {
+  let image = answers[key]["srcImg"] ? answers[key]["srcImg"] : config.srcImage.default
+  exportComponents[key] = Vue.component(key, {
     name: key,
     data() {
       return {
-        imageUrl: config.imageUrl,
+        imageUrl: image,
       };
     },
     methods: {
-      run(canvas, image) {
-        callback(canvas, image)
-      }
     },
     mounted() {
       let canvasAsset = this.$refs["canvas-view-only"]
@@ -45,18 +49,11 @@ function getDefaultComponet(key, callback) {
       CanvasUtility.drawImage(canvasAsset, image)
   
       button.addEventListener("click", () => {
-        this.run(canvas, image)
+        answers[key].main(canvas, image)
       })
     },
     template: DefaultTemplate
   })
-}
-
-
-let exportComponents = {};
-
-for (let key in answers) {
-  exportComponents[key] = getDefaultComponet(key, answers[key])
 }
 
 export default exportComponents

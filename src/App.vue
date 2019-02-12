@@ -1,9 +1,13 @@
 <template>
   <div id="app">
-    <header></header>
-    <!-- <img src="./assets/logo.png"> -->
+    <header>
+      <h2>画像処理100本ノック</h2>
+      <router-link to="/">home</router-link>
+      <router-link to="/list">list</router-link>
+    </header>
     <router-view/>
-    <footer></footer>
+    <footer>
+    </footer>
   </div>
 </template>
 
@@ -25,5 +29,14 @@ export default {
 
 canvas {
   background-color: rgba(230, 230, 230, 0.5);
+}
+a {
+  color: #5442b9;
+  font-size: 18px;
+}
+
+header {
+  height: 150px;
+  background-color: #f8f8f8;
 }
 </style>

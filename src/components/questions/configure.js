@@ -1,3 +1,6 @@
 export default {
-    imageUrl: "./static/imori.jpg",
+    srcImage: {
+        default : "./static/imori.jpg",
+        noise : "./static/imori_noise.jpg",
+    },
 }
