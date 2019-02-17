@@ -1,48 +1,39 @@
 
 import Vue from 'vue'
-
-// import { DefaultTemplate } from './templates.js'
-// import CanvasUtility from '@/lib/CanvasTools'
-
-// import config from './configure.js'
-// import answer1 from './answers/answer1.js';
-// import answer2 from './answers/answer2.js';
+import { BlankTemplate } from "./templates"
 
 import {
   Ans1, Ans2, Ans3, Ans4, Ans5, Ans6, Ans7, Ans8, Ans9, Ans10
 } from './answers/Ans1.js';
+import {
+  Ans11, Ans12, Ans13, Ans14, Ans15, Ans16, Ans17, Ans18, Ans19, Ans20
+} from './answers/Ans2.js';
 // import { 
-//   Ans10, Ans12, Ans13, Ans14, Ans15, Ans16, Ans17, Ans18, Ans19, Ans20
-// } from './answers/Ans2.js';
-// import { 
-//   Ans20, Ans22, Ans23, Ans24, Ans25, Ans26, Ans27, Ans28, Ans29, Ans30
+//   Ans21, Ans22, Ans23, Ans24, Ans25, Ans26, Ans27, Ans28, Ans29, Ans30
 // } from './answers/Ans3.js';
 // import { 
-//   Ans30, Ans32, Ans33, Ans34, Ans35, Ans36, Ans37, Ans38, Ans39, Ans40
+//   Ans31, Ans32, Ans33, Ans34, Ans35, Ans36, Ans37, Ans38, Ans39, Ans40
 // } from './answers/Ans4.js';
 // import { 
-//   Ans40, Ans42, Ans43, Ans44, Ans45, Ans46, Ans47, Ans48, Ans49, Ans50
+//   Ans41, Ans42, Ans43, Ans44, Ans45, Ans46, Ans47, Ans48, Ans49, Ans50
 // } from './answers/Ans5.js';
 // import { 
-//   Ans50, Ans52, Ans53, Ans54, Ans55, Ans56, Ans57, Ans58, Ans59, Ans60
+//   Ans51, Ans52, Ans53, Ans54, Ans55, Ans56, Ans57, Ans58, Ans59, Ans60
 // } from './answers/Ans6.js';
 // import { 
-//   Ans60, Ans62, Ans63, Ans64, Ans65, Ans66, Ans67, Ans68, Ans69, Ans70
+//   Ans61, Ans62, Ans63, Ans64, Ans65, Ans66, Ans67, Ans68, Ans69, Ans70
 // } from './answers/Ans7.js';
 // import { 
-//   Ans70, Ans72, Ans73, Ans74, Ans75, Ans76, Ans77, Ans78, Ans79, Ans80
+//   Ans71, Ans72, Ans73, Ans74, Ans75, Ans76, Ans77, Ans78, Ans79, Ans80
 // } from './answers/Ans8.js';
 // import { 
-//   Ans80, Ans82, Ans83, Ans84, Ans85, Ans86, Ans87, Ans88, Ans89, Ans90
+//   Ans81, Ans82, Ans83, Ans84, Ans85, Ans86, Ans87, Ans88, Ans89, Ans90
 // } from './answers/Ans9.js';
 // import { 
-//   Ans90, Ans92, Ans93, Ans94, Ans95, Ans96, Ans97, Ans98, Ans99, Ans100
+//   Ans91, Ans92, Ans93, Ans94, Ans95, Ans96, Ans97, Ans98, Ans99, Ans100
 // } from './answers/Ans10.js';
 
-
-
-let exportComponents = {};
-let mapper = {
+const componentMap = {
   "ans1": new Ans1(),
   "ans2": new Ans2(),
   "ans3": new Ans3(),
@@ -53,16 +44,16 @@ let mapper = {
   "ans8": new Ans8(),
   "ans9": new Ans9(),
   "ans10": new Ans10(),
-  // "ans11": new Ans11(),
-  // "ans12": new Ans12(),
-  // "ans13": new Ans13(),
-  // "ans14": new Ans14(),
-  // "ans15": new Ans15(),
-  // "ans16": new Ans16(),
-  // "ans17": new Ans17(),
-  // "ans18": new Ans18(),
-  // "ans19": new Ans19(),
-  // "ans20": new Ans20(),
+  "ans11": new Ans11(),
+  "ans12": new Ans12(),
+  "ans13": new Ans13(),
+  "ans14": new Ans14(),
+  "ans15": new Ans15(),
+  "ans16": new Ans16(),
+  "ans17": new Ans17(),
+  "ans18": new Ans18(),
+  "ans19": new Ans19(),
+  "ans20": new Ans20(),
   // "ans21": new Ans21(),
   // "ans22": new Ans22(),
   // "ans23": new Ans23(),
@@ -145,20 +136,37 @@ let mapper = {
   // "ans100": new Ans100(),  
 }
 
-for (let key in mapper) {
-  let obj = mapper[key]
-  exportComponents[key] = Vue.component(key, {
-    name: key,
-    data() {
-      return {}
-    },
-    methods: {
-    },
-    mounted() {
-      obj.init(this)
-    },
-    template: obj.getTemplate(),
-  })
+function makeComponent() {
+  let exportComponents = {};
+  for (let i = 1; i <= 100; i++) {
+    let key = `ans${i}`
+    let obj = componentMap[key]
+    if (!componentMap[key]) {
+      exportComponents[key] = Vue.component(key, {
+        template: BlankTemplate,
+      })
+      continue
+    }
+    exportComponents[key] = Vue.component(key, {
+      name: key,
+      data() {
+        return {}
+      },
+      methods: {
+      },
+      mounted() {
+        // canvasの処理はmoutedの中で行う
+        try {
+          obj.init(this)
+          obj._initObject(this)
+        } catch (e) {
+          alert("error:" + e) //todo:
+        }
+      },
+      template: obj.getTemplate(),
+    })
+  }
+  return exportComponents
 }
 
-export default exportComponents
+export default makeComponent()

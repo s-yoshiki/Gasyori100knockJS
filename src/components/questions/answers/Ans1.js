@@ -1,4 +1,5 @@
 import { BaseTwoCanvasComponent } from "./BaseComponents.js"
+import config from "../configure.js"
 
 export default null
 
@@ -341,6 +342,21 @@ export class Ans8 extends BaseTwoCanvasComponent {
  * @extends BaseTwoCanvasComponent
  */
 export class Ans9 extends BaseTwoCanvasComponent {
+  /**
+   * 初期処理
+   * 
+   * @param {Document} self 
+   */
+  init() {
+    // ノイズ画像セット
+    this.setSrcImage(config.srcImage.noise)
+  }
+
+  /**
+   * メイン処理
+   * @param {canvas} canvas 
+   * @param {image} image 
+   */
   main(canvas, image) {
     let ctx = canvas.getContext("2d");
     ctx.drawImage(image, 0, 0, image.width, image.height)
@@ -379,7 +395,7 @@ export class Ans9 extends BaseTwoCanvasComponent {
         for (let i = 0; i < kernelSize; i++) for (let j = 0; j < kernelSize; j++) {
           let _i = i - Math.floor(kernelSize / 2)
           let _j = j - Math.floor(kernelSize / 2)
-          k += kernel[i][j] * src.data[getIndex(x + _i, y + _j, c)]
+          k += kernel[i][j] * src.data[getIndex(x + _j, y + _i, c)]
         }
         dst.data[getIndex(x, y, c)] = k
       }
@@ -394,7 +410,22 @@ export class Ans9 extends BaseTwoCanvasComponent {
  * @extends BaseTwoCanvasComponent
  */
 export class Ans10 extends BaseTwoCanvasComponent {
-  
+
+  /**
+   * 初期処理
+   * 
+   * @param {Document} self 
+   */
+  init() {
+    // ノイズ画像セット
+    this.setSrcImage(config.srcImage.noise)
+  }
+
+  /**
+   * メイン処理
+   * @param {canvas} canvas 
+   * @param {image} image 
+   */
   main(canvas, image) {
     let ctx = canvas.getContext("2d");
     ctx.drawImage(image, 0, 0, image.width, image.height)
@@ -416,7 +447,7 @@ export class Ans10 extends BaseTwoCanvasComponent {
         for (let i = 0; i < kernelSize; i++) for (let j = 0; j < kernelSize; j++) {
           let _i = i - Math.floor(kernelSize / 2)
           let _j = j - Math.floor(kernelSize / 2)
-          k.push(src.data[getIndex(x + _i, y + _j, c)])
+          k.push(src.data[getIndex(x + _j, y + _i, c)])
         }
         k.sort((a, b) => a - b)
         dst.data[getIndex(x, y, c)] = k[Math.floor(k.length / 2)]
