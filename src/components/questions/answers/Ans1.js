@@ -334,6 +334,12 @@ export class Ans8 extends BaseTwoCanvasComponent {
 
       ctx.putImageData(dst, x, y)
     }
+
+    for (let i = 0; i < canvas.width; i += dx) {
+      for (let j = 0; j < canvas.height; j += dy) {
+        blurColor(i, j, dx, dy)
+      }
+    }
   }
 }
 
