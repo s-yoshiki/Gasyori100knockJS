@@ -1,4 +1,4 @@
-
+export const BlankTemplate = `<h3>Comming soon.</h3>`
 
 export const DefaultTemplate = `
 <div>
