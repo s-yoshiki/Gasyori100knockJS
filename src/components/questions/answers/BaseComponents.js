@@ -126,7 +126,7 @@ export class BaseThreeCanvasComponent extends BasePagesComponent {
   constructor() {
     super()
     super.setTemplate(ThreeCanvasTemplate)
-    this.setSrcImage(config.srcImage.default)
+    // this.setSrcImage(config.srcImage.default)
   }
 
   init(self) {
@@ -140,21 +140,22 @@ export class BaseThreeCanvasComponent extends BasePagesComponent {
    */
   _initObject(self) {
     let canvasAsset = self.$refs["canvas-view-only"]
-    let canvas = self.$refs["canvas"]
+    let canvas1 = self.$refs["canvas1"]
+    let canvas2 = self.$refs["canvas2"]
     let button = self.$refs["button-run"]
 
     let image = new Image()
     image.src = this.imageUrl
 
     image.addEventListener("load", () => {
-      canvas.width = image.width
-      canvas.height = image.height
+      canvas1.width  = canvas2.width = image.width
+      canvas1.height = canvas2.height = image.height
     })
 
     CanvasUtility.drawImage(canvasAsset, image)
   
     button.addEventListener("click", () => {
-      this.main(canvas, image)
+      this.main(canvas1, canvas2, image)
     })
   }
 
@@ -164,7 +165,7 @@ export class BaseThreeCanvasComponent extends BasePagesComponent {
    * @param {canvas} canvas 
    * @param {Image} image 
    */
-  main(canvas, image) {}
+  main(canvas1, canvas2, image) {}
 
   /**
    * src画像のセット

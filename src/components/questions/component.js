@@ -33,10 +33,7 @@ import {
 //   Ans91, Ans92, Ans93, Ans94, Ans95, Ans96, Ans97, Ans98, Ans99, Ans100
 // } from './answers/Ans10.js';
 
-
-
-let exportComponents = {};
-let componentMap = {
+const componentMap = {
   "ans1": new Ans1(),
   "ans2": new Ans2(),
   "ans3": new Ans3(),
@@ -51,12 +48,12 @@ let componentMap = {
   "ans12": new Ans12(),
   "ans13": new Ans13(),
   "ans14": new Ans14(),
-  // "ans15": new Ans15(),
-  // "ans16": new Ans16(),
-  // "ans17": new Ans17(),
-  // "ans18": new Ans18(),
-  // "ans19": new Ans19(),
-  // "ans20": new Ans20(),
+  "ans15": new Ans15(),
+  "ans16": new Ans16(),
+  "ans17": new Ans17(),
+  "ans18": new Ans18(),
+  "ans19": new Ans19(),
+  "ans20": new Ans20(),
   // "ans21": new Ans21(),
   // "ans22": new Ans22(),
   // "ans23": new Ans23(),
@@ -139,28 +136,37 @@ let componentMap = {
   // "ans100": new Ans100(),  
 }
 
-for (let i = 1; i <= 100; i++) {
-  let key = `ans${i}`
-  let obj = componentMap[key]
-  if (!componentMap[key]) {
+function makeComponent() {
+  let exportComponents = {};
+  for (let i = 1; i <= 100; i++) {
+    let key = `ans${i}`
+    let obj = componentMap[key]
+    if (!componentMap[key]) {
+      exportComponents[key] = Vue.component(key, {
+        template: BlankTemplate,
+      })
+      continue
+    }
     exportComponents[key] = Vue.component(key, {
-      template: BlankTemplate,
+      name: key,
+      data() {
+        return {}
+      },
+      methods: {
+      },
+      mounted() {
+        // canvasの処理はmoutedの中で行う
+        try {
+          obj.init(this)
+          obj._initObject(this)
+        } catch (e) {
+          alert("error:" + e) //todo:
+        }
+      },
+      template: obj.getTemplate(),
     })
-    continue
   }
-  exportComponents[key] = Vue.component(key, {
-    name: key,
-    data() {
-      return {}
-    },
-    methods: {
-    },
-    mounted() {
-      obj.init(this)
-      obj._initObject(this)
-    },
-    template: obj.getTemplate(),
-  })
+  return exportComponents
 }
 
-export default exportComponents
+export default makeComponent()
