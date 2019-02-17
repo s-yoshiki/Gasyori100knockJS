@@ -1,4 +1,5 @@
 import { BaseTwoCanvasComponent } from "./BaseComponents.js"
+import config from "../configure.js"
 
 export default null
 
@@ -341,6 +342,21 @@ export class Ans8 extends BaseTwoCanvasComponent {
  * @extends BaseTwoCanvasComponent
  */
 export class Ans9 extends BaseTwoCanvasComponent {
+  /**
+   * 初期処理
+   * 
+   * @param {Document} self 
+   */
+  init() {
+    // ノイズ画像セット
+    this.setSrcImage(config.srcImage.noise)
+  }
+
+  /**
+   * メイン処理
+   * @param {canvas} canvas 
+   * @param {image} image 
+   */
   main(canvas, image) {
     let ctx = canvas.getContext("2d");
     ctx.drawImage(image, 0, 0, image.width, image.height)
@@ -394,7 +410,22 @@ export class Ans9 extends BaseTwoCanvasComponent {
  * @extends BaseTwoCanvasComponent
  */
 export class Ans10 extends BaseTwoCanvasComponent {
-  
+
+  /**
+   * 初期処理
+   * 
+   * @param {Document} self 
+   */
+  init() {
+    // ノイズ画像セット
+    this.setSrcImage(config.srcImage.noise)
+  }
+
+  /**
+   * メイン処理
+   * @param {canvas} canvas 
+   * @param {image} image 
+   */
   main(canvas, image) {
     let ctx = canvas.getContext("2d");
     ctx.drawImage(image, 0, 0, image.width, image.height)

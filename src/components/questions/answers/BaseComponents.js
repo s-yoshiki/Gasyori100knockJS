@@ -22,6 +22,13 @@ export default class BasePagesComponent {
    * 
    * @param {Document} self 
    */
+  _initObject(self){}
+
+  /**
+   * 子クラスでのオブジェクト操作
+   * 
+   * @param {Document} self 
+   */
   init(self) {
     return;
   }
@@ -62,11 +69,76 @@ export class BaseTwoCanvasComponent extends BasePagesComponent {
   }
 
   /**
+   * 子クラスでのオブジェクト操作
+   * 
+   * @param {Document} self 
+   */
+  init(self) {}
+
+  /**
    * DOMの初期処理
    * 
    * @param {Document} self 
    */
+  _initObject(self) {
+    let canvasAsset = self.$refs["canvas-view-only"]
+    let canvas = self.$refs["canvas"]
+    let button = self.$refs["button-run"]
+
+    let image = new Image()
+    image.src = this.imageUrl
+
+    image.addEventListener("load", () => {
+      canvas.width = image.width
+      canvas.height = image.height
+    })
+
+    CanvasUtility.drawImage(canvasAsset, image)
+  
+    button.addEventListener("click", () => {
+      this.main(canvas, image)
+    })
+  }
+
+  /**
+   * 画像を処理してcanvasに描画
+   * 
+   * @param {canvas} canvas 
+   * @param {Image} image 
+   */
+  main(canvas, image) {}
+
+  /**
+   * src画像のセット
+   * 
+   * @param {String} url 
+   */
+  setSrcImage(url) {
+    super.imageUrl = url
+  }
+}
+
+/**
+ * 3canvas用Component
+ */
+export class BaseThreeCanvasComponent extends BasePagesComponent {
+
+  constructor() {
+    super()
+    super.setTemplate(ThreeCanvasTemplate)
+    this.setSrcImage(config.srcImage.default)
+  }
+
   init(self) {
+    this.setSrcImage(config.srcImage.default)
+  }
+
+  /**
+   * DOMの初期処理
+   * 
+   * @param {Document} self 
+   */
+  _initObject(self) {
     let canvasAsset = self.$refs["canvas-view-only"]
     let canvas = self.$refs["canvas"]
     let button = self.$refs["button-run"]
