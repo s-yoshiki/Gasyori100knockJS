@@ -4,7 +4,7 @@
     <h3>{{"Q" + screenSeq + "." + title}}</h3>
     <div v-html="description"></div>
     <br>
-    <div class="main">
+    <div ref="main" class="main">
       <router-view/>
     </div>
     <br>
@@ -23,7 +23,6 @@
 
 <script>
 import description from "./questions/description.js";
-
 export default {
   name: "Question",
   data() {
@@ -50,9 +49,10 @@ export default {
         this.screenId  = "ans" + seq
         this.screenSeq  = seq
       }
-
+      if (!(1 <= this.screenSeq && this.screenSeq <= 100)) {
+        location.href = "#/list"
+      }
       this.makePage()
-
       this.makeDescription()
     },
     movePage: function(e) {
@@ -63,7 +63,6 @@ export default {
         this.pageNation.last = `#/questions/ans${this.screenSeq - 1}`
         this.pageNation.lastLabel = `Q.${this.screenSeq - 1}`
       }
-
       if (this.screenSeq < 100) {
         this.pageNation.next = `#/questions/ans${this.screenSeq + 1}`
         this.pageNation.nextLabel = `Q.${this.screenSeq + 1}`
@@ -81,11 +80,7 @@ export default {
   },
   created() {
     this.init()
-    
-    // this.makePage(0)
-
-    // this.makeDescription()
-  }
+  },
 };
 </script>
 

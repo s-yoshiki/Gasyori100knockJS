@@ -1,4 +1,5 @@
 import config from '../configure.js'
+import { ThreeCanvasTemplate, DefaultTemplate } from "../templates.js"
 
 export default {
   /**
@@ -30,8 +31,8 @@ export default {
             let _j = j - Math.floor(kernelSize / 2)
             k.push(src.data[getIndex(x + _i, y + _j, c)])
           }
-          let sum = k.reduce((prev, current) =>{
-            return prev+current;
+          let sum = k.reduce((prev, current) => {
+            return prev + current;
           });
           dst.data[getIndex(x, y, c)] = sum / k.length
         }
@@ -59,9 +60,9 @@ export default {
       }
       const kernelSize = 3
       let kernel = [
-        [1/3, 0, 0],
-        [0, 1/3, 0],
-        [0, 0, 1/3],
+        [1 / 3, 0, 0],
+        [0, 1 / 3, 0],
+        [0, 0, 1 / 3],
       ]
 
       for (let x = 0; x < canvas.width; x++) for (let y = 0; y < canvas.height; y++) {
@@ -91,7 +92,7 @@ export default {
       let src = ctx.getImageData(0, 0, image.width, image.height)
       let dst = ctx.createImageData(image.width, image.height)
 
-      const grayscale = (r,g,b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
+      const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
 
       const getIndex = (x, y, channel) => {
         x = Math.min(Math.max(x, 0), canvas.width - 1)
@@ -109,10 +110,10 @@ export default {
           let r = src.data[getIndex(x + _i, y + _j, 0)]
           let g = src.data[getIndex(x + _i, y + _j, 1)]
           let b = src.data[getIndex(x + _i, y + _j, 2)]
-          k.push(parseInt(grayscale(r,g,b),10))
+          k.push(parseInt(grayscale(r, g, b), 10))
         }
-  
-        k.sort((a,b) => a-b)
+
+        k.sort((a, b) => a - b)
         let c = Math.abs(k[0] - k[k.length - 1])
 
         dst.data[getIndex(x, y, 0)] = c
@@ -123,4 +124,14 @@ export default {
       ctx.putImageData(dst, 0, 0)
     }
   },
+
+  ans14: {
+    init(self) {
+      this.main('test')
+    },
+    main(test) {
+      // alert(test)
+    },
+    template: ThreeCanvasTemplate
+  }
 }
