@@ -2,6 +2,14 @@
 
 > 画像処理100本ノックをJavaScriptで解いてみる
 
+## tl;dr
+
+画像処理100本ノック (https://github.com/yoyoyo-yo/Gasyori100knock) をJavaScriptで実装しました。
+
+## DEMO
+
+https://s-yoshiki.github.io/Gasyori100knockJS/
+
 ## Build Setup
 
 webpackを利用してbuildします。

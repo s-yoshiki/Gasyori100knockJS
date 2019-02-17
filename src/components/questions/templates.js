@@ -1,4 +1,6 @@
-let _defaultTemplate = `
+
+
+export const DefaultTemplate = `
 <div>
 <canvas ref="canvas-view-only"></canvas>
 &nbsp;
@@ -8,5 +10,16 @@ let _defaultTemplate = `
 </div>
 `
 
-export default _defaultTemplate
-export const DefaultTemplate = _defaultTemplate
+export const ThreeCanvasTemplate = `
+<div>
+<canvas ref="canvas-view-only"></canvas>
+&nbsp;
+<canvas ref="canvas1"></canvas>
+&nbsp;
+<canvas ref="canvas2"></canvas>
+<br>
+<button ref="button-run" class="bt">run</button>
+</div>
+`
+
+export default DefaultTemplate
