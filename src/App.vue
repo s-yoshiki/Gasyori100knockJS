@@ -2,8 +2,9 @@
   <div id="app">
     <header>
       <div class="header-container">
-        <h2>画像処理100本ノック</h2>
-        <router-link to="/">home</router-link>
+        <h1>
+          <a href="#/" class="title" >画像処理100本ノックJS</a>
+        </h1>
         <router-link to="/list">list</router-link>
       </div>
     </header>
@@ -24,7 +25,6 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
   color: #2c3e50;
   margin-top: 60px;
 }
@@ -36,13 +36,14 @@ export default {
 canvas {
   background-color: rgba(230, 230, 230, 0.5);
 }
-a {
-  color: #5442b9;
-  font-size: 18px;
-}
 
 header {
   height: 150px;
   background-color: #f8f8f8;
+  padding: 10px;
+}
+
+.title {
+  color: #2c3e50;
 }
 </style>

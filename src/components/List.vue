@@ -4,7 +4,7 @@
     <ul v-for="item in questionLinks" :key="item.name">
       <li>
         <router-link :to="{path:item.path}">
-          Q.{{item.name.split("ans").join("")}}
+          Q.{{item.name.split("ans").join("")}} {{item.title}}
         </router-link>
       </li>
     </ul>
