@@ -493,6 +493,15 @@ export class Ans18 extends BaseTwoCanvasComponent {
  */
 export class Ans19 extends BaseTwoCanvasComponent {
   /**
+   * 初期処理
+   * 
+   * @param {Document} self 
+   */
+  init() {
+    // ノイズ画像セット
+    this.setSrcImage(config.srcImage.noise)
+  }
+  /**
    * メイン
    * @param {canvas} canvas 
    * @param {image} image 
