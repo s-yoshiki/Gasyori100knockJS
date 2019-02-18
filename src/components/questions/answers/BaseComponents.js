@@ -22,14 +22,14 @@ export default class BasePagesComponent {
    * 
    * @param {Document} self 
    */
-  _initObject(self){}
+  _initObject(){}
 
   /**
    * 子クラスでのオブジェクト操作
    * 
    * @param {Document} self 
    */
-  init(self) {
+  init() {
     return;
   }
 
@@ -73,7 +73,9 @@ export class BaseTwoCanvasComponent extends BasePagesComponent {
    * 
    * @param {Document} self 
    */
-  init(self) {}
+  init() {
+    return;
+  }
 
   /**
    * DOMの初期処理
@@ -106,7 +108,7 @@ export class BaseTwoCanvasComponent extends BasePagesComponent {
    * @param {canvas} canvas 
    * @param {Image} image 
    */
-  main(canvas, image) {}
+  main() {}
 
   /**
    * src画像のセット
@@ -129,7 +131,7 @@ export class BaseThreeCanvasComponent extends BasePagesComponent {
     // this.setSrcImage(config.srcImage.default)
   }
 
-  init(self) {
+  init() {
     this.setSrcImage(config.srcImage.default)
   }
 
@@ -161,11 +163,8 @@ export class BaseThreeCanvasComponent extends BasePagesComponent {
 
   /**
    * 画像を処理してcanvasに描画
-   * 
-   * @param {canvas} canvas 
-   * @param {Image} image 
    */
-  main(canvas1, canvas2, image) {}
+  main() {}
 
   /**
    * src画像のセット

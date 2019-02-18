@@ -14,7 +14,6 @@
 <script>
 import ItemComponent from '@/router/questions.js'
 
-
 export default {
   name: 'HelloWorld',
   data () {

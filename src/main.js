@@ -13,3 +13,6 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+// new Vue({
+//   render: h => h(App),
+// }).$mount('#app')
