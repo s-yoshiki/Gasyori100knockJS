@@ -1,25 +1,12 @@
 <template>
   <div id="app">
-    <header>
-      <div class="header-container">
-        <h1>
-          <a href="#/" class="title" >画像処理100本ノックJS</a>
-        </h1>
-        <router-link to="/list">list</router-link>
-      </div>
-    </header>
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
     <router-view/>
-    <footer>
-    </footer>
   </div>
 </template>
-
-
-<script>
-export default {
-  name: 'App'
-}
-</script>
 
 <style>
 #app {
