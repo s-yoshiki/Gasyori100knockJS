@@ -5,6 +5,9 @@
       <li>
         <router-link :to="{path:item.path}">
           Q.{{item.name.split("ans").join("")}} {{item.title}}
+          <div v-if="Number(item.name.split('ans').join('')) % 10 === 0">
+            <hr>
+          </div>
         </router-link>
       </li>
     </ul>

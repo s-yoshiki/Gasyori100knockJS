@@ -1,10 +1,16 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <header>
+      <div class="header-container">
+        <h1>
+          <a href="#/" class="title" >画像処理100本ノックJS</a>
+        </h1>
+        <router-link to="/list">list</router-link>
+      </div>
+    </header>
     <router-view/>
+    <footer>
+    </footer>
   </div>
 </template>
 
@@ -15,6 +21,14 @@
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+body {
+  /* background-color: #2c3e50 */
+}
+
+#app {
+  /* background-color:   #fefefe; */
 }
 
 .header-container {
@@ -34,4 +48,5 @@ header {
 .title {
   color: #2c3e50;
 }
+
 </style>
