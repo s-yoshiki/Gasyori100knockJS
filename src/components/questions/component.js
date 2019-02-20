@@ -8,7 +8,7 @@ import {
 import {
   Ans11, Ans12, Ans13, Ans14, Ans15, Ans16, Ans17, Ans18, Ans19, Ans20
 } from './answers/Ans2.js';
-import { 
+import {
   Ans21, Ans22, Ans23, Ans24, Ans25, Ans26, Ans27, Ans28, Ans29, Ans30
 } from './answers/Ans3.js';
 // import { 
@@ -52,12 +52,12 @@ const componentMap = {
   "ans16": new Ans16(),
   "ans17": new Ans17(),
   "ans18": new Ans18(),
-  "ans19": new Ans19(),
+  // "ans19": new Ans19(),
   "ans20": new Ans20(),
   "ans21": new Ans21(),
-  // "ans22": new Ans22(),
-  // "ans23": new Ans23(),
-  // "ans24": new Ans24(),
+  "ans22": new Ans22(),
+  "ans23": new Ans23(),
+  "ans24": new Ans24(),
   // "ans25": new Ans25(),
   // "ans26": new Ans26(),
   // "ans27": new Ans27(),

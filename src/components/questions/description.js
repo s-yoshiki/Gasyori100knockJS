@@ -1,11 +1,12 @@
 export default {
   ans1: {
     title: "チャンネル入れ替え",
-    desc: "画像を読み込み、RGBをBGRの順に入れ替えよ。"
+    desc: "画像を読み込み、RGBをBGRの順に入れ替える。"
   },
   ans2: {
     title: "グレースケール",
-    desc: "グレースケールとは、画像の輝度表現方法の一種であり次の式で計算される。<code>Y = 0.2126 R + 0.7152 G + 0.0722 B</code>"
+    desc: `画像の輝度表現方法の一種であり次の式で計算される。
+    <code>Y = 0.2126 R + 0.7152 G + 0.0722 B</code>`
   },
   ans3: {
     title: "二値化",
@@ -81,6 +82,18 @@ export default {
   },
   ans21: {
     title: "ヒストグラム正規化",
+    desc: "",
+  },
+  ans22: {
+    title: "ヒストグラム操作",
+    desc: "",
+  },
+  ans23: {
+    title: "ヒストグラム平坦化",
+    desc: "",
+  },
+  ans24: {
+    title: "ガンマ補正",
     desc: "",
   },
 }

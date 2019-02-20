@@ -23,8 +23,8 @@ let routes = [
     children: []
   },
   {
-    path:'/reset',
-    redirect:'/questions/ans1'
+    path: '/reset',
+    redirect: '/questions/ans1'
   }
 ]
 

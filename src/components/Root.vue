@@ -12,10 +12,9 @@
     <h2>関連リンク</h2>
     <ul>
       <li>
-        <a href="https://github.com/s-yoshiki/Gasyori100knockJS">GitHub: Gasyori100knockJS</a>
-      </li>
-      <li>
-        <a href="https://github.com/yoyoyo-yo/Gasyori100knock">【本家】画像処理100本ノック (Gasyori100knockJS)</a>
+        <a href="https://github.com/s-yoshiki/Gasyori100knockJS">
+          GitHub: Gasyori100knockJS - 画像処理100本ノックJS
+        </a>
       </li>
     </ul>
     <h2>参考</h2>

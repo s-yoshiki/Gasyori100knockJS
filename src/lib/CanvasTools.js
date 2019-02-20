@@ -1,6 +1,11 @@
 import Chart from "chart.js"
 
 export default class {
+  /**
+   * canvasに画像を描画する
+   * @param {canvas} canvas 
+   * @param {Image} image 
+   */
   static drawImage(canvas, image) {
     image.addEventListener("load", () => {
       canvas.width = image.width
@@ -9,6 +14,11 @@ export default class {
     });
   }
 
+  /**
+   * ヒストグラムを描画する
+   * @param {canvas} canvas 
+   * @param {Image} data 
+   */
   static renderHistogram(canvas, data) {
     let labels = new Array(255).fill('')
     new Chart(canvas, {
@@ -40,5 +50,6 @@ export default class {
         },
       }
     })
+    //
   }
 }

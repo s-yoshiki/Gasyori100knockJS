@@ -19,17 +19,17 @@ export default class BasePagesComponent {
    * 
    * @param {Document} self 
    */
-  _initObject() {}
+  _initObject() { }
   /**
    * 子クラスでのオブジェクト操作
    * 
    * @param {Document} self 
    */
-  init() {}
+  init() { }
   /**
    * init内で呼ぶ
    */
-  main() {}
+  main() { }
   /**
    * テンプレートをセット
    * @param {String} template 
@@ -256,5 +256,5 @@ export class ThreeCanvasHistogramComponent extends HistogramComponent {
     button.addEventListener("click", () => {
       this.main(canvas2, image)
     })
-  }  
+  }
 }
