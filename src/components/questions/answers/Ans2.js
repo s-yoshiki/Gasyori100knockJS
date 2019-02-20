@@ -588,18 +588,11 @@ export class Ans20 extends HistogramComponent {
     let pixelValues = new Array(255).fill(0)
     let ctx = canvas.getContext("2d");
     let src = ctx.getImageData(0, 0, canvas.width, canvas.height)
-    const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
 
     for (let i = 0; i < src.data.length; i += 4) {
-      pixelValues[
-        parseInt(
-          grayscale(
-            src.data[i],
-            src.data[i + 1],
-            src.data[i + 2],
-          )
-        )
-      ]++
+      for (let c = 0; c < 3; c++) {
+        pixelValues[src.data[i] + c]++
+      }
     }
     this.renderChart(pixelValues)
   }

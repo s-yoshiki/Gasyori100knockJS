@@ -88,4 +88,12 @@ export default {
     title: "ヒストグラム操作",
     desc: "",
   },
+  ans23: {
+    title: "ヒストグラム平坦化",
+    desc: "",
+  },
+  ans24: {
+    title: "ガンマ補正",
+    desc: "",
+  },
 }

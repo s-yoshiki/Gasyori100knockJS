@@ -5,7 +5,6 @@
         <h1>
           <a href="#/" class="title" >画像処理100本ノックJS</a>
         </h1>
-        <!-- <router-link to="/list">list</router-link> -->
       </div>
     </header>
     <router-view/>
