@@ -18,7 +18,7 @@
 import ItemComponent from '@/router/questions.js'
 
 export default {
-  name: 'HelloWorld',
+  name: 'List',
   data () {
     return {
       questionLinks : ItemComponent
@@ -27,7 +27,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1, h2 {
   font-weight: normal;

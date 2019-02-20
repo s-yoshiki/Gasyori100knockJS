@@ -8,9 +8,9 @@ import {
 import {
   Ans11, Ans12, Ans13, Ans14, Ans15, Ans16, Ans17, Ans18, Ans19, Ans20
 } from './answers/Ans2.js';
-// import { 
-//   Ans21, Ans22, Ans23, Ans24, Ans25, Ans26, Ans27, Ans28, Ans29, Ans30
-// } from './answers/Ans3.js';
+import { 
+  Ans21, Ans22, Ans23, Ans24, Ans25, Ans26, Ans27, Ans28, Ans29, Ans30
+} from './answers/Ans3.js';
 // import { 
 //   Ans31, Ans32, Ans33, Ans34, Ans35, Ans36, Ans37, Ans38, Ans39, Ans40
 // } from './answers/Ans4.js';
@@ -54,7 +54,7 @@ const componentMap = {
   "ans18": new Ans18(),
   "ans19": new Ans19(),
   "ans20": new Ans20(),
-  // "ans21": new Ans21(),
+  "ans21": new Ans21(),
   // "ans22": new Ans22(),
   // "ans23": new Ans23(),
   // "ans24": new Ans24(),
@@ -156,12 +156,14 @@ function makeComponent() {
       },
       mounted() {
         // canvasの処理はmoutedの中で行う
-        try {
-          obj.init(this)
-          obj._initObject(this)
-        } catch (e) {
-          alert("error:" + e) //todo:
-        }
+        obj.init(this)
+        obj._initObject(this)
+        // try {
+        //   obj.init(this)
+        //   obj._initObject(this)
+        // } catch (e) {
+        //   alert("error:" + e) //todo:
+        // }
       },
       template: obj.getTemplate(),
     })

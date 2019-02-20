@@ -79,4 +79,8 @@ export default {
     title: "ヒストグラム表示",
     desc: "",
   },
+  ans21: {
+    title: "ヒストグラム正規化",
+    desc: "",
+  },
 }
