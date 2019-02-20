@@ -1,4 +1,7 @@
 module.exports = {
+  outputDir:'docs',
+  // assetsDir: '',
+  publicPath: './',
   configureWebpack: {
     resolve: {
       alias: {
