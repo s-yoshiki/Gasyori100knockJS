@@ -1,6 +1,9 @@
+const branch = "./";
+
 export default {
     srcImage: {
-        default : "./static/imori.jpg",
-        noise : "./static/imori_noise.jpg",
+        default : branch + "imori.jpg",
+        noise : branch + "imori_noise.jpg",
+        dark : branch + "imori_dark.jpg",
     },
 }

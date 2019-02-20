@@ -39,4 +39,48 @@ export default {
     title: "メディアンフィルタ",
     desc: "",
   },
+  ans11: {
+    title: "平滑化フィルタ",
+    desc: "",
+  },
+  ans12: {
+    title: "モーションフィルタ",
+    desc: "",
+  },
+  ans13: {
+    title: "MAX-MINフィルタ",
+    desc: "",
+  },
+  ans14: {
+    title: "微分フィルタ",
+    desc: "",
+  },
+  ans15: {
+    title: "Sobelフィルタ",
+    desc: "",
+  },
+  ans16: {
+    title: "Prewittフィルタ",
+    desc: "",
+  },
+  ans17: {
+    title: "Laplacianフィルタ",
+    desc: "",
+  },
+  ans18: {
+    title: "Embossフィルタ",
+    desc: "",
+  },
+  ans19: {
+    title: "LoGフィルタ",
+    desc: "",
+  },
+  ans20: {
+    title: "ヒストグラム表示",
+    desc: "",
+  },
+  ans21: {
+    title: "ヒストグラム正規化",
+    desc: "",
+  },
 }
