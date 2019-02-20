@@ -576,7 +576,7 @@ export class Ans19 extends BaseTwoCanvasComponent {
 
 /**
  * Q.20
- * @extends BaseTwoCanvasComponent
+ * @extends HistogramComponent
  */
 export class Ans20 extends HistogramComponent {
   /**

@@ -84,4 +84,8 @@ export default {
     title: "ヒストグラム正規化",
     desc: "",
   },
+  ans22: {
+    title: "ヒストグラム操作",
+    desc: "",
+  },
 }
