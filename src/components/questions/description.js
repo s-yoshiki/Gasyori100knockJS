@@ -96,4 +96,8 @@ export default {
     title: "ガンマ補正",
     desc: "",
   },
+  ans25: {
+    title: "最近傍補間",
+    desc: "",
+  },
 }
