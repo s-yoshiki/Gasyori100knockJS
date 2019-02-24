@@ -9,7 +9,7 @@ https://s-yoshiki.github.io/Gasyori100knockJS/
 
 ## 概要
 
-画像処理100本ノック (https://github.com/yoyoyo-yo/Gasyori100knock) をJavaScriptで実装しました。
+![画像処理100本ノック](https://github.com/yoyoyo-yo/Gasyori100knock) をJavaScriptで実装しました。
 
 ## ソース
 
@@ -19,27 +19,26 @@ https://github.com/s-yoshiki/Gasyori100knockJS/tree/master/src/components/questi
 
 vue-cliを利用しています。
 
-### vue-cliのセットアップ
-
-```bash
-npm install @vue/cli -g
-```
-
-### ビルドコマンド
+### ビルド
 
 ``` bash
-# install dependencies
+# cloning
+git clone https://github.com/s-yoshiki/Gasyori100knockJS.git
+
+cd Gasyori100knockJS
+
+# 必要なモジュール類をまとめてインストール
 npm install
 
-# serve with hot reload at localhost:8080
+# 開発サーバ起動
 npm run server
 
-# build for production with minification
+# 本番用ビルド
 npm run build
 
 ```
 
 ## 参考
 > yoyoyo-yo. Gasyori100knock(画像処理100本ノック) 
-> ![https://github.com/yoyoyo-yo/Gasyori100knock](https://github.com/yoyoyo-yo/Gasyori100knock)
+> [https://github.com/yoyoyo-yo/Gasyori100knock](https://github.com/yoyoyo-yo/Gasyori100knock)
 > 2019
