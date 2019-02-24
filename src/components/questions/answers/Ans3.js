@@ -45,8 +45,8 @@ export class Ans21 extends ThreeCanvasHistogramComponent {
 
     for (let i = 0; i < src.data.length; i += 4) {
       for (let c = 0; c < 3; c++) {
-        dst.data[i+c] = parseInt(trans(src.data[i+c]), 10)
-        pixelValues[dst.data[i+c]]++
+        dst.data[i + c] = parseInt(trans(src.data[i + c]), 10)
+        pixelValues[dst.data[i + c]]++
       }
       dst.data[i + 3] = 255
     }
@@ -108,7 +108,7 @@ export class Ans22 extends ThreeCanvasHistogramComponent {
     ) / grayScaleArr.length
 
     for (let i = 0; i < src.data.length; i += 4) {
-      for (let c = 0; c  < 3; c++) {
+      for (let c = 0; c < 3; c++) {
         dst.data[i + c] = parseInt(trans(src.data[i + c]), 10)
         pixelValues[dst.data[i + c]]++
       }
@@ -164,11 +164,11 @@ export class Ans23 extends ThreeCanvasHistogramComponent {
     }
 
     for (let i = 0; i < src.data.length; i += 4) {
-      for (let n = 0; n < 3;n++) {
+      for (let n = 0; n < 3; n++) {
         let p = src.data[i + n]
         let v = parseInt(zMax / S * hSum[p])
         if (v > 255) {
-          v= 255
+          v = 255
         } else if (v < 0) {
           v = 0
         }
@@ -214,7 +214,7 @@ export class Ans24 extends BaseTwoCanvasComponent {
       for (let n = 0; n < 3; n++) {
         let p = src.data[i + n]
         p /= 255
-        p = (1/c * p) ** (1/g)
+        p = (1 / c * p) ** (1 / g)
         p *= 255
         dst.data[i + n] = p
       }
@@ -254,16 +254,82 @@ export class Ans25 extends BaseTwoCanvasComponent {
     let scale = 1.5
     canvas.width = image.width * scale
     canvas.height = image.height * scale
-    
+
     let dst = ctx.createImageData(canvas.width, canvas.height)
 
 
     for (let x = 0; x < canvas.width; x++) for (let y = 0; y < canvas.height; y++) {
       let _x = parseInt(x / scale, 10)
-      let _y = parseInt(y / scale, 10) 
+      let _y = parseInt(y / scale, 10)
       dst.data[getDstIndex(x, y, 0)] = src.data[getSrcIndex(_x, _y, 0)]
       dst.data[getDstIndex(x, y, 1)] = src.data[getSrcIndex(_x, _y, 1)]
       dst.data[getDstIndex(x, y, 2)] = src.data[getSrcIndex(_x, _y, 2)]
+      dst.data[getDstIndex(x, y, 3)] = 255
+    }
+    ctx.putImageData(dst, 0, 0)
+  }
+}
+/**
+ * Q.26
+ * Bi-linear補間
+ * @BaseTwoCanvasComponent
+ */
+export class Ans26 extends BaseTwoCanvasComponent {
+  /**
+   * メイン
+   * @param {canvas} canvas 
+   * @param {Image} image 
+   */
+  main(canvas, image) {
+    const getDstIndex = (x, y, channel) => {
+      x = Math.min(Math.max(x, 0), canvas.width - 1)
+      y = Math.min(Math.max(y, 0), canvas.height - 1)
+      return y * canvas.width * 4 + x * 4 + channel
+    }
+
+    const getSrcIndex = (x, y, channel) => {
+      x = Math.min(Math.max(x, 0), image.width - 1)
+      y = Math.min(Math.max(y, 0), image.height - 1)
+      return y * image.width * 4 + x * 4 + channel
+    }
+
+    const getWeight = (t1, t2) => {
+      const d = Math.abs(t1 - t2);
+      if (d > 1) {
+        return 0;
+      }
+      return 1 - d;
+    }
+
+    let ctx = canvas.getContext("2d");
+    ctx.drawImage(image, 0, 0, image.width, image.height)
+    let src = ctx.getImageData(0, 0, image.width, image.height)
+
+    const scale = 1.5
+    canvas.width = image.width * scale
+    canvas.height = image.height * scale
+
+    let dst = ctx.createImageData(canvas.width, canvas.height)
+
+    const range = [0, 1]
+
+    for (let x = 0; x < canvas.width; x++) for (let y = 0; y < canvas.height; y++) {
+      let _x = x / scale
+      let _y = y / scale
+      let rangeX = range.map(i => i + Math.floor(_x));
+      let rangeY = range.map(i => i + Math.floor(_y));
+      let r, g, b
+      r = g = b = 0
+
+      for (let ry of rangeY) for (let rx of rangeX) {
+        let weight = getWeight(ry, _y) * getWeight(rx, _x)
+        r += src.data[getSrcIndex(~~rx, ~~ry, 0)] * weight
+        g += src.data[getSrcIndex(~~rx, ~~ry, 1)] * weight
+        b += src.data[getSrcIndex(~~rx, ~~ry, 2)] * weight
+      }
+      dst.data[getDstIndex(x, y, 0)] = ~~r
+      dst.data[getDstIndex(x, y, 1)] = ~~g
+      dst.data[getDstIndex(x, y, 2)] = ~~b
       dst.data[getDstIndex(x, y, 3)] = 255
     }
     ctx.putImageData(dst, 0, 0)

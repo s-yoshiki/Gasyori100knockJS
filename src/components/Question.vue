@@ -87,6 +87,8 @@ export default {
         }
         this.pageNation.last = `#/questions/ans${this.screenSeq - 1}`;
         this.pageNation.lastLabel = `Q.${this.screenSeq - 1} ` + title;
+      } else {
+        this.pageNation.lastLabel = ""
       }
       if (this.screenSeq < 100) {
         let title = ""
@@ -96,6 +98,8 @@ export default {
         }
         this.pageNation.next = `#/questions/ans${this.screenSeq + 1}`;
         this.pageNation.nextLabel = `Q.${this.screenSeq + 1} ` + title;
+      } else {
+        this.pageNation.nextLabel = ""
       }
     },
     makeDescription() {

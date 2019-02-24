@@ -100,4 +100,8 @@ export default {
     title: "最近傍補間",
     desc: "",
   },
+  ans26: {
+    title: "Bi-linear補間",
+    desc: "",
+  },
 }
