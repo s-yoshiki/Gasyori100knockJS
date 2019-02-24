@@ -104,4 +104,12 @@ export default {
     title: "Bi-linear補間",
     desc: "",
   },
+  ans27: {
+    title: "Bi-cubic補間",
+    desc: "",
+  },
+  ans28: {
+    title: "アフィン変換(平行移動)",
+    desc: "",
+  },
 }
