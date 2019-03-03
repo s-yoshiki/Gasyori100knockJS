@@ -1,4 +1,4 @@
-const branch = "./";
+const branch = "./images/";
 
 export default {
     srcImage: {
