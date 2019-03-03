@@ -539,7 +539,7 @@ export class Ans29 extends BaseThreeCanvasComponent {
 }
 /**
  * Q.30
- * アフィン変換(平行移動)
+ * アフィン変換(回転)
  * @BaseTwoCanvasComponent
  */
 export class Ans30 extends BaseThreeCanvasComponent {

@@ -1,5 +1,7 @@
 import config from '../configure.js'
-import { ThreeCanvasTemplate, DefaultTemplate, HistogramTemplate } from "../templates.js"
+import { 
+  ThreeCanvasTemplate, DefaultTemplate, HistogramTemplate, FourCanvasTemplate
+} from "../templates.js"
 import CanvasUtility from '@/lib/CanvasTools'
 
 
@@ -149,6 +151,65 @@ export class BaseThreeCanvasComponent extends BasePagesComponent {
 
     button.addEventListener("click", () => {
       this.main(canvas2, canvas3, image)
+    })
+  }
+
+  /**
+   * 画像を処理してcanvasに描画
+   */
+  main() { }
+
+  /**
+   * src画像のセット
+   * 
+   * @param {String} url 
+   */
+  setSrcImage(url) {
+    super.imageUrl = url
+  }
+}
+/**
+ * 4canvas用オブジェクト
+ */
+export class BaseFourCanvasComponent extends BasePagesComponent {
+
+  constructor() {
+    super()
+    super.setTemplate(FourCanvasTemplate)
+  }
+
+  /**
+   * 継承先で行う初期処理
+   */
+  init() {
+    this.setSrcImage(config.srcImage.default)
+  }
+
+  /**
+   * DOMの初期処理
+   * 
+   * @access private
+   * @param {Document} self 
+   */
+  _initObject(self) {
+    let canvas1 = self.$refs["canvas1"]
+    let canvas2 = self.$refs["canvas2"]
+    let canvas3 = self.$refs["canvas3"]
+    let canvas4 = self.$refs["canvas4"]
+    let button = self.$refs["button-run"]
+
+    let image = new Image()
+    image.src = this.imageUrl
+
+    image.addEventListener("load", () => {
+      canvas4.width = canvas3.width = canvas2.width = image.width
+      canvas4.height = canvas3.height = canvas2.height = image.height
+    })
+
+    CanvasUtility.drawImage(canvas1, image)
+
+    button.addEventListener("click", () => {
+      this.main(canvas2, canvas3, canvas4, image)
     })
   }
 
