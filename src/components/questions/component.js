@@ -11,9 +11,9 @@ import {
 import {
   Ans21, Ans22, Ans23, Ans24, Ans25, Ans26, Ans27, Ans28, Ans29, Ans30
 } from './answers/Ans3.js';
-// import { 
-//   Ans31, Ans32, Ans33, Ans34, Ans35, Ans36, Ans37, Ans38, Ans39, Ans40
-// } from './answers/Ans4.js';
+import { 
+  Ans31, Ans32, Ans33, Ans34, Ans35, Ans36, Ans37, Ans38, Ans39, Ans40
+} from './answers/Ans4.js';
 // import { 
 //   Ans41, Ans42, Ans43, Ans44, Ans45, Ans46, Ans47, Ans48, Ans49, Ans50
 // } from './answers/Ans5.js';
@@ -64,7 +64,7 @@ const componentMap = {
   "ans28": new Ans28(),
   "ans29": new Ans29(),
   "ans30": new Ans30(),
-  // "ans31": new Ans31(),
+  "ans31": new Ans31(),
   // "ans32": new Ans32(),
   // "ans33": new Ans33(),
   // "ans34": new Ans34(),

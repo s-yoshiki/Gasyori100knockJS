@@ -120,4 +120,8 @@ export default {
     title: "アフィン変換(回転)",
     desc: "",
   },
+  ans31: {
+    title: "アフィン変換(スキュー)",
+    desc: "",
+  },
 }
