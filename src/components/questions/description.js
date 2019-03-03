@@ -116,4 +116,8 @@ export default {
     title: "アフィン変換(拡大縮小)",
     desc: "",
   },
+  ans30: {
+    title: "アフィン変換(回転)",
+    desc: "",
+  },
 }
