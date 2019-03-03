@@ -9,7 +9,7 @@ https://s-yoshiki.github.io/Gasyori100knockJS/
 
 ## 概要
 
-![画像処理100本ノック](https://github.com/yoyoyo-yo/Gasyori100knock) をJavaScriptで実装しました。
+[画像処理100本ノック](https://github.com/yoyoyo-yo/Gasyori100knock) をJavaScriptで実装しました。
 
 ## ソース
 

@@ -112,4 +112,8 @@ export default {
     title: "アフィン変換(平行移動)",
     desc: "",
   },
+  ans29: {
+    title: "アフィン変換(拡大縮小)",
+    desc: "",
+  },
 }
