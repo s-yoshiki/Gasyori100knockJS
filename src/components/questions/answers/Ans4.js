@@ -8,7 +8,7 @@ import math from "mathjs"
 export default null
 
 /**
- * Q.30
+ * Q.31
  * アフィン変換(スキュー)
  * @BaseTwoCanvasComponent
  */
@@ -85,7 +85,6 @@ export class Ans31 extends BaseFourCanvasComponent {
     let dst = ctx.createImageData(canvas.width, canvas.height)
 
     let _H = math.inv(H)
-    
 
     for (let x = 0; x < canvas.width; x++) for (let y = 0; y < canvas.height; y++) {
       let p = [x, y, 1]
@@ -103,6 +102,32 @@ export class Ans31 extends BaseFourCanvasComponent {
         }
       }
       dst.data[getDstIndex(x, y, 3)] = 255
+    }
+    ctx.putImageData(dst, 0, 0)
+  }
+}
+/**
+ * Q.32
+ * フーリエ変換
+ * @BaseTwoCanvasComponent
+ */
+export class Ans32 extends BaseThreeCanvasComponent {
+  /**
+   * メイン
+   * @param {canvas} canvas 
+   * @param {Image} image 
+   */
+  main(canvas1, canvas2, canvas3, image) {
+    const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
+    let ctx = canvas1.getContext("2d");
+    ctx.drawImage(image, 0, 0, image.width, image.height)
+    let src = ctx.getImageData(0, 0, image.width, image.height)
+    let dst = ctx.createImageData(canvas.width, canvas.height)
+    for (let i = 0; i < src.data.length; i += 4) {
+      dst.data[i] = dst.data[i + 1] = dst.data[i + 2] = ~~grayscale(
+        src.data[i], src.data[i + 1], src.data[i + 2]
+      )
+      dst.data[i + 3] = 255
     }
     ctx.putImageData(dst, 0, 0)
   }
