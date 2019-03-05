@@ -36,7 +36,7 @@ export class Ans1 extends BaseTwoCanvasComponent {
  */
 export class Ans2 extends BaseTwoCanvasComponent {
   /**
-   * 
+   * メイン
    * @param {canvas} canvas 
    * @param {image} image 
    */
@@ -64,6 +64,11 @@ export class Ans2 extends BaseTwoCanvasComponent {
  * @extends BaseTwoCanvasComponent
  */
 export class Ans3 extends BaseTwoCanvasComponent {
+  /**
+   * メイン
+   * @param {canvas} canvas 
+   * @param {image} image 
+   */
   main(canvas, image) {
     const THRESHOLD = 128
     let ctx = canvas.getContext("2d");
@@ -90,39 +95,78 @@ export class Ans3 extends BaseTwoCanvasComponent {
 }
 
 /**
- * Q.4 todo:大津の2化
+ * Q.4 大津の2化
  * @extends BaseTwoCanvasComponent
  */
 export class Ans4 extends BaseTwoCanvasComponent {
+  /**
+   * メイン
+   * @param {canvas} canvas 
+   * @param {image} image 
+   */
   main(canvas, image) {
+    const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
     let ctx = canvas.getContext("2d");
     ctx.drawImage(image, 0, 0, image.width, image.height)
     let src = ctx.getImageData(0, 0, image.width, image.height)
     let dst = ctx.createImageData(image.width, image.height)
 
-    let histgram = Array(256)
-    histgram.fill(0)
-    let sum = 0
-    let width = image.width
-    let height = image.height
+    let t = this.threshold(src)
 
-    for (let i = 0; i < src.data.length; i += 4) {
-      let y = 0.2126 * src.data[i] + 0.7152 * src.data[i + 1] + 0.0722 * src.data[i + 2]
-      y = parseInt(y, 10)
-      histgram[y]++
-      sum += y
-    }
-    let avg = sum / (width * height)
-
-    for (let t = 0; t < 256; t++) {
-      let v0 = histgram[t]
-      let m0 = null
-      let w0 = v0 / (width * height)
-      let v1 = 255 - histgram[t]
-      let m1 = null
-      let w1 = v0 / (width * height)
+    for (let i = 0; i < dst.data.length; i += 4) {
+      let v = grayscale(src.data[i], src.data[i + 1], src.data[i + 2])
+      if (v < t) {
+        dst.data[i] = dst.data[i + 1] = dst.data[i + 2] = 0
+      } else {
+        dst.data[i] = dst.data[i + 1] = dst.data[i + 2] = 255
+      }
+      dst.data[i + 3] = 255
     }
     ctx.putImageData(dst, 0, 0)
+  }
+  /**
+   * 大津の2値化
+   * @param {ImageData} src
+   */
+  threshold(src) {
+    const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
+    let histgram = Array(256).fill(0)
+    let t = 0
+    let max = 0
+
+    for (let i = 0; i < src.data.length; i += 4) {
+      let g = ~~grayscale(src.data[i], src.data[i + 1], src.data[i + 2])
+      histgram[g]++
+    }
+
+    for (let i = 0; i < 256; i++) {
+      let w1 = 0
+      let w2 = 0
+      let sum1 = 0
+      let sum2 = 0
+      let m1 = 0
+      let m2 = 0
+      for (let j = 0; j <= i; ++j) {
+        w1 += histgram[j]
+        sum1 += j * histgram[j]
+      }
+      for (let j = i + 1; j < 256; ++j) {
+        w2 += histgram[j]
+        sum2 += j * histgram[j]
+      }
+      if (w1) {
+        m1 = sum1 / w1
+      }
+      if (w2) {
+        m2 = sum2 / w2
+      }
+      let tmp = (w1 * w2 * (m1 - m2) * (m1 - m2))
+      if (tmp > max) {
+        max = tmp
+        t = i
+      }
+    }
+    return t
   }
 }
 
@@ -164,12 +208,12 @@ export class Ans5 extends BaseTwoCanvasComponent {
     let x = c * (1 - Math.abs(hp % 2 - 1));
 
     let r, g, b;
-    if (0 <= hp && hp < 1) { [r, g, b] = [c, x, 0] };
-    if (1 <= hp && hp < 2) { [r, g, b] = [x, c, 0] };
-    if (2 <= hp && hp < 3) { [r, g, b] = [0, c, x] };
-    if (3 <= hp && hp < 4) { [r, g, b] = [0, x, c] };
-    if (4 <= hp && hp < 5) { [r, g, b] = [x, 0, c] };
-    if (5 <= hp && hp < 6) { [r, g, b] = [c, 0, x] };
+    if (0 <= hp && hp < 1) { [r, g, b] = [c, x, 0] }
+    if (1 <= hp && hp < 2) { [r, g, b] = [x, c, 0] }
+    if (2 <= hp && hp < 3) { [r, g, b] = [0, c, x] }
+    if (3 <= hp && hp < 4) { [r, g, b] = [0, x, c] }
+    if (4 <= hp && hp < 5) { [r, g, b] = [x, 0, c] }
+    if (5 <= hp && hp < 6) { [r, g, b] = [c, 0, x] }
 
     let m = v - c;
     [r, g, b] = [r + m, g + m, b + m];
@@ -194,7 +238,6 @@ export class Ans5 extends BaseTwoCanvasComponent {
       let b = src.data[i + 2]
 
       let hsv = this.rgb2hsv([r, g, b])
-      // hsv[0] = Math.abs(256 - hsv[0])
       hsv[0] = (hsv[0] + 180) % 360
       let rgb = this.hsv2rgb(hsv)
 
@@ -262,10 +305,10 @@ export class Ans7 extends BaseTwoCanvasComponent {
       let r, g, b
       r = g = b = 0
 
-      var src = ctx.getImageData(x, y, w, h);
-      var dst = ctx.createImageData(w, h)
+      let src = ctx.getImageData(x, y, w, h);
+      let dst = ctx.createImageData(w, h)
 
-      for (var i = 0; i < src.data.length; i += 4) {
+      for (let i = 0; i < src.data.length; i += 4) {
         r += src.data[i]
         g += src.data[i + 1]
         b += src.data[i + 2]
@@ -279,7 +322,7 @@ export class Ans7 extends BaseTwoCanvasComponent {
       g = Math.ceil(g)
       b = Math.ceil(b)
 
-      for (var i = 0; i < src.data.length; i += 4) {
+      for (let i = 0; i < src.data.length; i += 4) {
         dst.data[i] = r
         dst.data[i + 1] = g
         dst.data[i + 2] = b
@@ -316,16 +359,16 @@ export class Ans8 extends BaseTwoCanvasComponent {
       let r, g, b
       r = g = b = 0
 
-      var src = ctx.getImageData(x, y, w, h);
-      var dst = ctx.createImageData(w, h)
+      let src = ctx.getImageData(x, y, w, h);
+      let dst = ctx.createImageData(w, h)
 
-      for (var i = 0; i < src.data.length; i += 4) {
+      for (let i = 0; i < src.data.length; i += 4) {
         r = src.data[i] > r ? src.data[i] : r
         g = src.data[i + 1] > g ? src.data[i + 1] : g
         b = src.data[i + 2] > b ? src.data[i + 2] : b
       }
 
-      for (var i = 0; i < src.data.length; i += 4) {
+      for (let i = 0; i < src.data.length; i += 4) {
         dst.data[i] = r
         dst.data[i + 1] = g
         dst.data[i + 2] = b

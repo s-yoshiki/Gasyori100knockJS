@@ -124,4 +124,8 @@ export default {
     title: "アフィン変換(スキュー)",
     desc: "",
   },
+  ans32: {
+    title: "フーリエ変換",
+    desc: "",
+  },
 }

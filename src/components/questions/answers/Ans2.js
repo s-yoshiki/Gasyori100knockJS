@@ -240,7 +240,6 @@ export class Ans15 extends BaseThreeCanvasComponent {
     this.sovelFilter(canvas1, image, verticalKernel)
     this.sovelFilter(canvas2, image, sideKernel)
   }
-
   /**
    * ソーベルフィルタ
    * @param {canvas} canvas 
@@ -250,8 +249,6 @@ export class Ans15 extends BaseThreeCanvasComponent {
   sovelFilter(canvas, image, kernel) {
     let ctx = canvas.getContext("2d");
     ctx.drawImage(image, 0, 0, image.width, image.height)
-    // this.grayscale(canvas)
-    const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
 
     let src = ctx.getImageData(0, 0, image.width, image.height)
     let dst = ctx.createImageData(image.width, image.height)
@@ -316,8 +313,6 @@ export class Ans16 extends BaseThreeCanvasComponent {
   prewittFilter(canvas, image, kernel) {
     let ctx = canvas.getContext("2d");
     ctx.drawImage(image, 0, 0, image.width, image.height)
-    // this.grayscale(canvas)
-    const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
 
     let src = ctx.getImageData(0, 0, image.width, image.height)
     let dst = ctx.createImageData(image.width, image.height)
@@ -332,9 +327,6 @@ export class Ans16 extends BaseThreeCanvasComponent {
       if (p < 0) return 0
       return p
     }
-    // const reverse = (p) => {
-    //   return Math.abs(255 - p)
-    // }
     const kernelSize = kernel.length
 
     for (let x = 0; x < canvas.width; x++) for (let y = 0; y < canvas.height; y++) {
@@ -385,7 +377,6 @@ export class Ans17 extends BaseTwoCanvasComponent {
   laplacianFilter(canvas, image, kernel) {
     let ctx = canvas.getContext("2d");
     ctx.drawImage(image, 0, 0, image.width, image.height)
-    const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
 
     let src = ctx.getImageData(0, 0, image.width, image.height)
     let dst = ctx.createImageData(image.width, image.height)
@@ -400,9 +391,6 @@ export class Ans17 extends BaseTwoCanvasComponent {
       if (p < 0) return 0
       return p
     }
-    // const reverse = (p) => {
-    //   return Math.abs(255 - p)
-    // }
     const kernelSize = kernel.length
 
     for (let x = 0; x < canvas.width; x++) for (let y = 0; y < canvas.height; y++) {
@@ -452,7 +440,6 @@ export class Ans18 extends BaseTwoCanvasComponent {
   logFilter(canvas, image, kernel) {
     let ctx = canvas.getContext("2d");
     ctx.drawImage(image, 0, 0, image.width, image.height)
-    const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
 
     let src = ctx.getImageData(0, 0, image.width, image.height)
     let dst = ctx.createImageData(image.width, image.height)
@@ -519,10 +506,8 @@ export class Ans19 extends BaseTwoCanvasComponent {
       let _x = x - Math.floor(kernelSize / 2)
       let _y = y - Math.floor(kernelSize / 2)
       let k = (_x ** 2 + _y ** 2 - s ** 2) * Math.exp(-(_x ** 2 + _y ** 2) / (2 * (s ** 2)))
-      // k /= (2 * Math.PI * (s ** 6))
       kernel[y][x] = k
     }
-    // document.write(JSON.stringify(kernel))
     this.logFilter(canvas, image, kernel)
   }
 
@@ -535,7 +520,6 @@ export class Ans19 extends BaseTwoCanvasComponent {
   logFilter(canvas, image, kernel) {
     let ctx = canvas.getContext("2d");
     ctx.drawImage(image, 0, 0, image.width, image.height)
-    const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
 
     let src = ctx.getImageData(0, 0, image.width, image.height)
     let dst = ctx.createImageData(image.width, image.height)
@@ -550,9 +534,6 @@ export class Ans19 extends BaseTwoCanvasComponent {
       if (p < 0) return 0
       return p
     }
-    // const reverse = (p) => {
-    //   return Math.abs(255 - p)
-    // }
     const kernelSize = kernel.length
 
     for (let x = 0; x < canvas.width; x++) for (let y = 0; y < canvas.height; y++) {

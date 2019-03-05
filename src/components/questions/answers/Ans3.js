@@ -24,7 +24,6 @@ export class Ans21 extends ThreeCanvasHistogramComponent {
     let pixelValues = new Array(255).fill(0)
     let src = ctx.getImageData(0, 0, image.width, image.height)
     let dst = ctx.createImageData(image.width, image.height)
-    const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
 
     let dMax = 255
     let dMin = 0

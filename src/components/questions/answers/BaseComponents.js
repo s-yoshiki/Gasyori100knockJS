@@ -1,6 +1,6 @@
 import config from '../configure.js'
 import { 
-  ThreeCanvasTemplate, DefaultTemplate, HistogramTemplate, FourCanvasTemplate
+  ThreeCanvasTemplate, DefaultTemplate, FourCanvasTemplate
 } from "../templates.js"
 import CanvasUtility from '@/lib/CanvasTools'
 
