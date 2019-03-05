@@ -122,7 +122,7 @@ export class Ans32 extends BaseThreeCanvasComponent {
     let ctx = canvas1.getContext("2d");
     ctx.drawImage(image, 0, 0, image.width, image.height)
     let src = ctx.getImageData(0, 0, image.width, image.height)
-    let dst = ctx.createImageData(canvas.width, canvas.height)
+    let dst = ctx.createImageData(canvas1.width, canvas1.height)
     for (let i = 0; i < src.data.length; i += 4) {
       dst.data[i] = dst.data[i + 1] = dst.data[i + 2] = ~~grayscale(
         src.data[i], src.data[i + 1], src.data[i + 2]

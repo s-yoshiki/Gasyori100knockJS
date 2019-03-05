@@ -28,7 +28,6 @@
   </div>
 </template>
 <script>
-import ItemComponent from "@/router/questions.js";
 export default {
   name: "Root"
 };

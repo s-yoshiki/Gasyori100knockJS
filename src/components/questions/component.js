@@ -37,7 +37,7 @@ const componentMap = {
   "ans1": new Ans1(),
   "ans2": new Ans2(),
   "ans3": new Ans3(),
-  // "ans4": new Ans4(),
+  "ans4": new Ans4(),
   "ans5": new Ans5(),
   "ans6": new Ans6(),
   "ans7": new Ans7(),
