@@ -128,4 +128,12 @@ export default {
     title: "フーリエ変換",
     desc: "",
   },
+  ans60: {
+    title: "アルファブレンド",
+    desc: "",
+  },
+  ans71: {
+    title: "マスキング",
+    desc: "",
+  },
 }

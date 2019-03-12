@@ -17,15 +17,15 @@ import {
 // import { 
 //   Ans41, Ans42, Ans43, Ans44, Ans45, Ans46, Ans47, Ans48, Ans49, Ans50
 // } from './answers/Ans5.js';
-// import { 
-//   Ans51, Ans52, Ans53, Ans54, Ans55, Ans56, Ans57, Ans58, Ans59, Ans60
-// } from './answers/Ans6.js';
+import { 
+  Ans51, Ans52, Ans53, Ans54, Ans55, Ans56, Ans57, Ans58, Ans59, Ans60
+} from './answers/Ans6.js';
 // import { 
 //   Ans61, Ans62, Ans63, Ans64, Ans65, Ans66, Ans67, Ans68, Ans69, Ans70
 // } from './answers/Ans7.js';
-// import { 
-//   Ans71, Ans72, Ans73, Ans74, Ans75, Ans76, Ans77, Ans78, Ans79, Ans80
-// } from './answers/Ans8.js';
+import { 
+  Ans71, Ans72, Ans73, Ans74, Ans75, Ans76, Ans77, Ans78, Ans79, Ans80
+} from './answers/Ans8.js';
 // import { 
 //   Ans81, Ans82, Ans83, Ans84, Ans85, Ans86, Ans87, Ans88, Ans89, Ans90
 // } from './answers/Ans9.js';
@@ -93,7 +93,7 @@ const componentMap = {
   // "ans57": new Ans57(),
   // "ans58": new Ans58(),
   // "ans59": new Ans59(),
-  // "ans60": new Ans60(),
+  "ans60": new Ans60(),
   // "ans61": new Ans61(),
   // "ans62": new Ans62(),
   // "ans63": new Ans63(),
@@ -104,7 +104,7 @@ const componentMap = {
   // "ans68": new Ans68(),
   // "ans69": new Ans69(),
   // "ans70": new Ans70(),
-  // "ans71": new Ans71(),
+  "ans71": new Ans71(),
   // "ans72": new Ans72(),
   // "ans73": new Ans73(),
   // "ans74": new Ans74(),
