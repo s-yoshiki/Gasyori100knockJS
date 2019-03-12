@@ -132,4 +132,8 @@ export default {
     title: "アルファブレンド",
     desc: "",
   },
+  ans71: {
+    title: "マスキング",
+    desc: "",
+  },
 }
