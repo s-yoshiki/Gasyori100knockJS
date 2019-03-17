@@ -136,4 +136,8 @@ export default {
     title: "マスキング",
     desc: "",
   },
+  ans73: {
+    title: "縮小と拡大",
+    desc: "",
+  },
 }

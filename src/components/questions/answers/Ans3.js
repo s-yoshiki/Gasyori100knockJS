@@ -55,7 +55,6 @@ export class Ans21 extends ThreeCanvasHistogramComponent {
     this.renderChart(pixelValues)
   }
 }
-
 /**
  * Q.22
  * ヒストグラム操作
@@ -622,7 +621,6 @@ export class Ans30 extends BaseThreeCanvasComponent {
         }
         a[i] = ~~tmp
       }
-      // let a = math.lusolve(_H, [y, x, 1])
       for (let c = 0; c < 3; c++) {
         if ((0 < a[0] && a[0] < canvas.width)) {
           dst.data[getDstIndex(x, y, c)] = src.data[getSrcIndex(a[0], a[1], c)]
