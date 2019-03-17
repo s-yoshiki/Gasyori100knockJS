@@ -9,7 +9,7 @@ export default null
  */
 export class Ans1 extends BaseTwoCanvasComponent {
   /**
-   * 
+   * メイン
    * @param {canvas} canvas 
    * @param {image} image 
    */
@@ -175,6 +175,10 @@ export class Ans4 extends BaseTwoCanvasComponent {
  * @extends BaseTwoCanvasComponent
  */
 export class Ans5 extends BaseTwoCanvasComponent {
+  /**
+   * rgb to hsv
+   * @param {Array} rgb 
+   */
   rgb2hsv(rgb) {
     let r = rgb[0] / 255;
     let g = rgb[1] / 255;
@@ -198,7 +202,10 @@ export class Ans5 extends BaseTwoCanvasComponent {
 
     return [h, s, v];
   }
-
+  /**
+   * hsv to rgb
+   * @param {Array} hsv 
+   */
   hsv2rgb(hsv) {
     let h = hsv[0]
     let s = hsv[1]
@@ -224,7 +231,11 @@ export class Ans5 extends BaseTwoCanvasComponent {
 
     return [r, g, b];
   }
-
+  /**
+   * メイン
+   * @param {canvas} canvas 
+   * @param {Image} image 
+   */
   main(canvas, image) {
     let ctx = canvas.getContext("2d");
     ctx.drawImage(image, 0, 0, image.width, image.height)
@@ -255,6 +266,11 @@ export class Ans5 extends BaseTwoCanvasComponent {
  * @extends BaseTwoCanvasComponent
  */
 export class Ans6 extends BaseTwoCanvasComponent {
+  /**
+   * メイン
+   * @param {canvas} canvas 
+   * @param {Image} image 
+   */
   main(canvas, image) {
     let ctx = canvas.getContext("2d");
     ctx.drawImage(image, 0, 0, image.width, image.height)
@@ -285,12 +301,16 @@ export class Ans6 extends BaseTwoCanvasComponent {
     ctx.putImageData(dst, 0, 0)
   }
 }
-
 /**
  * Q.7
  * @extends BaseTwoCanvasComponent
  */
 export class Ans7 extends BaseTwoCanvasComponent {
+  /**
+   * メイン
+   * @param {canvas} canvas 
+   * @param {Image} image 
+   */
   main(canvas, image) {
     let w = image.width
     let h = image.height
@@ -339,12 +359,16 @@ export class Ans7 extends BaseTwoCanvasComponent {
     }
   }
 }
-
 /**
  * Q.8
  * @extends BaseTwoCanvasComponent
  */
 export class Ans8 extends BaseTwoCanvasComponent {
+  /**
+   * メイン
+   * @param {canvas} canvas 
+   * @param {Image} image 
+   */
   main(canvas, image) {
     let w = image.width
     let h = image.height
@@ -393,14 +417,12 @@ export class Ans8 extends BaseTwoCanvasComponent {
 export class Ans9 extends BaseTwoCanvasComponent {
   /**
    * 初期処理
-   * 
    * @param {Document} self 
    */
   init() {
     // ノイズ画像セット
     this.setSrcImage(config.srcImage.noise)
   }
-
   /**
    * メイン処理
    * @param {canvas} canvas 
@@ -459,17 +481,14 @@ export class Ans9 extends BaseTwoCanvasComponent {
  * @extends BaseTwoCanvasComponent
  */
 export class Ans10 extends BaseTwoCanvasComponent {
-
   /**
    * 初期処理
-   * 
    * @param {Document} self 
    */
   init() {
     // ノイズ画像セット
     this.setSrcImage(config.srcImage.noise)
   }
-
   /**
    * メイン処理
    * @param {canvas} canvas 

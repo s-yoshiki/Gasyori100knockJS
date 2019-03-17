@@ -11,7 +11,7 @@ export default null
  */
 export class Ans11 extends BaseTwoCanvasComponent {
   /**
-   * 
+   * メイン
    * @param {canvas} canvas 
    * @param {image} image 
    */
@@ -55,7 +55,7 @@ export class Ans11 extends BaseTwoCanvasComponent {
  */
 export class Ans12 extends BaseTwoCanvasComponent {
   /**
-   * 
+   * メイン
    * @param {canvas} canvas 
    * @param {image} image 
    */
@@ -101,7 +101,7 @@ export class Ans12 extends BaseTwoCanvasComponent {
  */
 export class Ans13 extends BaseTwoCanvasComponent {
   /**
-   * 
+   * メイン
    * @param {canvas} canvas 
    * @param {image} image 
    */
@@ -152,7 +152,7 @@ export class Ans13 extends BaseTwoCanvasComponent {
  */
 export class Ans14 extends BaseThreeCanvasComponent {
   /**
-   * 
+   * メイン
    * @param {canvas} canvas1 
    * @param {canvas} canvas2 
    * @param {image} image 
@@ -430,7 +430,6 @@ export class Ans18 extends BaseTwoCanvasComponent {
     ]
     this.logFilter(canvas, image, kernel)
   }
-
   /**
    * embossフィルタ
    * @param {canvas} canvas 
@@ -482,7 +481,6 @@ export class Ans18 extends BaseTwoCanvasComponent {
 export class Ans19 extends BaseTwoCanvasComponent {
   /**
    * 初期処理
-   * 
    * @param {Document} self 
    */
   init() {
@@ -510,7 +508,6 @@ export class Ans19 extends BaseTwoCanvasComponent {
     }
     this.logFilter(canvas, image, kernel)
   }
-
   /**
    * Prewittフィルタ
    * @param {canvas} canvas 
@@ -554,7 +551,6 @@ export class Ans19 extends BaseTwoCanvasComponent {
     ctx.putImageData(dst, 0, 0)
   }
 }
-
 /**
  * Q.20
  * @extends HistogramComponent
