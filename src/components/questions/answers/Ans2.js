@@ -7,6 +7,7 @@ export default null
 
 /**
  * Q.11
+ * 平滑化フィルタ
  * @extends BaseTwoCanvasComponent
  */
 export class Ans11 extends BaseTwoCanvasComponent {
@@ -51,6 +52,7 @@ export class Ans11 extends BaseTwoCanvasComponent {
 
 /**
  * Q.12
+ * モーションフィルタ
  * @extends BaseTwoCanvasComponent
  */
 export class Ans12 extends BaseTwoCanvasComponent {
@@ -303,7 +305,6 @@ export class Ans16 extends BaseThreeCanvasComponent {
     this.prewittFilter(canvas1, image, verticalKernel)
     this.prewittFilter(canvas2, image, sideKernel)
   }
-
   /**
    * Prewittフィルタ
    * @param {canvas} canvas 
@@ -414,6 +415,7 @@ export class Ans17 extends BaseTwoCanvasComponent {
 
 /**
  * Q.18
+ * Embossフィルタ
  * @extends BaseTwoCanvasComponent
  */
 export class Ans18 extends BaseTwoCanvasComponent {
@@ -476,6 +478,7 @@ export class Ans18 extends BaseTwoCanvasComponent {
 
 /**
  * Q.19
+ * LoGフィルタ
  * @extends BaseTwoCanvasComponent
  */
 export class Ans19 extends BaseTwoCanvasComponent {
@@ -509,7 +512,7 @@ export class Ans19 extends BaseTwoCanvasComponent {
     this.logFilter(canvas, image, kernel)
   }
   /**
-   * Prewittフィルタ
+   * LoGフィルタ
    * @param {canvas} canvas 
    * @param {image} image 
    * @param {array} kernel 
@@ -553,6 +556,7 @@ export class Ans19 extends BaseTwoCanvasComponent {
 }
 /**
  * Q.20
+ * ヒストグラム表示
  * @extends HistogramComponent
  */
 export class Ans20 extends HistogramComponent {

@@ -5,6 +5,7 @@ export default null
 
 /**
  * Q.1
+ * チャンネル入れ替え
  * @extends BaseTwoCanvasComponent
  */
 export class Ans1 extends BaseTwoCanvasComponent {
@@ -32,6 +33,7 @@ export class Ans1 extends BaseTwoCanvasComponent {
 
 /**
  * Q.2
+ * グレースケール
  * @extends BaseTwoCanvasComponent
  */
 export class Ans2 extends BaseTwoCanvasComponent {
@@ -61,6 +63,7 @@ export class Ans2 extends BaseTwoCanvasComponent {
 
 /**
  * Q.3
+ * 二値化
  * @extends BaseTwoCanvasComponent
  */
 export class Ans3 extends BaseTwoCanvasComponent {
@@ -95,7 +98,8 @@ export class Ans3 extends BaseTwoCanvasComponent {
 }
 
 /**
- * Q.4 大津の2化
+ * Q.4
+ * 大津の2化
  * @extends BaseTwoCanvasComponent
  */
 export class Ans4 extends BaseTwoCanvasComponent {
@@ -172,6 +176,7 @@ export class Ans4 extends BaseTwoCanvasComponent {
 
 /**
  * Q.5
+ * HSV変換
  * @extends BaseTwoCanvasComponent
  */
 export class Ans5 extends BaseTwoCanvasComponent {
@@ -263,6 +268,7 @@ export class Ans5 extends BaseTwoCanvasComponent {
 
 /**
  * Q.6
+ * 減色処理
  * @extends BaseTwoCanvasComponent
  */
 export class Ans6 extends BaseTwoCanvasComponent {
@@ -303,6 +309,7 @@ export class Ans6 extends BaseTwoCanvasComponent {
 }
 /**
  * Q.7
+ * 平均プーリング
  * @extends BaseTwoCanvasComponent
  */
 export class Ans7 extends BaseTwoCanvasComponent {
@@ -361,6 +368,7 @@ export class Ans7 extends BaseTwoCanvasComponent {
 }
 /**
  * Q.8
+ * Maxプーリング
  * @extends BaseTwoCanvasComponent
  */
 export class Ans8 extends BaseTwoCanvasComponent {
@@ -412,6 +420,7 @@ export class Ans8 extends BaseTwoCanvasComponent {
 
 /**
  * Q.9
+ * ガウシアンフィルタ
  * @extends BaseTwoCanvasComponent
  */
 export class Ans9 extends BaseTwoCanvasComponent {
@@ -478,6 +487,7 @@ export class Ans9 extends BaseTwoCanvasComponent {
 
 /**
  * Q.10
+ * メディアンフィルタ
  * @extends BaseTwoCanvasComponent
  */
 export class Ans10 extends BaseTwoCanvasComponent {
