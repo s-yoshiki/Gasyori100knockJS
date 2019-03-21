@@ -138,9 +138,33 @@ export class Ans32 extends BaseFourCanvasComponent {
     }
     ctx1.putImageData(dst1, 0, 0)
 
-    let G = this.dft(src)
-    document.write(G)
+    let [Re, Im] = this.dft(src)
+    let [Re2, Im2] = this.idft(Re, Im)
+
+    Re2 = Re2.reverse()
+
+    for (let i = 0, j = 0; i < dst2.data.length; i += 4, j++) {
+      dst2.data[i] = dst2.data[i + 1] = dst2.data[i + 2] = ~~Re2[j]
+      dst2.data[i + 3] = 255
+    }
+    ctx2.putImageData(dst2, 0, 0)
+
+    // パワースペクトル画像
+    let max = Math.max.apply(null, Re.map(Math.abs));
+    for (let i = 0, j = 0; i < dst3.data.length; i += 4, j++) {
+      dst3.data[i] = dst3.data[i + 1] = dst3.data[i + 2] = ~~(Math.abs(Re[j]) / max * 255)
+      dst3.data[i + 3] = 255
+    }
+    for (let i = 0, j = 0; i < dst3.data.length; i += 4, j++) {
+      dst3.data[i] = dst3.data[i + 1] = dst3.data[i + 2] = ~~(Math.abs(Re[j]) / max * 255)
+      dst3.data[i + 3] = 255
+    }
+    ctx3.putImageData(dst3, 0, 0)
   }
+  /**
+   * 離散フーリエ変換
+   * @param {Array} arr 入力画像
+   */
   dft(arr) {
     let Re = []
     let Im = []
@@ -159,7 +183,26 @@ export class Ans32 extends BaseFourCanvasComponent {
     }
     return [Re, Im]
   }
-  idft(arr) {
-
+  /**
+   * 離散逆フーリエ変換
+   * @param {Array} srcRe 実数部
+   * @param {Array} srcIm 虚数部
+   */
+  idft(srcRe, srcIm) {
+    let Re = []
+    let Im = []
+    let N = srcRe.length
+    for (let j = 0; j < N; ++j) {
+      let re = 0.0;
+      let im = 0.0;
+      for (let i = 0; i < N; ++i) {
+        let theta = 2 * Math.PI / N * j * i
+        re += (srcRe[i] * Math.cos(theta) - srcIm[i] * Math.sin(theta)) / N
+        im += (srcRe[i] * Math.sin(theta) + srcIm[i] * Math.cos(theta)) / N
+      }
+      Re.push(re)
+      Im.push(im)
+    }
+    return [Re, Im]
   }
 }
