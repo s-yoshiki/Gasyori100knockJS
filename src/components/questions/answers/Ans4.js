@@ -111,7 +111,7 @@ export class Ans31 extends BaseFourCanvasComponent {
  * フーリエ変換
  * @BaseTwoCanvasComponent
  */
-export class Ans32 extends BaseThreeCanvasComponent {
+export class Ans32 extends BaseFourCanvasComponent {
   /**
    * メイン
    * @param {canvas} canvas 
@@ -119,16 +119,47 @@ export class Ans32 extends BaseThreeCanvasComponent {
    */
   main(canvas1, canvas2, canvas3, image) {
     const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
-    let ctx = canvas1.getContext("2d");
-    ctx.drawImage(image, 0, 0, image.width, image.height)
-    let src = ctx.getImageData(0, 0, image.width, image.height)
-    let dst = ctx.createImageData(canvas1.width, canvas1.height)
-    for (let i = 0; i < src.data.length; i += 4) {
-      dst.data[i] = dst.data[i + 1] = dst.data[i + 2] = ~~grayscale(
-        src.data[i], src.data[i + 1], src.data[i + 2]
+    let ctx1 = canvas1.getContext("2d");
+    let ctx2 = canvas2.getContext("2d");
+    let ctx3 = canvas3.getContext("2d");
+    ctx1.drawImage(image, 0, 0, image.width, image.height)
+    let src = [] //グレースケール成分を格納する
+    let src1 = ctx1.getImageData(0, 0, image.width, image.height)
+    let dst1 = ctx1.createImageData(canvas1.width, canvas1.height)
+    let dst2 = ctx1.createImageData(canvas1.width, canvas1.height)
+    let dst3 = ctx1.createImageData(canvas1.width, canvas1.height)
+    for (let i = 0; i < src1.data.length; i += 4) {
+      let color = ~~grayscale(
+        src1.data[i], src1.data[i + 1], src1.data[i + 2]
       )
-      dst.data[i + 3] = 255
+      src.push(color)
+      dst1.data[i] = dst1.data[i + 1] = dst1.data[i + 2] = color
+      dst1.data[i + 3] = 255
     }
-    ctx.putImageData(dst, 0, 0)
+    ctx1.putImageData(dst1, 0, 0)
+
+    let G = this.dft(src)
+    document.write(G)
+  }
+  dft(arr) {
+    let Re = []
+    let Im = []
+    let N = arr.length
+    // DFTの計算
+    for (let j = 0; j < N; ++j) {
+      let re = 0.0;
+      let im = 0.0;
+      for (let i = 0; i < N; ++i) {
+        let theta = 2 * Math.PI / N * j * i
+        re += arr[i] * Math.cos(theta)
+        im += arr[i] * Math.sin(theta)
+      }
+      Re.push(re)
+      Im.push(im)
+    }
+    return [Re, Im]
+  }
+  idft(arr) {
+
   }
 }
