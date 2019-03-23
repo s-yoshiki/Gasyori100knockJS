@@ -109,7 +109,7 @@ export class Ans31 extends BaseFourCanvasComponent {
 /**
  * Q.32
  * フーリエ変換
- * @BaseTwoCanvasComponent
+ * @BaseFourCanvasComponent
  */
 export class Ans32 extends BaseFourCanvasComponent {
   /**
@@ -126,8 +126,8 @@ export class Ans32 extends BaseFourCanvasComponent {
     let src = [] //グレースケール成分を格納する
     let src1 = ctx1.getImageData(0, 0, image.width, image.height)
     let dst1 = ctx1.createImageData(canvas1.width, canvas1.height)
-    let dst2 = ctx1.createImageData(canvas1.width, canvas1.height)
-    let dst3 = ctx1.createImageData(canvas1.width, canvas1.height)
+    let dst2 = ctx2.createImageData(canvas2.width, canvas3.height)
+    let dst3 = ctx3.createImageData(canvas3.width, canvas3.height)
     for (let i = 0; i < src1.data.length; i += 4) {
       let color = ~~grayscale(
         src1.data[i], src1.data[i + 1], src1.data[i + 2]
@@ -160,6 +160,99 @@ export class Ans32 extends BaseFourCanvasComponent {
       dst3.data[i + 3] = 255
     }
     ctx3.putImageData(dst3, 0, 0)
+  }
+  /**
+   * 離散フーリエ変換
+   * @param {Array} arr 入力画像
+   */
+  dft(arr) {
+    let Re = []
+    let Im = []
+    let N = arr.length
+    // DFTの計算
+    for (let j = 0; j < N; ++j) {
+      let re = 0.0;
+      let im = 0.0;
+      for (let i = 0; i < N; ++i) {
+        let theta = 2 * Math.PI / N * j * i
+        re += arr[i] * Math.cos(theta)
+        im += arr[i] * Math.sin(theta)
+      }
+      Re.push(re)
+      Im.push(im)
+    }
+    return [Re, Im]
+  }
+  /**
+   * 離散逆フーリエ変換
+   * @param {Array} srcRe 実数部
+   * @param {Array} srcIm 虚数部
+   */
+  idft(srcRe, srcIm) {
+    let Re = []
+    let Im = []
+    let N = srcRe.length
+    for (let j = 0; j < N; ++j) {
+      let re = 0.0;
+      let im = 0.0;
+      for (let i = 0; i < N; ++i) {
+        let theta = 2 * Math.PI / N * j * i
+        re += (srcRe[i] * Math.cos(theta) - srcIm[i] * Math.sin(theta)) / N
+        im += (srcRe[i] * Math.sin(theta) + srcIm[i] * Math.cos(theta)) / N
+      }
+      Re.push(re)
+      Im.push(im)
+    }
+    return [Re, Im]
+  }
+}
+/**
+ * Q.33
+ * フーリエ変換 ローパスフィルタ
+ * @BaseThreeCanvasComponent
+ */
+export class Ans33 extends BaseThreeCanvasComponent {
+  /**
+   * メイン
+   * @param {canvas} canvas 
+   * @param {Image} image 
+   */
+  main(canvas1, canvas2, image) {
+    const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
+    let ctx1 = canvas1.getContext("2d");
+    let ctx2 = canvas2.getContext("2d");
+    ctx1.drawImage(image, 0, 0, image.width, image.height)
+    let src = [] //グレースケール成分を格納する
+    let src1 = ctx1.getImageData(0, 0, image.width, image.height)
+    let dst1 = ctx1.createImageData(canvas1.width, canvas1.height)
+    let dst2 = ctx1.createImageData(canvas1.width, canvas1.height)
+
+    for (let i = 0; i < src1.data.length; i += 4) {
+      let color = ~~grayscale(
+        src1.data[i], src1.data[i + 1], src1.data[i + 2]
+      )
+      src.push(color)
+      dst1.data[i] = dst1.data[i + 1] = dst1.data[i + 2] = color
+      dst1.data[i + 3] = 255
+    }
+    ctx1.putImageData(dst1, 0, 0)
+
+    let [Re, Im] = this.dft(src)
+    for (var i = 0; i < Re.length; i++) {
+      let r = Re.length / 2
+      if (i > 0.2 * r) {
+        Re[i] = 0
+      }
+    }
+    let [Re2, Im2] = this.idft(Re, Im)
+
+    Re2 = Re2.reverse()
+
+    for (let i = 0, j = 0; i < dst2.data.length; i += 4, j++) {
+      dst2.data[i] = dst2.data[i + 1] = dst2.data[i + 2] = ~~Re2[j]
+      dst2.data[i + 3] = 255
+    }
+    ctx2.putImageData(dst2, 0, 0)
   }
   /**
    * 離散フーリエ変換
