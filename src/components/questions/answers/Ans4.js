@@ -237,65 +237,74 @@ export class Ans33 extends BaseThreeCanvasComponent {
     }
     ctx1.putImageData(dst1, 0, 0)
 
-    let [Re, Im] = this.dft(src)
-    for (var i = 0; i < Re.length; i++) {
-      let r = Re.length / 2
-      if (i > 0.2 * r) {
-        Re[i] = 0
+    let [Re, Im] = this.dft2d(src, canvas1.width, canvas1.height)
+
+    for (let y = 0; y < canvas1.height; y++) for (let x = 0; x < canvas1.width; x++) {
+      let idx = y * canvas1.width + x
+      let cx = canvas1.width / 2
+      let cy = canvas1.height / 2
+      let d = Math.sqrt(Math.pow(cx - x , 2) + Math.pow(cy - y , 2))
+      let r = canvas1.width * 0.5
+      if (d < r) {
+        Re[idx] = 0
+        Im[idx] = 0
       }
     }
-    let [Re2, Im2] = this.idft(Re, Im)
-
-    Re2 = Re2.reverse()
+    let arr = this.idft2d(Re, Im, canvas1.width, canvas1.height)
 
     for (let i = 0, j = 0; i < dst2.data.length; i += 4, j++) {
-      dst2.data[i] = dst2.data[i + 1] = dst2.data[i + 2] = ~~Re2[j]
+      dst2.data[i] = dst2.data[i + 1] = dst2.data[i + 2] = ~~arr[j]
       dst2.data[i + 3] = 255
     }
     ctx2.putImageData(dst2, 0, 0)
   }
   /**
-   * 離散フーリエ変換
-   * @param {Array} arr 入力画像
+   * 2次元離散フーリエ変換
+   * @param {Array} src 
+   * @param {int} imgWidth canvas width 
+   * @param {int} imgHeight canvas height
    */
-  dft(arr) {
-    let Re = []
-    let Im = []
-    let N = arr.length
-    // DFTの計算
-    for (let j = 0; j < N; ++j) {
-      let re = 0.0;
-      let im = 0.0;
-      for (let i = 0; i < N; ++i) {
-        let theta = 2 * Math.PI / N * j * i
-        re += arr[i] * Math.cos(theta)
-        im += arr[i] * Math.sin(theta)
+  dft2d(src, imgWidth, imgHeight) {
+    const W = imgWidth
+    const H = imgHeight
+    const wx0 = 2 * Math.PI / W
+    const wy0 = 2 * Math.PI / H
+    let Re = new Array(src.length)
+    let Im = new Array(src.length)
+    for (let v = 0; v < H; v++) for (let u = 0; u < W; u++) {
+      let uvIdx = W * v + u;
+      Re[uvIdx] = 0;
+      Im[uvIdx] = 0;
+      for (let y = 0; y < H; ++y) for (let x = 0; x < W; ++x) {
+        let xyIdx = W * y + x;
+        Re[uvIdx] += src[xyIdx] * Math.cos(- wx0 * x * u - wy0 * y * v)
+        Im[uvIdx] += src[xyIdx] * Math.sin(- wx0 * x * u - wy0 * y * v)
       }
-      Re.push(re)
-      Im.push(im)
+      Re[uvIdx] /= W * H;
+      Im[uvIdx] /= W * H;
     }
     return [Re, Im]
   }
   /**
-   * 離散逆フーリエ変換
-   * @param {Array} srcRe 実数部
-   * @param {Array} srcIm 虚数部
+   * 2次元離散逆フーリエ変換
+   * @param {Array} Re 
+   * @param {Array} Im 
+   * @param {int} imgWidth canvas width
+   * @param {int} imgHeight canvas height
    */
-  idft(srcRe, srcIm) {
-    let Re = []
-    let Im = []
-    let N = srcRe.length
-    for (let j = 0; j < N; ++j) {
-      let re = 0.0;
-      let im = 0.0;
-      for (let i = 0; i < N; ++i) {
-        let theta = 2 * Math.PI / N * j * i
-        re += (srcRe[i] * Math.cos(theta) - srcIm[i] * Math.sin(theta)) / N
-        im += (srcRe[i] * Math.sin(theta) + srcIm[i] * Math.cos(theta)) / N
+  idft2d(Re, Im, imgWidth, imgHeight) {
+    const W = imgWidth
+    const H = imgHeight
+    const wx0 = 2 * Math.PI / W;
+    const wy0 = 2 * Math.PI / H;
+    let dst = new Array(W * H)
+    for (let y = 0; y < H; ++y) for (let x = 0; x < W; ++x) {
+      let xyIdx = W * y + x;
+      dst[xyIdx] = 0;
+      for (let v = 0; v < H; ++v) for (let u = 0; u < W; ++u) {
+        dst[xyIdx] += Re[W * v + u] * Math.cos(wx0 * x * u + wy0 * y * v) - Im[W * v + u] * Math.sin(wx0 * x * u + wy0 * y * v);
       }
-      Re.push(re)
-      Im.push(im)
     }
-    return [Re, Im]
+    return dst
   }
 }
