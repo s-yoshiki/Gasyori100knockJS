@@ -1,8 +1,7 @@
 import {
   BaseTwoCanvasComponent, BaseThreeCanvasComponent, ThreeCanvasHistogramComponent, BaseFourCanvasComponent
 } from "./BaseComponents.js"
-import config from "../configure.js"
-
+// import config from "../configure.js"
 import math from "mathjs"
 
 export default null
@@ -176,7 +175,7 @@ export class Ans32 extends BaseFourCanvasComponent {
       let uvIdx = W * v + u;
       Re[uvIdx] = 0;
       Im[uvIdx] = 0;
-      for (let y = 0; y < H; ++y) for (let x = 0; x < W; ++x) {
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
         let xyIdx = W * y + x;
         Re[uvIdx] += src[xyIdx] * Math.cos(- wx0 * x * u - wy0 * y * v)
         Im[uvIdx] += src[xyIdx] * Math.sin(- wx0 * x * u - wy0 * y * v)
@@ -199,10 +198,10 @@ export class Ans32 extends BaseFourCanvasComponent {
     const wx0 = 2 * Math.PI / W;
     const wy0 = 2 * Math.PI / H;
     let dst = new Array(W * H)
-    for (let y = 0; y < H; ++y) for (let x = 0; x < W; ++x) {
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
       let xyIdx = W * y + x;
       dst[xyIdx] = 0;
-      for (let v = 0; v < H; ++v) for (let u = 0; u < W; ++u) {
+      for (let v = 0; v < H; v++) for (let u = 0; u < W; u++) {
         dst[xyIdx] += Re[W * v + u] * Math.cos(wx0 * x * u + wy0 * y * v) - Im[W * v + u] * Math.sin(wx0 * x * u + wy0 * y * v);
       }
     }
@@ -247,8 +246,12 @@ export class Ans33 extends BaseThreeCanvasComponent {
       let cx = canvas1.width / 2
       let cy = canvas1.height / 2
       let d = Math.sqrt(Math.pow(cx - x , 2) + Math.pow(cy - y , 2))
-      let r = canvas1.width * 0.5
-      if (d < r) {
+      let r = canvas1.width / 2 * 0.5
+      // if (d > r) {
+      //   Re[idx] = 0
+      //   Im[idx] = 0
+      // }
+      if (Math.abs(cx - x) < r || Math.abs(cy - y) < r) {
         Re[idx] = 0
         Im[idx] = 0
       }
@@ -278,7 +281,7 @@ export class Ans33 extends BaseThreeCanvasComponent {
       let uvIdx = W * v + u;
       Re[uvIdx] = 0;
       Im[uvIdx] = 0;
-      for (let y = 0; y < H; ++y) for (let x = 0; x < W; ++x) {
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
         let xyIdx = W * y + x;
         Re[uvIdx] += src[xyIdx] * Math.cos(- wx0 * x * u - wy0 * y * v)
         Im[uvIdx] += src[xyIdx] * Math.sin(- wx0 * x * u - wy0 * y * v)
@@ -301,10 +304,10 @@ export class Ans33 extends BaseThreeCanvasComponent {
     const wx0 = 2 * Math.PI / W;
     const wy0 = 2 * Math.PI / H;
     let dst = new Array(W * H)
-    for (let y = 0; y < H; ++y) for (let x = 0; x < W; ++x) {
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
       let xyIdx = W * y + x;
       dst[xyIdx] = 0;
-      for (let v = 0; v < H; ++v) for (let u = 0; u < W; ++u) {
+      for (let v = 0; v < H; v++) for (let u = 0; u < W; u++) {
         dst[xyIdx] += Re[W * v + u] * Math.cos(wx0 * x * u + wy0 * y * v) - Im[W * v + u] * Math.sin(wx0 * x * u + wy0 * y * v);
       }
     }
@@ -349,8 +352,12 @@ export class Ans34 extends BaseThreeCanvasComponent {
       let cx = canvas1.width / 2
       let cy = canvas1.height / 2
       let d = Math.sqrt(Math.pow(cx - x , 2) + Math.pow(cy - y , 2))
-      let r = canvas1.width * 0.2
-      if (r < d) {
+      let r = canvas1.width * 0.2 / 2
+      // if (d < r) {
+      //   Re[idx] = 0
+      //   Im[idx] = 0
+      // }
+      if (Math.abs(cx - x) > r || Math.abs(cy - y) > r) {
         Re[idx] = 0
         Im[idx] = 0
       }
@@ -380,7 +387,7 @@ export class Ans34 extends BaseThreeCanvasComponent {
       let uvIdx = W * v + u;
       Re[uvIdx] = 0;
       Im[uvIdx] = 0;
-      for (let y = 0; y < H; ++y) for (let x = 0; x < W; ++x) {
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
         let xyIdx = W * y + x;
         Re[uvIdx] += src[xyIdx] * Math.cos(- wx0 * x * u - wy0 * y * v)
         Im[uvIdx] += src[xyIdx] * Math.sin(- wx0 * x * u - wy0 * y * v)
@@ -403,10 +410,116 @@ export class Ans34 extends BaseThreeCanvasComponent {
     const wx0 = 2 * Math.PI / W;
     const wy0 = 2 * Math.PI / H;
     let dst = new Array(W * H)
-    for (let y = 0; y < H; ++y) for (let x = 0; x < W; ++x) {
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
       let xyIdx = W * y + x;
       dst[xyIdx] = 0;
-      for (let v = 0; v < H; ++v) for (let u = 0; u < W; ++u) {
+      for (let v = 0; v < H; v++) for (let u = 0; u < W; u++) {
+        dst[xyIdx] += Re[W * v + u] * Math.cos(wx0 * x * u + wy0 * y * v) - Im[W * v + u] * Math.sin(wx0 * x * u + wy0 * y * v);
+      }
+    }
+    return dst
+  }
+}
+/**
+ * Q.35
+ * フーリエ変換 バンドパスフィルタ
+ * @BaseThreeCanvasComponent
+ */
+export class Ans35 extends BaseThreeCanvasComponent {
+  /**
+   * メイン
+   * @param {canvas} canvas 
+   * @param {Image} image 
+   */
+  main(canvas1, canvas2, image) {
+    const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
+    let ctx1 = canvas1.getContext("2d");
+    let ctx2 = canvas2.getContext("2d");
+    ctx1.drawImage(image, 0, 0, image.width, image.height)
+    let src = [] //グレースケール成分を格納する
+    let src1 = ctx1.getImageData(0, 0, image.width, image.height)
+    let dst1 = ctx1.createImageData(canvas1.width, canvas1.height)
+    let dst2 = ctx1.createImageData(canvas1.width, canvas1.height)
+
+    for (let i = 0; i < src1.data.length; i += 4) {
+      let color = ~~grayscale(
+        src1.data[i], src1.data[i + 1], src1.data[i + 2]
+      )
+      src.push(color)
+      dst1.data[i] = dst1.data[i + 1] = dst1.data[i + 2] = color
+      dst1.data[i + 3] = 255
+    }
+    ctx1.putImageData(dst1, 0, 0)
+
+    let [Re, Im] = this.dft2d(src, canvas1.width, canvas1.height)
+
+    for (let y = 0; y < canvas1.height; y++) for (let x = 0; x < canvas1.width; x++) {
+      let idx = y * canvas1.width + x
+      let cx = canvas1.width / 2
+      let cy = canvas1.height / 2
+      let d = Math.sqrt(Math.pow(cx - x , 2) + Math.pow(cy - y , 2))
+      let r = canvas1.width * 0.2 / 2
+      // if (d < r) {
+      //   Re[idx] = 0
+      //   Im[idx] = 0
+      // }
+      if (Math.abs(cx - x) > r || Math.abs(cy - y) > r) {
+        Re[idx] = 0
+        Im[idx] = 0
+      }
+    }
+    let arr = this.idft2d(Re, Im, canvas1.width, canvas1.height)
+
+    for (let i = 0, j = 0; i < dst2.data.length; i += 4, j++) {
+      dst2.data[i] = dst2.data[i + 1] = dst2.data[i + 2] = ~~arr[j]
+      dst2.data[i + 3] = 255
+    }
+    ctx2.putImageData(dst2, 0, 0)
+  }
+  /**
+   * 2次元離散フーリエ変換
+   * @param {Array} src 
+   * @param {int} imgWidth canvas width 
+   * @param {int} imgHeight canvas height
+   */
+  dft2d(src, imgWidth, imgHeight) {
+    const W = imgWidth
+    const H = imgHeight
+    const wx0 = 2 * Math.PI / W
+    const wy0 = 2 * Math.PI / H
+    let Re = new Array(src.length)
+    let Im = new Array(src.length)
+    for (let v = 0; v < H; v++) for (let u = 0; u < W; u++) {
+      let uvIdx = W * v + u;
+      Re[uvIdx] = 0;
+      Im[uvIdx] = 0;
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+        let xyIdx = W * y + x;
+        Re[uvIdx] += src[xyIdx] * Math.cos(- wx0 * x * u - wy0 * y * v)
+        Im[uvIdx] += src[xyIdx] * Math.sin(- wx0 * x * u - wy0 * y * v)
+      }
+      Re[uvIdx] /= W * H;
+      Im[uvIdx] /= W * H;
+    }
+    return [Re, Im]
+  }
+  /**
+   * 2次元離散逆フーリエ変換
+   * @param {Array} Re 
+   * @param {Array} Im 
+   * @param {int} imgWidth canvas width
+   * @param {int} imgHeight canvas height
+   */
+  idft2d(Re, Im, imgWidth, imgHeight) {
+    const W = imgWidth
+    const H = imgHeight
+    const wx0 = 2 * Math.PI / W;
+    const wy0 = 2 * Math.PI / H;
+    let dst = new Array(W * H)
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      let xyIdx = W * y + x;
+      dst[xyIdx] = 0;
+      for (let v = 0; v < H; v++) for (let u = 0; u < W; u++) {
         dst[xyIdx] += Re[W * v + u] * Math.cos(wx0 * x * u + wy0 * y * v) - Im[W * v + u] * Math.sin(wx0 * x * u + wy0 * y * v);
       }
     }
