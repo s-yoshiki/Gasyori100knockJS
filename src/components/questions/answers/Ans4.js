@@ -241,21 +241,8 @@ export class Ans33 extends BaseThreeCanvasComponent {
 
     let [Re, Im] = this.dft2d(src, canvas1.width, canvas1.height)
 
-    for (let y = 0; y < canvas1.height; y++) for (let x = 0; x < canvas1.width; x++) {
-      let idx = y * canvas1.width + x
-      let cx = canvas1.width / 2
-      let cy = canvas1.height / 2
-      let d = Math.sqrt(Math.pow(cx - x , 2) + Math.pow(cy - y , 2))
-      let r = canvas1.width / 2 * 0.5
-      // if (d > r) {
-      //   Re[idx] = 0
-      //   Im[idx] = 0
-      // }
-      if (Math.abs(cx - x) < r || Math.abs(cy - y) < r) {
-        Re[idx] = 0
-        Im[idx] = 0
-      }
-    }
+    this.lpf(Re, Im, canvas1.width, canvas1.height, canvas1.width / 2 * 0.5)
+
     let arr = this.idft2d(Re, Im, canvas1.width, canvas1.height)
 
     for (let i = 0, j = 0; i < dst2.data.length; i += 4, j++) {
@@ -312,6 +299,29 @@ export class Ans33 extends BaseThreeCanvasComponent {
       }
     }
     return dst
+  }
+  /**
+   * ローパスフィルタ
+   * @param {Array} Re 
+   * @param {Array} Im 
+   * @param {int} imgWidth image width 
+   * @param {int} imgHeight image height
+   */
+  lpf(Re, Im, imgWidth, imgHeight, r) {
+    let cx = imgWidth / 2
+    let cy = imgHeight / 2
+    for (let y = 0; y < imgHeight; y++) for (let x = 0; x < imgWidth; x++) {
+      let idx = y * imgWidth + x
+      // let d = Math.sqrt(Math.pow(cx - x , 2) + Math.pow(cy - y , 2))
+      // if (d > r) {
+      //   Re[idx] = 0
+      //   Im[idx] = 0
+      // }
+      if (Math.abs(cx - x) < r || Math.abs(cy - y) < r) {
+        Re[idx] = 0
+        Im[idx] = 0
+      }
+    }
   }
 }
 /**
@@ -347,21 +357,8 @@ export class Ans34 extends BaseThreeCanvasComponent {
 
     let [Re, Im] = this.dft2d(src, canvas1.width, canvas1.height)
 
-    for (let y = 0; y < canvas1.height; y++) for (let x = 0; x < canvas1.width; x++) {
-      let idx = y * canvas1.width + x
-      let cx = canvas1.width / 2
-      let cy = canvas1.height / 2
-      let d = Math.sqrt(Math.pow(cx - x , 2) + Math.pow(cy - y , 2))
-      let r = canvas1.width * 0.2 / 2
-      // if (d < r) {
-      //   Re[idx] = 0
-      //   Im[idx] = 0
-      // }
-      if (Math.abs(cx - x) > r || Math.abs(cy - y) > r) {
-        Re[idx] = 0
-        Im[idx] = 0
-      }
-    }
+    this.hpf(Re, Im, canvas1.width, canvas1.height, canvas1.width / 2 * 0.2)
+
     let arr = this.idft2d(Re, Im, canvas1.width, canvas1.height)
 
     for (let i = 0, j = 0; i < dst2.data.length; i += 4, j++) {
@@ -418,6 +415,29 @@ export class Ans34 extends BaseThreeCanvasComponent {
       }
     }
     return dst
+  }
+  /**
+   * ハイパスフィルタ
+   * @param {Array} Re 
+   * @param {Array} Im 
+   * @param {int} imgWidth image width 
+   * @param {int} imgHeight image height
+   */
+  hpf(Re, Im, imgWidth, imgHeight, r) {
+    let cx = imgWidth / 2
+    let cy = imgHeight / 2
+    for (let y = 0; y < imgHeight; y++) for (let x = 0; x < imgWidth; x++) {
+      let idx = y * imgWidth + x
+      // let d = Math.sqrt(Math.pow(cx - x , 2) + Math.pow(cy - y , 2))
+      // if (d > r) {
+      //   Re[idx] = 0
+      //   Im[idx] = 0
+      // }
+      if (Math.abs(cx - x) > r || Math.abs(cy - y) > r) {
+        Re[idx] = 0
+        Im[idx] = 0
+      }
+    }
   }
 }
 /**
@@ -453,21 +473,8 @@ export class Ans35 extends BaseThreeCanvasComponent {
 
     let [Re, Im] = this.dft2d(src, canvas1.width, canvas1.height)
 
-    for (let y = 0; y < canvas1.height; y++) for (let x = 0; x < canvas1.width; x++) {
-      let idx = y * canvas1.width + x
-      let cx = canvas1.width / 2
-      let cy = canvas1.height / 2
-      let d = Math.sqrt(Math.pow(cx - x , 2) + Math.pow(cy - y , 2))
-      let r = canvas1.width * 0.2 / 2
-      // if (d < r) {
-      //   Re[idx] = 0
-      //   Im[idx] = 0
-      // }
-      if (Math.abs(cx - x) > r || Math.abs(cy - y) > r) {
-        Re[idx] = 0
-        Im[idx] = 0
-      }
-    }
+    this.bpf(Re, Im, canvas1.width, canvas1.height, canvas1.width / 2 * 0.2)
+
     let arr = this.idft2d(Re, Im, canvas1.width, canvas1.height)
 
     for (let i = 0, j = 0; i < dst2.data.length; i += 4, j++) {
@@ -524,5 +531,26 @@ export class Ans35 extends BaseThreeCanvasComponent {
       }
     }
     return dst
+  }
+  /**
+   * バンドパスフィルタ
+   * @param {Array} Re 
+   * @param {Array} Im 
+   * @param {int} imgWidth image width 
+   * @param {int} imgHeight image height
+   */
+  bpf(Re, Im, imgWidth, imgHeight, r) {
+    let cx = imgWidth / 2
+    let cy = imgHeight / 2
+    for (let y = 0; y < imgHeight; y++) for (let x = 0; x < imgWidth; x++) {
+      let idx = y * imgWidth + x
+      // let d = Math.sqrt(Math.pow(cx - x , 2) + Math.pow(cy - y , 2))
+      let condition1 = Math.abs(cx - x) > r * 0.1 || Math.abs(cy - y) > r * 0.1
+      let condition2 = Math.abs(cx - x) < r * 0.5 || Math.abs(cy - y) < r * 0.5
+      if (!(condition1 && condition2)) {
+        Re[idx] = 0
+        Im[idx] = 0
+      }
+    }
   }
 }
