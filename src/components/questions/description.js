@@ -160,6 +160,10 @@ export default {
     title: "JPEG圧縮 (Step.4)YCbCr+DCT+量子化",
     desc: "",
   },
+  ans41: {
+    title: "Cannyエッジ検出 (Step.1) エッジ強度",
+    desc: "",
+  },
   ans60: {
     title: "アルファブレンド",
     desc: "",
