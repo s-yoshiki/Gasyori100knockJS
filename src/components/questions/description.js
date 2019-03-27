@@ -156,6 +156,10 @@ export default {
     title: "JPEG圧縮 (Step.3)YCbCr表色系",
     desc: "",
   },
+  ans40: {
+    title: "JPEG圧縮 (Step.4)YCbCr+DCT+量子化",
+    desc: "",
+  },
   ans60: {
     title: "アルファブレンド",
     desc: "",
