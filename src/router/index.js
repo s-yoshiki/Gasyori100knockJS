@@ -35,6 +35,6 @@ Questions.forEach(e => {
 Vue.use(Router)
 
 export default new Router({
-  // mode: 'history',
+  mode: 'history', //urlの間に#を挟まない
   routes: routes
 })
