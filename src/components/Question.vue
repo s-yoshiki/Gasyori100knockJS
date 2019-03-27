@@ -133,4 +133,8 @@ export default {
 .main {
   text-align: center;
 }
+
+.msg {
+  text-align: left;
+}
 </style>

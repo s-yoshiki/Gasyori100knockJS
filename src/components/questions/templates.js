@@ -3,7 +3,7 @@
  */
 export const BlankTemplate = `<h3>Comming soon.</h3>`
 /**
- * 通常の2つのcanvasテンプレート
+ * 通常 && 2つのcanvasテンプレート
  */
 export const DefaultTemplate = `
 <div>
@@ -12,6 +12,8 @@ export const DefaultTemplate = `
 <canvas ref="canvas2"></canvas>
 <br>
 <button ref="button-run" class="bt">run</button>
+<br>
+<div ref="msg" class="msg"></div>
 </div>
 `
 /**
@@ -26,6 +28,8 @@ export const ThreeCanvasTemplate = `
 <canvas ref="canvas3"></canvas>
 <br>
 <button ref="button-run" class="bt">run</button>
+<br>
+<div ref="msg" class="msg"></div>
 </div>
 `
 /**
@@ -42,6 +46,8 @@ export const FourCanvasTemplate = `
 <canvas ref="canvas4"></canvas>
 <br>
 <button ref="button-run" class="bt">run</button>
+<br>
+<div ref="msg" class="msg"></div>
 </div>
 `
 /**
@@ -54,6 +60,8 @@ export const HistogramTemplate = `
 <canvas ref="graph"></canvas>
 <br>
 <button ref="button-run" class="bt">run</button>
+<br>
+<div ref="msg" class="msg"></div>
 </div>
 `
 

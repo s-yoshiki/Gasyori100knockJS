@@ -1,8 +1,6 @@
 import {
   BaseTwoCanvasComponent, BaseThreeCanvasComponent, ThreeCanvasHistogramComponent, BaseFourCanvasComponent
 } from "./BaseComponents.js"
-import config from "../configure.js"
-
 import math from "mathjs"
 
 export default null
@@ -176,7 +174,7 @@ export class Ans32 extends BaseFourCanvasComponent {
       let uvIdx = W * v + u;
       Re[uvIdx] = 0;
       Im[uvIdx] = 0;
-      for (let y = 0; y < H; ++y) for (let x = 0; x < W; ++x) {
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
         let xyIdx = W * y + x;
         Re[uvIdx] += src[xyIdx] * Math.cos(- wx0 * x * u - wy0 * y * v)
         Im[uvIdx] += src[xyIdx] * Math.sin(- wx0 * x * u - wy0 * y * v)
@@ -199,10 +197,10 @@ export class Ans32 extends BaseFourCanvasComponent {
     const wx0 = 2 * Math.PI / W;
     const wy0 = 2 * Math.PI / H;
     let dst = new Array(W * H)
-    for (let y = 0; y < H; ++y) for (let x = 0; x < W; ++x) {
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
       let xyIdx = W * y + x;
       dst[xyIdx] = 0;
-      for (let v = 0; v < H; ++v) for (let u = 0; u < W; ++u) {
+      for (let v = 0; v < H; v++) for (let u = 0; u < W; u++) {
         dst[xyIdx] += Re[W * v + u] * Math.cos(wx0 * x * u + wy0 * y * v) - Im[W * v + u] * Math.sin(wx0 * x * u + wy0 * y * v);
       }
     }
@@ -242,17 +240,9 @@ export class Ans33 extends BaseThreeCanvasComponent {
 
     let [Re, Im] = this.dft2d(src, canvas1.width, canvas1.height)
 
-    for (let y = 0; y < canvas1.height; y++) for (let x = 0; x < canvas1.width; x++) {
-      let idx = y * canvas1.width + x
-      let cx = canvas1.width / 2
-      let cy = canvas1.height / 2
-      let d = Math.sqrt(Math.pow(cx - x , 2) + Math.pow(cy - y , 2))
-      let r = canvas1.width * 0.5
-      if (d < r) {
-        Re[idx] = 0
-        Im[idx] = 0
-      }
-    }
+    //todo:
+    this.lpf(Re, Im, canvas1.width, canvas1.height, canvas1.width / 2 * 0.5)
+
     let arr = this.idft2d(Re, Im, canvas1.width, canvas1.height)
 
     for (let i = 0, j = 0; i < dst2.data.length; i += 4, j++) {
@@ -278,7 +268,7 @@ export class Ans33 extends BaseThreeCanvasComponent {
       let uvIdx = W * v + u;
       Re[uvIdx] = 0;
       Im[uvIdx] = 0;
-      for (let y = 0; y < H; ++y) for (let x = 0; x < W; ++x) {
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
         let xyIdx = W * y + x;
         Re[uvIdx] += src[xyIdx] * Math.cos(- wx0 * x * u - wy0 * y * v)
         Im[uvIdx] += src[xyIdx] * Math.sin(- wx0 * x * u - wy0 * y * v)
@@ -301,14 +291,37 @@ export class Ans33 extends BaseThreeCanvasComponent {
     const wx0 = 2 * Math.PI / W;
     const wy0 = 2 * Math.PI / H;
     let dst = new Array(W * H)
-    for (let y = 0; y < H; ++y) for (let x = 0; x < W; ++x) {
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
       let xyIdx = W * y + x;
       dst[xyIdx] = 0;
-      for (let v = 0; v < H; ++v) for (let u = 0; u < W; ++u) {
+      for (let v = 0; v < H; v++) for (let u = 0; u < W; u++) {
         dst[xyIdx] += Re[W * v + u] * Math.cos(wx0 * x * u + wy0 * y * v) - Im[W * v + u] * Math.sin(wx0 * x * u + wy0 * y * v);
       }
     }
     return dst
+  }
+  /**
+   * ローパスフィルタ
+   * @param {Array} Re 
+   * @param {Array} Im 
+   * @param {int} imgWidth image width 
+   * @param {int} imgHeight image height
+   */
+  lpf(Re, Im, imgWidth, imgHeight, r) {
+    let cx = imgWidth / 2
+    let cy = imgHeight / 2
+    for (let y = 0; y < imgHeight; y++) for (let x = 0; x < imgWidth; x++) {
+      let idx = y * imgWidth + x
+      // let d = Math.sqrt(Math.pow(cx - x , 2) + Math.pow(cy - y , 2))
+      // if (d > r) {
+      //   Re[idx] = 0
+      //   Im[idx] = 0
+      // }
+      if (Math.abs(cx - x) < r || Math.abs(cy - y) < r) {
+        Re[idx] = 0
+        Im[idx] = 0
+      }
+    }
   }
 }
 /**
@@ -344,17 +357,9 @@ export class Ans34 extends BaseThreeCanvasComponent {
 
     let [Re, Im] = this.dft2d(src, canvas1.width, canvas1.height)
 
-    for (let y = 0; y < canvas1.height; y++) for (let x = 0; x < canvas1.width; x++) {
-      let idx = y * canvas1.width + x
-      let cx = canvas1.width / 2
-      let cy = canvas1.height / 2
-      let d = Math.sqrt(Math.pow(cx - x , 2) + Math.pow(cy - y , 2))
-      let r = canvas1.width * 0.2
-      if (r < d) {
-        Re[idx] = 0
-        Im[idx] = 0
-      }
-    }
+    //todo:
+    this.hpf(Re, Im, canvas1.width, canvas1.height, canvas1.width / 2 * 0.9)
+
     let arr = this.idft2d(Re, Im, canvas1.width, canvas1.height)
 
     for (let i = 0, j = 0; i < dst2.data.length; i += 4, j++) {
@@ -380,7 +385,7 @@ export class Ans34 extends BaseThreeCanvasComponent {
       let uvIdx = W * v + u;
       Re[uvIdx] = 0;
       Im[uvIdx] = 0;
-      for (let y = 0; y < H; ++y) for (let x = 0; x < W; ++x) {
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
         let xyIdx = W * y + x;
         Re[uvIdx] += src[xyIdx] * Math.cos(- wx0 * x * u - wy0 * y * v)
         Im[uvIdx] += src[xyIdx] * Math.sin(- wx0 * x * u - wy0 * y * v)
@@ -403,13 +408,770 @@ export class Ans34 extends BaseThreeCanvasComponent {
     const wx0 = 2 * Math.PI / W;
     const wy0 = 2 * Math.PI / H;
     let dst = new Array(W * H)
-    for (let y = 0; y < H; ++y) for (let x = 0; x < W; ++x) {
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
       let xyIdx = W * y + x;
       dst[xyIdx] = 0;
-      for (let v = 0; v < H; ++v) for (let u = 0; u < W; ++u) {
+      for (let v = 0; v < H; v++) for (let u = 0; u < W; u++) {
         dst[xyIdx] += Re[W * v + u] * Math.cos(wx0 * x * u + wy0 * y * v) - Im[W * v + u] * Math.sin(wx0 * x * u + wy0 * y * v);
       }
     }
     return dst
+  }
+  /**
+   * ハイパスフィルタ
+   * @param {Array} Re 
+   * @param {Array} Im 
+   * @param {int} imgWidth image width 
+   * @param {int} imgHeight image height
+   */
+  hpf(Re, Im, imgWidth, imgHeight, r) {
+    let cx = imgWidth / 2
+    let cy = imgHeight / 2
+    for (let y = 0; y < imgHeight; y++) for (let x = 0; x < imgWidth; x++) {
+      let idx = y * imgWidth + x
+      // let d = Math.sqrt(Math.pow(cx - x , 2) + Math.pow(cy - y , 2))
+      // if (d > r) {
+      //   Re[idx] = 0
+      //   Im[idx] = 0
+      // }
+      if (Math.abs(cx - x) > r || Math.abs(cy - y) > r) {
+        Re[idx] = 0
+        Im[idx] = 0
+      }
+    }
+  }
+}
+/**
+ * Q.35
+ * フーリエ変換 バンドパスフィルタ
+ * @BaseThreeCanvasComponent
+ */
+export class Ans35 extends BaseThreeCanvasComponent {
+  /**
+   * メイン
+   * @param {canvas} canvas 
+   * @param {Image} image 
+   */
+  main(canvas1, canvas2, image) {
+    const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
+    let ctx1 = canvas1.getContext("2d");
+    let ctx2 = canvas2.getContext("2d");
+    ctx1.drawImage(image, 0, 0, image.width, image.height)
+    let src = [] //グレースケール成分を格納する
+    let src1 = ctx1.getImageData(0, 0, image.width, image.height)
+    let dst1 = ctx1.createImageData(canvas1.width, canvas1.height)
+    let dst2 = ctx1.createImageData(canvas1.width, canvas1.height)
+
+    for (let i = 0; i < src1.data.length; i += 4) {
+      let color = ~~grayscale(
+        src1.data[i], src1.data[i + 1], src1.data[i + 2]
+      )
+      src.push(color)
+      dst1.data[i] = dst1.data[i + 1] = dst1.data[i + 2] = color
+      dst1.data[i + 3] = 255
+    }
+    ctx1.putImageData(dst1, 0, 0)
+
+    let [Re, Im] = this.dft2d(src, canvas1.width, canvas1.height)
+
+    //todo:
+    let r = canvas1.width / 2
+    this.bpf(Re, Im, canvas1.width, canvas1.height, r * 0.1, r * 0.9)
+
+    let arr = this.idft2d(Re, Im, canvas1.width, canvas1.height)
+
+    for (let i = 0, j = 0; i < dst2.data.length; i += 4, j++) {
+      dst2.data[i] = dst2.data[i + 1] = dst2.data[i + 2] = ~~Math.abs(arr[j])
+      dst2.data[i + 3] = 255
+    }
+    ctx2.putImageData(dst2, 0, 0)
+  }
+  /**
+   * 2次元離散フーリエ変換
+   * @param {Array} src 
+   * @param {int} imgWidth canvas width 
+   * @param {int} imgHeight canvas height
+   */
+  dft2d(src, imgWidth, imgHeight) {
+    const W = imgWidth
+    const H = imgHeight
+    const wx0 = 2 * Math.PI / W
+    const wy0 = 2 * Math.PI / H
+    let Re = new Array(src.length)
+    let Im = new Array(src.length)
+    for (let v = 0; v < H; v++) for (let u = 0; u < W; u++) {
+      let uvIdx = W * v + u;
+      Re[uvIdx] = 0;
+      Im[uvIdx] = 0;
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+        let xyIdx = W * y + x;
+        Re[uvIdx] += src[xyIdx] * Math.cos(- wx0 * x * u - wy0 * y * v)
+        Im[uvIdx] += src[xyIdx] * Math.sin(- wx0 * x * u - wy0 * y * v)
+      }
+      Re[uvIdx] /= W * H;
+      Im[uvIdx] /= W * H;
+    }
+    return [Re, Im]
+  }
+  /**
+   * 2次元離散逆フーリエ変換
+   * @param {Array} Re 
+   * @param {Array} Im 
+   * @param {int} imgWidth canvas width
+   * @param {int} imgHeight canvas height
+   */
+  idft2d(Re, Im, imgWidth, imgHeight) {
+    const W = imgWidth
+    const H = imgHeight
+    const wx0 = 2 * Math.PI / W;
+    const wy0 = 2 * Math.PI / H;
+    let dst = new Array(W * H)
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      let xyIdx = W * y + x;
+      dst[xyIdx] = 0;
+      for (let v = 0; v < H; v++) for (let u = 0; u < W; u++) {
+        dst[xyIdx] += Re[W * v + u] * Math.cos(wx0 * x * u + wy0 * y * v) - Im[W * v + u] * Math.sin(wx0 * x * u + wy0 * y * v);
+      }
+    }
+    return dst
+  }
+  /**
+   * バンドパスフィルタ
+   * @param {Array} Re 
+   * @param {Array} Im 
+   * @param {int} imgWidth image width 
+   * @param {int} imgHeight image height
+   */
+  bpf(Re, Im, imgWidth, imgHeight, rMin, rMax) {
+    let cx = imgWidth / 2
+    let cy = imgHeight / 2
+    for (let y = 0; y < imgHeight; y++) for (let x = 0; x < imgWidth; x++) {
+      let idx = y * imgWidth + x
+      // let d = Math.sqrt(Math.pow(cx - x , 2) + Math.pow(cy - y , 2))
+      let condition1 = Math.abs(cx - x) > rMin || Math.abs(cy - y) > rMin
+      let condition2 = Math.abs(cx - x) < rMax && Math.abs(cy - y) < rMax
+      if (!(condition1 && condition2)) {
+        Re[idx] = 0
+        Im[idx] = 0
+      }
+    }
+  }
+}
+/**
+ * Q.36
+ * JPEG圧縮 (Step.1)離散コサイン変換
+ * @BaseThreeCanvasComponent
+ */
+export class Ans36 extends BaseThreeCanvasComponent {
+  /**
+   * メイン
+   * @param {canvas} canvas 
+   * @param {Image} image 
+   */
+  main(canvas1, canvas2, image) {
+    const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
+    let ctx1 = canvas1.getContext("2d");
+    let ctx2 = canvas2.getContext("2d");
+    ctx1.drawImage(image, 0, 0, image.width, image.height)
+    let src = [] //グレースケール成分を格納する
+    let src1 = ctx1.getImageData(0, 0, image.width, image.height)
+    let dst1 = ctx1.createImageData(canvas1.width, canvas1.height)
+    let dst2 = ctx1.createImageData(canvas1.width, canvas1.height)
+    const T = 8
+    const K = 8
+
+    for (let i = 0, j = 0; i < src1.data.length; i += 4, j++) {
+      let color = ~~grayscale(
+        src1.data[i], src1.data[i + 1], src1.data[i + 2]
+      )
+      src.push(color)
+      dst1.data[i] = dst1.data[i + 1] = dst1.data[i + 2] = color
+      dst1.data[i + 3] = 255
+    }
+    ctx1.putImageData(dst1, 0, 0)
+
+    let freq = this.dct2d(src, canvas1.width, canvas1.height, T)
+    let arr = this.idct2d(freq, canvas1.width, canvas1.height, T, K)
+
+    for (let i = 0, j = 0; i < dst2.data.length; i += 4, j++) {
+      let value = Math.abs(arr[j]) > 255 ? 255 : Math.abs(arr[j])
+      dst2.data[i] = dst2.data[i + 1] = dst2.data[i + 2] = value
+      dst2.data[i + 3] = 255
+    }
+    ctx2.putImageData(dst2, 0, 0)
+  }
+  /**
+   * 2次元離散フーリエ変換
+   * @param {Array} src 2次元配列
+   * @param {int} imgWidth canvas width 
+   * @param {int} imgHeight canvas height
+   * @param {int} T DCT係数
+   */
+  dct2d(src, imgWidth, imgHeight, T) {
+    const W = imgWidth
+    const H = imgHeight
+    let dst = new Array(W * H).fill(0)
+    let theta = Math.PI / (2 * T)
+    let k = 1 / Math.sqrt(2)
+    for (let yi = 0; yi < imgHeight; yi += T) for (let xi = 0; xi < imgWidth; xi += T) {
+      for (let v = 0; v < T; v++) for (let u = 0; u < T; u++) {
+        let uvIdx = W * (v + yi) + (u + xi);
+        for (let y = 0; y < T; y++) for (let x = 0; x < T; x++) {
+          let xyIdx = W * (y + yi) + (x + xi);
+          let cu = u === 0 ? k : 1
+          let cv = v === 0 ? k : 1
+          let w = (2 * cu * cv / T) * 
+          Math.cos((2 * x + 1) * u * theta) * 
+          Math.cos((2 * y + 1) * v * theta)
+          dst[uvIdx] += src[xyIdx] * w
+        }
+      }
+    }
+    return dst
+  }
+  /**
+   * 2次元離散逆フーリエ変換
+   * @param {Array} src
+   * @param {int} imgWidth canvas width
+   * @param {int} imgHeight canvas height
+   * @param {int} T DCT係数
+   * @param {int} K DCT係数
+   */
+  idct2d(src, imgWidth, imgHeight, T, K) {
+    const W = imgWidth
+    const H = imgHeight
+    let theta = Math.PI / (2 * T)
+    let dst = new Array(W * H).fill(0)
+    let k = 1 / Math.sqrt(2)
+    for (let yi = 0; yi < imgHeight; yi += T) for (let xi = 0; xi < imgWidth; xi += T) {
+      for (let y = 0; y < T; y++) for (let x = 0; x < T; x++) {
+        let xyIdx = W * (y + yi) + (x + xi);
+        for (let v = 0; v < K; v++) for (let u = 0; u < K; u++) {
+          let uvIdx = W * (v + yi) + (u + xi);
+          let cu = u === 0 ? k : 1
+          let cv = v === 0 ? k : 1
+          let w = (2 * cu * cv / T) * Math.cos((2 * x + 1) * u * theta) * Math.cos((2 * y + 1) * v * theta)
+          dst[xyIdx] += src[uvIdx] * w
+        }
+      }
+    }
+    return dst
+  }
+}
+/**
+ * Q.37
+ * PSNR
+ * @BaseThreeCanvasComponent
+ */
+export class Ans37 extends BaseThreeCanvasComponent {
+  /**
+   * メイン
+   * @param {canvas} canvas 
+   * @param {Image} image 
+   */
+  main(canvas1, canvas2, image) {
+    const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
+    let ctx1 = canvas1.getContext("2d");
+    let ctx2 = canvas2.getContext("2d");
+    ctx1.drawImage(image, 0, 0, image.width, image.height)
+    let src = [] //グレースケール成分を格納する
+    let src1 = ctx1.getImageData(0, 0, image.width, image.height)
+    let dst1 = ctx1.createImageData(canvas1.width, canvas1.height)
+    let dst2 = ctx1.createImageData(canvas1.width, canvas1.height)
+    const T = 8
+    const K = 4
+
+    for (let i = 0, j = 0; i < src1.data.length; i += 4, j++) {
+      let color = ~~grayscale(
+        src1.data[i], src1.data[i + 1], src1.data[i + 2]
+      )
+      src.push(color)
+      dst1.data[i] = dst1.data[i + 1] = dst1.data[i + 2] = color
+      dst1.data[i + 3] = 255
+    }
+    ctx1.putImageData(dst1, 0, 0)
+
+    let freq = this.dct2d(src, canvas1.width, canvas1.height, T)
+    let dst = this.idct2d(freq, canvas1.width, canvas1.height, T, K)
+
+    for (let i = 0, j = 0; i < dst2.data.length; i += 4, j++) {
+      let value = Math.abs(dst[j]) > 255 ? 255 : Math.abs(dst[j])
+      dst2.data[i] = dst2.data[i + 1] = dst2.data[i + 2] = value
+      dst2.data[i + 3] = 255
+    }
+    ctx2.putImageData(dst2, 0, 0)
+
+    let psnr = this.psnr(src, dst, image.width, image.height)
+
+    this.showMessage(
+      JSON.stringify({
+        psnr,
+        bitrate: 1 * T * K ** 2 / (T ** 2)
+      }, null, '\t')
+    )
+  }
+  /**
+   * 2次元離散フーリエ変換
+   * @param {Array} src 2次元配列
+   * @param {int} imgWidth canvas width 
+   * @param {int} imgHeight canvas height
+   * @param {int} T DCT係数
+   */
+  dct2d(src, imgWidth, imgHeight, T) {
+    const W = imgWidth
+    const H = imgHeight
+    let dst = new Array(W * H).fill(0)
+    let theta = Math.PI / (2 * T)
+    let k = 1 / Math.sqrt(2)
+    for (let yi = 0; yi < imgHeight; yi += T) for (let xi = 0; xi < imgWidth; xi += T) {
+      for (let v = 0; v < T; v++) for (let u = 0; u < T; u++) {
+        let uvIdx = W * (v + yi) + (u + xi);
+        for (let y = 0; y < T; y++) for (let x = 0; x < T; x++) {
+          let xyIdx = W * (y + yi) + (x + xi);
+          let cu = u === 0 ? k : 1
+          let cv = v === 0 ? k : 1
+          let w = (2 * cu * cv / T) * 
+          Math.cos((2 * x + 1) * u * theta) * 
+          Math.cos((2 * y + 1) * v * theta)
+          dst[uvIdx] += src[xyIdx] * w
+        }
+      }
+    }
+    return dst
+  }
+  /**
+   * 2次元離散逆フーリエ変換
+   * @param {Array} src
+   * @param {int} imgWidth canvas width
+   * @param {int} imgHeight canvas height
+   * @param {int} T DCT係数
+   * @param {int} K DCT係数
+   */
+  idct2d(src, imgWidth, imgHeight, T, K) {
+    const W = imgWidth
+    const H = imgHeight
+    let theta = Math.PI / (2 * T)
+    let dst = new Array(W * H).fill(0)
+    let k = 1 / Math.sqrt(2)
+    for (let yi = 0; yi < imgHeight; yi += T) for (let xi = 0; xi < imgWidth; xi += T) {
+      for (let y = 0; y < T; y++) for (let x = 0; x < T; x++) {
+        let xyIdx = W * (y + yi) + (x + xi);
+        for (let v = 0; v < K; v++) for (let u = 0; u < K; u++) {
+          let uvIdx = W * (v + yi) + (u + xi);
+          let cu = u === 0 ? k : 1
+          let cv = v === 0 ? k : 1
+          let w = (2 * cu * cv / T) * Math.cos((2 * x + 1) * u * theta) * Math.cos((2 * y + 1) * v * theta)
+          dst[xyIdx] += src[uvIdx] * w
+        }
+      }
+    }
+    return dst
+  }
+  /**
+   * psnr算出
+   * @param {Array} src 入力画像
+   * @param {Array} dst 出力画像
+   * @param {int} imgWidth 
+   * @param {int} imgHeight 
+   */
+  psnr(src, dst, imgWidth, imgHeight) {
+    let sum = 0
+    for (let i = 0; i < src.length; i++) {
+      let d = Math.abs(src[i] - dst[i])
+      sum += d ** d
+    }
+    let mse = sum / (imgWidth * imgHeight)
+    let ans = Math.log10(255 ** 2 / mse)
+    return ans
+  }
+}
+/**
+ * Q.38
+ * JPEG圧縮 (Step.2)DCT+量子化
+ * @BaseThreeCanvasComponent
+ */
+export class Ans38 extends BaseThreeCanvasComponent {
+  /**
+   * メイン
+   * @param {canvas} canvas 
+   * @param {Image} image 
+   */
+  main(canvas1, canvas2, image) {
+    const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
+    let ctx1 = canvas1.getContext("2d");
+    let ctx2 = canvas2.getContext("2d");
+    ctx1.drawImage(image, 0, 0, image.width, image.height)
+    let src = [] //グレースケール成分を格納する
+    let src1 = ctx1.getImageData(0, 0, image.width, image.height)
+    let dst1 = ctx1.createImageData(canvas1.width, canvas1.height)
+    let dst2 = ctx1.createImageData(canvas1.width, canvas1.height)
+    const T = 8
+    const K = 8
+
+    for (let i = 0, j = 0; i < src1.data.length; i += 4, j++) {
+      let color = ~~grayscale(
+        src1.data[i], src1.data[i + 1], src1.data[i + 2]
+      )
+      src.push(color)
+      dst1.data[i] = dst1.data[i + 1] = dst1.data[i + 2] = color
+      dst1.data[i + 3] = 255
+    }
+    ctx1.putImageData(dst1, 0, 0)
+
+    let freq = this.dct2d(src, canvas1.width, canvas1.height, T)
+    let dst = this.idct2d(freq, canvas1.width, canvas1.height, T, K)
+
+    for (let i = 0, j = 0; i < dst2.data.length; i += 4, j++) {
+      let value = Math.abs(dst[j]) > 255 ? 255 : Math.abs(dst[j])
+      dst2.data[i] = dst2.data[i + 1] = dst2.data[i + 2] = value
+      dst2.data[i + 3] = 255
+    }
+    ctx2.putImageData(dst2, 0, 0)
+
+    let psnr = this.psnr(src, dst, image.width, image.height)
+
+    this.showMessage(
+      JSON.stringify({
+        psnr,
+        bitrate: 1 * T * K ** 2 / (T ** 2)
+      }, null, '\t')
+    )
+  }
+  /**
+   * 2次元離散フーリエ変換
+   * @param {Array} src 2次元配列
+   * @param {int} imgWidth canvas width 
+   * @param {int} imgHeight canvas height
+   * @param {int} T DCT係数
+   */
+  dct2d(src, imgWidth, imgHeight, T) {
+    const W = imgWidth
+    const H = imgHeight
+    const Q = this.getQuantum()
+    let dst = new Array(W * H).fill(0)
+    let theta = Math.PI / (2 * T)
+    let k = 1 / Math.sqrt(2)
+    for (let yi = 0; yi < imgHeight; yi += T) for (let xi = 0; xi < imgWidth; xi += T) {
+      for (let v = 0; v < T; v++) for (let u = 0; u < T; u++) {
+        let uvIdx = W * (v + yi) + (u + xi);
+        for (let y = 0; y < T; y++) for (let x = 0; x < T; x++) {
+          let xyIdx = W * (y + yi) + (x + xi);
+          let cu = u === 0 ? k : 1
+          let cv = v === 0 ? k : 1
+          let w = (2 * cu * cv / T) * 
+          Math.cos((2 * x + 1) * u * theta) * 
+          Math.cos((2 * y + 1) * v * theta)
+          dst[uvIdx] += src[xyIdx] * w
+        }
+      }
+      // 量子化
+      let b = Array.from(new Array(T), () => new Array(T).fill(0))
+      for (let yj = yi, _y = 0; yj < yi + T; yj++, _y++) for (let xj = xi, _x = 0; xj < xi + T; xj++, _x++) {
+        b[_y][_x] = dst[W * yj + xj]
+      }
+      let m = math.dotDivide(b, Q).map(row => row.map(v => Math.round(v)))
+      m = math.dotMultiply(m, Q)
+      for (let yj = yi, _y = 0; yj < yi + T; yj++, _y++) for (let xj = xi, _x = 0; xj < xi + T; xj++, _x++) {
+        dst[W * yj + xj] = b[_y][_x]
+      }
+    }
+    return dst
+  }
+  /**
+   * 2次元離散逆フーリエ変換
+   * @param {Array} src
+   * @param {int} imgWidth canvas width
+   * @param {int} imgHeight canvas height
+   * @param {int} T DCT係数
+   * @param {int} K DCT係数
+   */
+  idct2d(src, imgWidth, imgHeight, T, K) {
+    const W = imgWidth
+    const H = imgHeight
+    let theta = Math.PI / (2 * T)
+    let dst = new Array(W * H).fill(0)
+    let k = 1 / Math.sqrt(2)
+    for (let yi = 0; yi < imgHeight; yi += T) for (let xi = 0; xi < imgWidth; xi += T) {
+      for (let y = 0; y < T; y++) for (let x = 0; x < T; x++) {
+        let xyIdx = W * (y + yi) + (x + xi);
+        for (let v = 0; v < K; v++) for (let u = 0; u < K; u++) {
+          let uvIdx = W * (v + yi) + (u + xi);
+          let cu = u === 0 ? k : 1
+          let cv = v === 0 ? k : 1
+          let w = (2 * cu * cv / T) * Math.cos((2 * x + 1) * u * theta) * Math.cos((2 * y + 1) * v * theta)
+          dst[xyIdx] += src[uvIdx] * w
+        }
+      }
+    }
+    return dst
+  }
+  /**
+   * @return {Array} quantum
+   */
+  getQuantum() {
+    return [
+      [16, 11, 10, 16, 24, 40, 51, 61],
+      [12, 12, 14, 19, 26, 58, 60, 55],
+      [14, 13, 16, 24, 40, 57, 69, 56],
+      [14, 17, 22, 29, 51, 87, 80, 62],
+      [18, 22, 37, 56, 68, 109, 103, 77],
+      [24, 35, 55, 64, 81, 104, 113, 92],
+      [49, 64, 78, 87, 103, 121, 120, 101],
+      [72, 92, 95, 98, 112, 100, 103, 99]
+    ]
+  }
+  /**
+   * psnr算出
+   * @param {Array} src 入力画像
+   * @param {Array} dst 出力画像
+   * @param {int} imgWidth 
+   * @param {int} imgHeight 
+   */
+  psnr(src, dst, imgWidth, imgHeight) {
+    let sum = 0
+    for (let i = 0; i < src.length; i++) {
+      let d = Math.abs(src[i] - dst[i])
+      sum += d ** d
+    }
+    let mse = sum / (imgWidth * imgHeight)
+    let ans = Math.log10(255 ** 2 / mse)
+    return ans
+  }
+}
+/**
+ * Q.39
+ * JPEG圧縮 (Step.3)YCbCr表色系
+ * @BaseTwoCanvasComponent
+ */
+export class Ans39 extends BaseTwoCanvasComponent {
+  /**
+   * メイン
+   * @param {canvas} canvas 
+   * @param {Image} image 
+   */
+  main(canvas1, image) {
+    const rgb2ycc = (r, g, b) => [
+      0.299 * r + 0.5870 * g + 0.114 * b,
+      -0.1687 * r - 0.3313 * g + 0.5 * b + 128,
+      0.5 * r - 0.4187 * g - 0.0813 * b + 128
+    ]
+    const ycc2rgb = (y, cr, cb) => [
+      y + (cb - 128) * 1.7718,
+      y - (cb - 128) * 0.3441 - (cr - 128) * 0.7139,
+      y + (cr - 128) * 1.402,
+    ]
+
+    let ctx1 = canvas1.getContext("2d");
+    ctx1.drawImage(image, 0, 0, image.width, image.height)
+    let src1 = ctx1.getImageData(0, 0, image.width, image.height)
+    let dst1 = ctx1.createImageData(canvas1.width, canvas1.height)
+
+    for (let i = 0, j = 0; i < src1.data.length; i += 4, j++) {
+      let [y, cr, cb] = rgb2ycc(src1.data[i], src1.data[i + 1], src1.data[i + 2])
+      y *= 0.7
+      let rgb = ycc2rgb(y, cr, cb)
+      dst1.data[i + 0] = rgb[0]
+      dst1.data[i + 1] = rgb[1]
+      dst1.data[i + 2] = rgb[2]
+      dst1.data[i + 3] = 255
+    }
+    ctx1.putImageData(dst1, 0, 0)
+  }
+}
+/**
+ * Q.40
+ * JPEG圧縮 (Step.2)DCT+量子化
+ * @BaseTwoCanvasComponent
+ */
+export class Ans40 extends BaseTwoCanvasComponent {
+  /**
+   * メイン
+   * @param {canvas} canvas 
+   * @param {Image} image 
+   */
+  main(canvas1, image) {
+    const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
+    const rgb2ycc = (r, g, b) => [
+      0.299 * r + 0.5870 * g + 0.114 * b,
+      -0.1687 * r - 0.3313 * g + 0.5 * b + 128,
+      0.5 * r - 0.4187 * g - 0.0813 * b + 128
+    ]
+    const ycc2rgb = (y, cr, cb) => [
+      y + (cb - 128) * 1.7718,
+      y - (cb - 128) * 0.3441 - (cr - 128) * 0.7139,
+      y + (cr - 128) * 1.402,
+    ]
+    let ctx1 = canvas1.getContext("2d");
+    ctx1.drawImage(image, 0, 0, image.width, image.height)
+    let srcY = []
+    let srcCr = []
+    let srcCb = []
+    let src1 = ctx1.getImageData(0, 0, image.width, image.height)
+    let dst1 = ctx1.createImageData(canvas1.width, canvas1.height)
+    const T = 8
+    const K = 8
+
+    for (let i = 0, j = 0; i < src1.data.length; i += 4, j++) {
+      let [y, cr, cb] = rgb2ycc(src1.data[i], src1.data[i + 1], src1.data[i + 2])
+      srcY.push(y)
+      srcCr.push(cr)
+      srcCb.push(cb)
+    }
+    ctx1.putImageData(dst1, 0, 0)
+
+    let dctY = this.dct2d(srcY, canvas1.width, canvas1.height, T, this.getQuantum1())
+    let dstY = this.idct2d(dctY, canvas1.width, canvas1.height, T, K)
+    let dctCr = this.dct2d(srcCr, canvas1.width, canvas1.height, T, this.getQuantum2())
+    let dstCr = this.idct2d(dctCr, canvas1.width, canvas1.height, T, K)
+    let dctCb = this.dct2d(srcCb, canvas1.width, canvas1.height, T, this.getQuantum2())
+    let dstCb = this.idct2d(dctCb, canvas1.width, canvas1.height, T, K)
+
+    for (let i = 0, j = 0; i < dst1.data.length; i += 4, j++) {
+      let rgb = ycc2rgb(dstY[j], dstCr[j], dstCb[j]).map(e => {
+        if (e > 255) {
+          return 255
+        }
+        return e
+      })
+      dst1.data[i + 0] = rgb[0]
+      dst1.data[i + 1] = rgb[1]
+      dst1.data[i + 2] = rgb[2]
+      dst1.data[i + 3] = 255
+    }
+    ctx1.putImageData(dst1, 0, 0)
+
+    let psnr = this.psnr(srcY, dstY, srcCr, dstCr, srcCb, dstCb, image.width, image.height)
+    this.showMessage(
+      JSON.stringify({
+        psnr,
+        bitrate: 1 * T * K ** 2 / (T ** 2)
+      }, null, '\t')
+    )
+  }
+  /**
+   * 2次元離散フーリエ変換
+   * @param {Array} src 2次元配列
+   * @param {int} imgWidth canvas width 
+   * @param {int} imgHeight canvas height
+   * @param {int} T DCT係数
+   */
+  dct2d(src, imgWidth, imgHeight, T, Q) {
+    const W = imgWidth
+    const H = imgHeight
+    // const Q = this.getQuantum()
+    let dst = new Array(W * H).fill(0)
+    let theta = Math.PI / (2 * T)
+    let k = 1 / Math.sqrt(2)
+    for (let yi = 0; yi < imgHeight; yi += T) for (let xi = 0; xi < imgWidth; xi += T) {
+      for (let v = 0; v < T; v++) for (let u = 0; u < T; u++) {
+        let uvIdx = W * (v + yi) + (u + xi);
+        for (let y = 0; y < T; y++) for (let x = 0; x < T; x++) {
+          let xyIdx = W * (y + yi) + (x + xi);
+          let cu = u === 0 ? k : 1
+          let cv = v === 0 ? k : 1
+          let w = (2 * cu * cv / T) * 
+          Math.cos((2 * x + 1) * u * theta) * 
+          Math.cos((2 * y + 1) * v * theta)
+          dst[uvIdx] += src[xyIdx] * w
+        }
+      }
+      // 量子化
+      let b = Array.from(new Array(T), () => new Array(T).fill(0))
+      for (let yj = yi, _y = 0; yj < yi + T; yj++, _y++) for (let xj = xi, _x = 0; xj < xi + T; xj++, _x++) {
+        b[_y][_x] = dst[W * yj + xj]
+      }
+      let m = math.dotDivide(b, Q).map(row => row.map(v => Math.round(v)))
+      m = math.dotMultiply(m, Q)
+      for (let yj = yi, _y = 0; yj < yi + T; yj++, _y++) for (let xj = xi, _x = 0; xj < xi + T; xj++, _x++) {
+        dst[W * yj + xj] = b[_y][_x]
+      }
+    }
+    return dst
+  }
+  /**
+   * 2次元離散逆フーリエ変換
+   * @param {Array} src
+   * @param {int} imgWidth canvas width
+   * @param {int} imgHeight canvas height
+   * @param {int} T DCT係数
+   * @param {int} K DCT係数
+   */
+  idct2d(src, imgWidth, imgHeight, T, K) {
+    const W = imgWidth
+    const H = imgHeight
+    let theta = Math.PI / (2 * T)
+    let dst = new Array(W * H).fill(0)
+    let k = 1 / Math.sqrt(2)
+    for (let yi = 0; yi < imgHeight; yi += T) for (let xi = 0; xi < imgWidth; xi += T) {
+      for (let y = 0; y < T; y++) for (let x = 0; x < T; x++) {
+        let xyIdx = W * (y + yi) + (x + xi);
+        for (let v = 0; v < K; v++) for (let u = 0; u < K; u++) {
+          let uvIdx = W * (v + yi) + (u + xi);
+          let cu = u === 0 ? k : 1
+          let cv = v === 0 ? k : 1
+          let w = (2 * cu * cv / T) * Math.cos((2 * x + 1) * u * theta) * Math.cos((2 * y + 1) * v * theta)
+          dst[xyIdx] += src[uvIdx] * w
+        }
+      }
+    }
+    return dst
+  }
+  /**
+   * @return {Array} quantum
+   */
+  /**
+   * @return {Array} quantum
+   */
+  getQuantum1() {
+    return [
+      [16, 11, 10, 16, 24, 40, 51, 61],
+      [12, 12, 14, 19, 26, 58, 60, 55],
+      [14, 13, 16, 24, 40, 57, 69, 56],
+      [14, 17, 22, 29, 51, 87, 80, 62],
+      [18, 22, 37, 56, 68, 109, 103, 77],
+      [24, 35, 55, 64, 81, 104, 113, 92],
+      [49, 64, 78, 87, 103, 121, 120, 101],
+      [72, 92, 95, 98, 112, 100, 103, 99]
+    ]
+  }
+  /**
+   * @return {Array} quantum
+   */
+  getQuantum2() {
+    return [
+      [17, 18, 24, 47, 99, 99, 99, 99],
+      [18, 21, 26, 66, 99, 99, 99, 99],
+      [24, 26, 56, 99, 99, 99, 99, 99],
+      [47, 66, 99, 99, 99, 99, 99, 99],
+      [99, 99, 99, 99, 99, 99, 99, 99],
+      [99, 99, 99, 99, 99, 99, 99, 99],
+      [99, 99, 99, 99, 99, 99, 99, 99],
+      [99, 99, 99, 99, 99, 99, 99, 99]
+    ]
+  }
+  /**
+   * psnr算出
+   * @param {Array} src 入力画像
+   * @param {Array} dst 出力画像
+   * @param {int} imgWidth 
+   * @param {int} imgHeight 
+   */
+  psnr(srcY, dstY, srcCr, dstCr, srcCb, dstCb, imgWidth, imgHeight) {
+    let sum = 0
+    let data = [
+      [srcY, dstY],
+      [srcCr, dstCr],
+      [srcCb, dstCb],
+    ].forEach(e => {
+      let src = e[0]
+      let dst = e[1]
+      for (let i = 0; i < src.length; i++) {
+        let d = Math.abs(src[i] - dst[i])
+        sum += d ** d
+      }
+    })
+    let mse = sum / (imgWidth * imgHeight)
+    let ans = Math.log10(255 ** 2 / mse)
+    return ans
   }
 }
