@@ -1,77 +1,41 @@
-import {
-  BaseTwoCanvasComponent, BaseThreeCanvasComponent, HistogramComponent
-} from "./BaseComponents.js"
-import CanvasUtility from '@/lib/CanvasTools'
-import config from "../configure.js"
-
-export default null
-
+import { BaseTwoCanvasComponent } from "./BaseComponents.js"
 /**
- * Q.60
- * アルファブレンド
- * @BaseTwoCanvasComponent
+ * Q.6
+ * 減色処理
+ * @extends BaseTwoCanvasComponent
  */
-export class Ans60 extends BaseThreeCanvasComponent {
-  /**
-   * DOMの初期処理
-   * 
-   * @access private
-   * @param {Document} self 
-   */
-  _initObject(self) {
-    let canvas1 = self.$refs["canvas1"]
-    let canvas2 = self.$refs["canvas2"]
-    let canvas3 = self.$refs["canvas3"]
-    let button = self.$refs["button-run"]
-
-    let imori = new Image()
-    imori.src = config.srcImage.default
-
-    let thorino = new Image()
-    thorino.src = config.srcImage.thorino
-
-
-    imori.addEventListener("load", () => {
-      canvas1.width = canvas3.width = imori.width
-      canvas1.height = canvas3.height = imori.height
-    })
-
-    thorino.addEventListener("load", () => {
-      canvas2.width = imori.width
-      canvas2.height = imori.height
-      canvas2.getContext("2d").drawImage(thorino, 0, 0, imori.width, imori.height)
-    })
-
-    CanvasUtility.drawImage(canvas1, imori)
-
-    button.addEventListener("click", () => {
-      this.main(canvas3, imori, thorino)
-    })
-  }
+export default class Ans6 extends BaseTwoCanvasComponent {
   /**
    * メイン
    * @param {canvas} canvas 
    * @param {Image} image 
    */
-  main(canvas, image1, image2) {
+  main(canvas, image) {
     let ctx = canvas.getContext("2d");
-    let width = image1.width
-    let height = image1.height
-    canvas.width = width
-    canvas.height = height
-    ctx.drawImage(image1, 0, 0, width, height)
-    let src1 = ctx.getImageData(0, 0, width, height)
+    ctx.drawImage(image, 0, 0, image.width, image.height)
+    let src = ctx.getImageData(0, 0, image.width, image.height)
+    let dst = ctx.createImageData(image.width, image.height)
 
-    ctx.drawImage(image2, 0, 0, width, height)
-    let src2 = ctx.getImageData(0, 0, width, height)
+    let thresholds = [32, 96, 160, 224]
 
-    let dst = ctx.createImageData(canvas.width, canvas.height)
-
-    for (let i = 0; i < dst.data.length; i += 4) {
-      for (var j = 0; j < 3; j++) {
-        dst.data[i + j] = src1.data[i + j] / 2 + src2.data[i + j] / 2
+    for (let i = 0; i < src.data.length; i++) {
+      if (i % 4 === 3) {
+        dst.data[i] = src.data[i]
+        continue
       }
-      dst.data[i + 3] = 255
+
+      let neer = Number.MAX_SAFE_INTEGER
+      let _j = 0
+
+      for (let j in thresholds) {
+        let d = Math.abs(src.data[i] - thresholds[j])
+        if (d < neer) {
+          neer = d
+          _j = j
+        }
+      }
+
+      dst.data[i] = thresholds[_j]
     }
     ctx.putImageData(dst, 0, 0)
   }

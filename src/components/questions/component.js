@@ -2,36 +2,109 @@
 import Vue from 'vue'
 import { BlankTemplate } from "./templates"
 
-import {
-  Ans1, Ans2, Ans3, Ans4, Ans5, Ans6, Ans7, Ans8, Ans9, Ans10
-} from './answers/Ans1.js';
-import {
-  Ans11, Ans12, Ans13, Ans14, Ans15, Ans16, Ans17, Ans18, Ans19, Ans20
-} from './answers/Ans2.js';
-import {
-  Ans21, Ans22, Ans23, Ans24, Ans25, Ans26, Ans27, Ans28, Ans29, Ans30
-} from './answers/Ans3.js';
-import { 
-  Ans31, Ans32, Ans33, Ans34, Ans35, Ans36, Ans37, Ans38, Ans39, Ans40
-} from './answers/Ans4.js';
-// import { 
-//   Ans41, Ans42, Ans43, Ans44, Ans45, Ans46, Ans47, Ans48, Ans49, Ans50
-// } from './answers/Ans5.js';
-import { 
-  Ans51, Ans52, Ans53, Ans54, Ans55, Ans56, Ans57, Ans58, Ans59, Ans60
-} from './answers/Ans6.js';
-// import { 
-//   Ans61, Ans62, Ans63, Ans64, Ans65, Ans66, Ans67, Ans68, Ans69, Ans70
-// } from './answers/Ans7.js';
-import { 
-  Ans71, Ans72, Ans73, Ans74, Ans75, Ans76, Ans77, Ans78, Ans79, Ans80
-} from './answers/Ans8.js';
-// import { 
-//   Ans81, Ans82, Ans83, Ans84, Ans85, Ans86, Ans87, Ans88, Ans89, Ans90
-// } from './answers/Ans9.js';
-// import { 
-//   Ans91, Ans92, Ans93, Ans94, Ans95, Ans96, Ans97, Ans98, Ans99, Ans100
-// } from './answers/Ans10.js';
+import Ans1 from './answers/Ans1.js'
+import Ans2 from './answers/Ans2.js'
+import Ans3 from './answers/Ans3.js'
+import Ans4 from './answers/Ans4.js'
+import Ans5 from './answers/Ans5.js'
+import Ans6 from './answers/Ans6.js'
+import Ans7 from './answers/Ans7.js'
+import Ans8 from './answers/Ans8.js'
+import Ans9 from './answers/Ans9.js'
+import Ans10 from './answers/Ans10.js'
+import Ans11 from './answers/Ans11.js'
+import Ans12 from './answers/Ans12.js'
+import Ans13 from './answers/Ans13.js'
+import Ans14 from './answers/Ans14.js'
+import Ans15 from './answers/Ans15.js'
+import Ans16 from './answers/Ans16.js'
+import Ans17 from './answers/Ans17.js'
+import Ans18 from './answers/Ans18.js'
+// import Ans19 from './answers/Ans19.js'
+import Ans20 from './answers/Ans20.js'
+import Ans21 from './answers/Ans21.js'
+import Ans22 from './answers/Ans22.js'
+import Ans23 from './answers/Ans23.js'
+import Ans24 from './answers/Ans24.js'
+import Ans25 from './answers/Ans25.js'
+import Ans26 from './answers/Ans26.js'
+import Ans27 from './answers/Ans27.js'
+import Ans28 from './answers/Ans28.js'
+import Ans29 from './answers/Ans29.js'
+import Ans30 from './answers/Ans30.js'
+import Ans31 from './answers/Ans31.js'
+import Ans32 from './answers/Ans32.js'
+import Ans33 from './answers/Ans33.js'
+import Ans34 from './answers/Ans34.js'
+import Ans35 from './answers/Ans35.js'
+import Ans36 from './answers/Ans36.js'
+import Ans37 from './answers/Ans37.js'
+import Ans38 from './answers/Ans38.js'
+import Ans39 from './answers/Ans39.js'
+import Ans40 from './answers/Ans40.js'
+// import Ans41 from './answers/Ans41.js'
+// import Ans42 from './answers/Ans42.js'
+// import Ans43 from './answers/Ans43.js'
+// import Ans44 from './answers/Ans44.js'
+// import Ans45 from './answers/Ans45.js'
+// import Ans46 from './answers/Ans46.js'
+// import Ans47 from './answers/Ans47.js'
+// import Ans48 from './answers/Ans48.js'
+// import Ans49 from './answers/Ans49.js'
+// import Ans50 from './answers/Ans50.js'
+// import Ans51 from './answers/Ans51.js'
+// import Ans52 from './answers/Ans52.js'
+// import Ans53 from './answers/Ans53.js'
+// import Ans54 from './answers/Ans54.js'
+// import Ans55 from './answers/Ans55.js'
+// import Ans56 from './answers/Ans56.js'
+// import Ans57 from './answers/Ans57.js'
+// import Ans58 from './answers/Ans58.js'
+// import Ans59 from './answers/Ans59.js'
+import Ans60 from './answers/Ans60.js'
+// import Ans61 from './answers/Ans61.js'
+// import Ans62 from './answers/Ans62.js'
+// import Ans63 from './answers/Ans63.js'
+// import Ans64 from './answers/Ans64.js'
+// import Ans65 from './answers/Ans65.js'
+// import Ans66 from './answers/Ans66.js'
+// import Ans67 from './answers/Ans67.js'
+// import Ans68 from './answers/Ans68.js'
+// import Ans69 from './answers/Ans69.js'
+// import Ans70 from './answers/Ans70.js'
+import Ans71 from './answers/Ans71.js'
+// import Ans72 from './answers/Ans72.js'
+import Ans73 from './answers/Ans73.js'
+// import Ans74 from './answers/Ans74.js'
+// import Ans75 from './answers/Ans75.js'
+// import Ans76 from './answers/Ans76.js'
+// import Ans77 from './answers/Ans77.js'
+// import Ans78 from './answers/Ans78.js'
+// import Ans79 from './answers/Ans79.js'
+// import Ans80 from './answers/Ans80.js'
+// import Ans81 from './answers/Ans81.js'
+// import Ans82 from './answers/Ans82.js'
+// import Ans83 from './answers/Ans83.js'
+// import Ans84 from './answers/Ans84.js'
+// import Ans85 from './answers/Ans85.js'
+// import Ans86 from './answers/Ans86.js'
+// import Ans87 from './answers/Ans87.js'
+// import Ans88 from './answers/Ans88.js'
+// import Ans89 from './answers/Ans89.js'
+// import Ans90 from './answers/Ans90.js'
+// import Ans91 from './answers/Ans91.js'
+// import Ans92 from './answers/Ans92.js'
+// import Ans93 from './answers/Ans93.js'
+// import Ans94 from './answers/Ans94.js'
+// import Ans95 from './answers/Ans95.js'
+// import Ans96 from './answers/Ans96.js'
+// import Ans97 from './answers/Ans97.js'
+// import Ans98 from './answers/Ans98.js'
+// import Ans99 from './answers/Ans99.js'
+// import Ans100 from './answers/Ans100.js'
+
+
+
 
 const componentMap = {
   "ans1": new Ans1(),

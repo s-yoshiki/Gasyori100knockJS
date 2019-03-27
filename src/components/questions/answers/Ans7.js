@@ -1,10 +1,10 @@
 import { BaseTwoCanvasComponent } from "./BaseComponents.js"
 /**
- * Q.8
- * Maxプーリング
+ * Q.7
+ * 平均プーリング
  * @extends BaseTwoCanvasComponent
  */
-export default class Ans8 extends BaseTwoCanvasComponent {
+export default class Ans7 extends BaseTwoCanvasComponent {
   /**
    * メイン
    * @param {canvas} canvas 
@@ -28,10 +28,18 @@ export default class Ans8 extends BaseTwoCanvasComponent {
       let dst = ctx.createImageData(w, h)
 
       for (let i = 0; i < src.data.length; i += 4) {
-        r = src.data[i] > r ? src.data[i] : r
-        g = src.data[i + 1] > g ? src.data[i + 1] : g
-        b = src.data[i + 2] > b ? src.data[i + 2] : b
+        r += src.data[i]
+        g += src.data[i + 1]
+        b += src.data[i + 2]
       }
+
+      r /= src.data.length / 4
+      g /= src.data.length / 4
+      b /= src.data.length / 4
+
+      r = Math.ceil(r)
+      g = Math.ceil(g)
+      b = Math.ceil(b)
 
       for (let i = 0; i < src.data.length; i += 4) {
         dst.data[i] = r
