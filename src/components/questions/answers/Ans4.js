@@ -990,7 +990,6 @@ export class Ans40 extends BaseTwoCanvasComponent {
    * @param {Image} image 
    */
   main(canvas1, image) {
-    const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
     const rgb2ycc = (r, g, b) => [
       0.299 * r + 0.5870 * g + 0.114 * b,
       -0.1687 * r - 0.3313 * g + 0.5 * b + 128,
@@ -1162,7 +1161,8 @@ export class Ans40 extends BaseTwoCanvasComponent {
       [srcY, dstY],
       [srcCr, dstCr],
       [srcCb, dstCb],
-    ].forEach(e => {
+    ]
+    data.forEach(e => {
       let src = e[0]
       let dst = e[1]
       for (let i = 0; i < src.length; i++) {
