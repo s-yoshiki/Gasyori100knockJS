@@ -2,7 +2,7 @@ import {BaseTwoCanvasComponent} from "./BaseComponents.js"
 /**
  * Q.28
  * アフィン変換(平行移動)
- * @BaseTwoCanvasComponent
+ * @extends BaseTwoCanvasComponent
  */
 export default class Ans28 extends BaseTwoCanvasComponent {
   /**

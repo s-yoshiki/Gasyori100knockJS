@@ -2,7 +2,7 @@ import { ThreeCanvasHistogramComponent } from "./BaseComponents.js"
 /**
  * Q.22
  * ヒストグラム操作
- * @ThreeCanvasHistogramComponent
+ * @extends ThreeCanvasHistogramComponent
  */
 export default class Ans22 extends ThreeCanvasHistogramComponent {
   /**

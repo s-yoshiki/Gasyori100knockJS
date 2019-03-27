@@ -2,7 +2,7 @@ import { BaseTwoCanvasComponent } from "./BaseComponents.js"
 /**
  * Q.25
  * 最近傍補間
- * @BaseTwoCanvasComponent
+ * @extends BaseTwoCanvasComponent
  */
 export default class Ans25 extends BaseTwoCanvasComponent {
   /**

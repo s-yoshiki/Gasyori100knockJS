@@ -2,7 +2,7 @@ import {BaseFourCanvasComponent} from "./BaseComponents.js"
 /**
  * Q.32
  * フーリエ変換
- * @BaseFourCanvasComponent
+ * @extends BaseFourCanvasComponent
  */
 export default class Ans32 extends BaseFourCanvasComponent {
   /**

@@ -2,7 +2,7 @@ import {BaseTwoCanvasComponent} from "./BaseComponents.js"
 /**
  * Q.26
  * Bi-linear補間
- * @BaseTwoCanvasComponent
+ * @extends BaseTwoCanvasComponent
  */
 export default class Ans26 extends BaseTwoCanvasComponent {
   /**

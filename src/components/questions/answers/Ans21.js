@@ -2,7 +2,7 @@ import { ThreeCanvasHistogramComponent } from "./BaseComponents.js"
 /**
  * Q.21
  * 画像正規化 + ヒストグラム
- * @ThreeCanvasHistogramComponent
+ * @extends ThreeCanvasHistogramComponent
  */
 export default class Ans21 extends ThreeCanvasHistogramComponent {
   /**

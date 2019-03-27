@@ -2,7 +2,7 @@ import {BaseTwoCanvasComponent} from "./BaseComponents.js"
 /**
  * Q.73
  * マスキング
- * @BaseTwoCanvasComponent
+ * @extends BaseTwoCanvasComponent
  */
 export default class Ans73 extends BaseTwoCanvasComponent {
     /**
