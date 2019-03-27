@@ -2,8 +2,15 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router/index.js'
+import VueAnalytics from 'vue-analytics'
 
 Vue.config.productionTip = false
+
+// google analyticsのSPA対応
+Vue.use(VueAnalytics, {
+  id: 'UA-XXX-X',
+  router
+})
 
 new Vue({
   el: '#app',
