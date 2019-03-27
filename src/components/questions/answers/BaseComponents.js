@@ -54,7 +54,7 @@ export default class BasePagesComponent {
    */
   showMessage(msg) {
     let dom = this.dom.$refs["msg"]
-    dom.innerHTML = msg
+    dom.innerHTML = "<pre>" + msg + "</pre>"
   }
 }
 

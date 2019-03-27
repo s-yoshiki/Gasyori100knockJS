@@ -142,7 +142,11 @@ export default {
   },
   ans36: {
     title: "JPEG圧縮 (Step.1)離散コサイン変換",
-    desc: "※結果算出までの時間が環境によっては1分以上かかります",
+    desc: "",
+  },
+  ans37: {
+    title: "PSNR",
+    desc: "",
   },
   ans60: {
     title: "アルファブレンド",

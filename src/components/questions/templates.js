@@ -13,7 +13,7 @@ export const DefaultTemplate = `
 <br>
 <button ref="button-run" class="bt">run</button>
 <br>
-<div ref="msg"></div>
+<div ref="msg" class="msg"></div>
 </div>
 `
 /**
@@ -29,7 +29,7 @@ export const ThreeCanvasTemplate = `
 <br>
 <button ref="button-run" class="bt">run</button>
 <br>
-<div ref="msg"></div>
+<div ref="msg" class="msg"></div>
 </div>
 `
 /**
@@ -47,7 +47,7 @@ export const FourCanvasTemplate = `
 <br>
 <button ref="button-run" class="bt">run</button>
 <br>
-<div ref="msg"></div>
+<div ref="msg" class="msg"></div>
 </div>
 `
 /**
@@ -61,7 +61,7 @@ export const HistogramTemplate = `
 <br>
 <button ref="button-run" class="bt">run</button>
 <br>
-<div ref="msg"></div>
+<div ref="msg" class="msg"></div>
 </div>
 `
 
