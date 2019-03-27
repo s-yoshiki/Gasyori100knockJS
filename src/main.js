@@ -8,7 +8,7 @@ Vue.config.productionTip = false
 
 // google analyticsのSPA対応
 Vue.use(VueAnalytics, {
-  id: 'UA-XXX-X',
+  id: 'UA-103231688-4',
   router
 })
 
