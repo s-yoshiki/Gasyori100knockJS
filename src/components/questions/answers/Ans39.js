@@ -2,7 +2,7 @@ import {BaseTwoCanvasComponent} from "./BaseComponents.js"
 /**
  * Q.39
  * JPEG圧縮 (Step.3)YCbCr表色系
- * @BaseTwoCanvasComponent
+ * @extends BaseTwoCanvasComponent
  */
 export default class Ans39 extends BaseTwoCanvasComponent {
   /**

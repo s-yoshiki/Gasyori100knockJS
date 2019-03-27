@@ -3,7 +3,7 @@ import math from "mathjs"
 /**
  * Q.30
  * アフィン変換(回転)
- * @BaseTwoCanvasComponent
+ * @extends BaseTwoCanvasComponent
  */
 export default class Ans30 extends BaseThreeCanvasComponent {
   /**

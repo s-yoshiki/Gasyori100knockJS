@@ -2,7 +2,7 @@ import {BaseThreeCanvasComponent} from "./BaseComponents.js"
 /**
  * Q.37
  * PSNR
- * @BaseThreeCanvasComponent
+ * @extends BaseThreeCanvasComponent
  */
 export default class Ans37 extends BaseThreeCanvasComponent {
   /**

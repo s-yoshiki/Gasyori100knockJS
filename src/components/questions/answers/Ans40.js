@@ -3,7 +3,7 @@ import math from "mathjs"
 /**
  * Q.40
  * JPEG圧縮 (Step.2)DCT+量子化
- * @BaseTwoCanvasComponent
+ * @extends BaseTwoCanvasComponent
  */
 export default class Ans40 extends BaseTwoCanvasComponent {
   /**

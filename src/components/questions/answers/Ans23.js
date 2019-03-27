@@ -3,7 +3,7 @@ import config from "../configure.js"
 /**
  * Q.23
  * ヒストグラム平坦化
- * @ThreeCanvasHistogramComponent
+ * @extends ThreeCanvasHistogramComponent
  */
 export default class Ans23 extends ThreeCanvasHistogramComponent {
   /**

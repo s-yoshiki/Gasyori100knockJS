@@ -3,7 +3,7 @@ import math from "mathjs"
 /**
  * Q.29
  * アフィン変換(平行移動)
- * @BaseTwoCanvasComponent
+ * @extends BaseTwoCanvasComponent
  */
 export default class Ans29 extends BaseThreeCanvasComponent {
   /**

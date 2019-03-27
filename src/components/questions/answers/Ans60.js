@@ -5,7 +5,7 @@ import config from "../configure.js"
 /**
  * Q.60
  * アルファブレンド
- * @BaseThreeCanvasComponent
+ * @extends BaseThreeCanvasComponent
  */
 export default class Ans60 extends BaseThreeCanvasComponent {
   /**

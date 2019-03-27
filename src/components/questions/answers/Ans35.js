@@ -2,7 +2,7 @@ import {BaseThreeCanvasComponent} from "./BaseComponents.js"
 /**
  * Q.35
  * フーリエ変換 バンドパスフィルタ
- * @BaseThreeCanvasComponent
+ * @extends BaseThreeCanvasComponent
  */
 export default class Ans35 extends BaseThreeCanvasComponent {
   /**

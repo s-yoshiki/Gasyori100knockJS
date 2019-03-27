@@ -3,7 +3,7 @@ import config from "../configure.js"
 /**
  * Q.24
  * ガンマ補正
- * @BaseTwoCanvasComponent
+ * @extends BaseTwoCanvasComponent
  */
 export default class Ans24 extends BaseTwoCanvasComponent {
   /**

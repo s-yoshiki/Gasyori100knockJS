@@ -2,7 +2,7 @@ import {BaseThreeCanvasComponent} from "./BaseComponents.js"
 /**
  * Q.33
  * フーリエ変換 ローパスフィルタ
- * @BaseThreeCanvasComponent
+ * @extends BaseThreeCanvasComponent
  */
 export default class Ans33 extends BaseThreeCanvasComponent {
   /**
