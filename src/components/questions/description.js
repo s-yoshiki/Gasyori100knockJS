@@ -148,6 +148,10 @@ export default {
     title: "PSNR",
     desc: "",
   },
+  ans38: {
+    title: "JPEG圧縮 (Step.2)DCT+量子化",
+    desc: "",
+  },
   ans60: {
     title: "アルファブレンド",
     desc: "",
