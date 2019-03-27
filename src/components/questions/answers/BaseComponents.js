@@ -27,7 +27,9 @@ export default class BasePagesComponent {
    * 
    * @param {Document} self 
    */
-  init() { }
+  init(self) {
+    this.dom = self
+  }
   /**
    * init内で呼ぶ
    */
@@ -46,6 +48,14 @@ export default class BasePagesComponent {
   getTemplate() {
     return this.template
   }
+  /**
+   * メッセージ出力
+   * @param {string} msg 
+   */
+  showMessage(msg) {
+    let dom = this.dom.$refs["msg"]
+    dom.innerHTML = msg
+  }
 }
 
 /**
@@ -57,14 +67,6 @@ export class BaseTwoCanvasComponent extends BasePagesComponent {
     super()
     super.setTemplate(DefaultTemplate)
     this.setSrcImage(config.srcImage.default)
-  }
-
-  /**
-   * 子クラスでのオブジェクト操作
-   * @param {Document} self 
-   */
-  init() {
-    return;
   }
 
   /**
@@ -118,15 +120,8 @@ export class BaseThreeCanvasComponent extends BasePagesComponent {
   constructor() {
     super()
     super.setTemplate(ThreeCanvasTemplate)
-  }
-
-  /**
-   * 継承先で行う初期処理
-   */
-  init() {
     this.setSrcImage(config.srcImage.default)
   }
-
   /**
    * DOMの初期処理
    * 
@@ -176,15 +171,8 @@ export class BaseFourCanvasComponent extends BasePagesComponent {
   constructor() {
     super()
     super.setTemplate(FourCanvasTemplate)
-  }
-
-  /**
-   * 継承先で行う初期処理
-   */
-  init() {
     this.setSrcImage(config.srcImage.default)
   }
-
   /**
    * DOMの初期処理
    * 
@@ -233,12 +221,12 @@ export class BaseFourCanvasComponent extends BasePagesComponent {
  */
 export class HistogramComponent extends BaseTwoCanvasComponent {
   /**
-   * 継承先で行う初期処理
+   * コンストラクタ
    */
-  init() {
+  constructor() {
+    super()
     this.setSrcImage(config.srcImage.dark)
   }
-
   /**
    * DOMの初期処理
    * 
