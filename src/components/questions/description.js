@@ -164,6 +164,10 @@ export default {
     title: "Cannyエッジ検出 (Step.1) エッジ強度",
     desc: "",
   },
+  ans42: {
+    title: "Cannyエッジ検出 (Step.2) 細線化",
+    desc: "",
+  },
   ans60: {
     title: "アルファブレンド",
     desc: "",
