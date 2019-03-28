@@ -7,8 +7,8 @@ import {BaseTwoCanvasComponent} from "./BaseComponents.js"
 export default class Ans73 extends BaseTwoCanvasComponent {
     /**
      * メイン
-     * @param {canvas} canvas 
-     * @param {Image} image 
+     * @param {Object} canvas 
+     * @param {Object} image 
      */
     main(canvas, image) {
       const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
@@ -28,7 +28,7 @@ export default class Ans73 extends BaseTwoCanvasComponent {
     }
     /**
      * バイリニア補間
-     * @param {canvas} canvas 
+     * @param {Object} canvas 
      * @param {scale} scale 
      */
     bilinear(canvas, scale) {

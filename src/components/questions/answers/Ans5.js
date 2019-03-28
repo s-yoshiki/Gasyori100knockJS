@@ -63,8 +63,8 @@ export default class Ans5 extends BaseTwoCanvasComponent {
   }
   /**
    * メイン
-   * @param {canvas} canvas 
-   * @param {Image} image 
+   * @param {Object} canvas 
+   * @param {Object} image 
    */
   main(canvas, image) {
     let ctx = canvas.getContext("2d");

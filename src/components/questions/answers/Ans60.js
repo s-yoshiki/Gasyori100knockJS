@@ -45,8 +45,8 @@ export default class Ans60 extends BaseThreeCanvasComponent {
   }
   /**
    * メイン
-   * @param {canvas} canvas 
-   * @param {Image} image 
+   * @param {Object} canvas 
+   * @param {Object} image 
    */
   main(canvas, image1, image2) {
     let ctx = canvas.getContext("2d");

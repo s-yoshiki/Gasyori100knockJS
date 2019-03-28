@@ -8,8 +8,8 @@ import math from "mathjs"
 export default class Ans30 extends BaseThreeCanvasComponent {
   /**
    * メイン
-   * @param {canvas} canvas 
-   * @param {Image} image 
+   * @param {Object} canvas 
+   * @param {Object} image 
    */
   main(canvas1, canvas2, image) {
     const calcHomography = (H, x, y) => {
@@ -50,8 +50,8 @@ export default class Ans30 extends BaseThreeCanvasComponent {
   }
   /**
    * Homography Translation
-   * @param {canvas} canvas 
-   * @param {Image} image 
+   * @param {Object} canvas 
+   * @param {Object} image 
    * @param {Array} H 3x3 - Homography
    */
   trans(canvas, image, H) {

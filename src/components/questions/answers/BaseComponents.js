@@ -97,8 +97,8 @@ export class BaseTwoCanvasComponent extends BasePagesComponent {
   /**
    * 画像を処理してcanvasに描画
    * 
-   * @param {canvas} canvas 
-   * @param {Image} image 
+   * @param {Object} canvas 
+   * @param {Object} image 
    */
   main() { }
 

@@ -7,8 +7,8 @@ import { HistogramComponent } from "./BaseComponents.js"
 export default class Ans20 extends HistogramComponent {
   /**
    * メイン
-   * @param {canvas} canvas 
-   * @param {image} image 
+   * @param {Object} canvas 
+   * @param {Object} image 
    */
   main(canvas) {
     let pixelValues = new Array(255).fill(0)

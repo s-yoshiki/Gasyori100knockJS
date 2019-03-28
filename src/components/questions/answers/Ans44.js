@@ -82,8 +82,8 @@ export default class Ans42 extends BaseTwoCanvasComponent {
   }
   /**
    * ガウシアンカーネル生成
-   * @param {double} kernelSize 
-   * @param {double} sigma 
+   * @param {Number} kernelSize 
+   * @param {Number} sigma 
    */
   getGaussianKernel(kernelSize, sigma) {
     const gaussian = (x, y, sigma) => Math.exp(-(x ** 2 + y ** 2) / (2 * sigma ** 2))

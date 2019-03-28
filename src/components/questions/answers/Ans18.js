@@ -7,8 +7,8 @@ import { BaseTwoCanvasComponent } from "./BaseComponents.js"
 export default class Ans18 extends BaseTwoCanvasComponent {
   /**
    * メイン
-   * @param {canvas} canvas 
-   * @param {image} image 
+   * @param {Object} canvas 
+   * @param {Object} image 
    */
   main(canvas, image) {
     let kernel = [
@@ -20,9 +20,9 @@ export default class Ans18 extends BaseTwoCanvasComponent {
   }
   /**
    * embossフィルタ
-   * @param {canvas} canvas 
-   * @param {image} image 
-   * @param {array} kernel 
+   * @param {Object} canvas 
+   * @param {Object} image 
+   * @param {Array} kernel 
    */
   logFilter(canvas, image, kernel) {
     let ctx = canvas.getContext("2d");

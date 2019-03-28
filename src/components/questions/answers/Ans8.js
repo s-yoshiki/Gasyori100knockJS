@@ -7,8 +7,8 @@ import { BaseTwoCanvasComponent } from "./BaseComponents.js"
 export default class Ans8 extends BaseTwoCanvasComponent {
   /**
    * メイン
-   * @param {canvas} canvas 
-   * @param {Image} image 
+   * @param {Object} canvas 
+   * @param {Object} image 
    */
   main(canvas, image) {
     let w = image.width

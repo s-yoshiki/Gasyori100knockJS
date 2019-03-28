@@ -7,8 +7,8 @@ import {BaseThreeCanvasComponent} from "./BaseComponents.js"
 export default class Ans35 extends BaseThreeCanvasComponent {
   /**
    * メイン
-   * @param {canvas} canvas 
-   * @param {Image} image 
+   * @param {Object} canvas 
+   * @param {Object} image 
    */
   main(canvas1, canvas2, image) {
     const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
@@ -47,8 +47,8 @@ export default class Ans35 extends BaseThreeCanvasComponent {
   /**
    * 2次元離散フーリエ変換
    * @param {Array} src 
-   * @param {int} imgWidth canvas width 
-   * @param {int} imgHeight canvas height
+   * @param {Number} imgWidth canvas width 
+   * @param {Number} imgHeight canvas height
    */
   dft2d(src, imgWidth, imgHeight) {
     const W = imgWidth
@@ -75,8 +75,8 @@ export default class Ans35 extends BaseThreeCanvasComponent {
    * 2次元離散逆フーリエ変換
    * @param {Array} Re 
    * @param {Array} Im 
-   * @param {int} imgWidth canvas width
-   * @param {int} imgHeight canvas height
+   * @param {Number} imgWidth canvas width
+   * @param {Number} imgHeight canvas height
    */
   idft2d(Re, Im, imgWidth, imgHeight) {
     const W = imgWidth
@@ -97,8 +97,8 @@ export default class Ans35 extends BaseThreeCanvasComponent {
    * バンドパスフィルタ
    * @param {Array} Re 
    * @param {Array} Im 
-   * @param {int} imgWidth image width 
-   * @param {int} imgHeight image height
+   * @param {Number} imgWidth image width 
+   * @param {Number} imgHeight image height
    */
   bpf(Re, Im, imgWidth, imgHeight, rMin, rMax) {
     let cx = imgWidth / 2

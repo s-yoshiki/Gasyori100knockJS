@@ -7,9 +7,9 @@ import { BaseThreeCanvasComponent } from "./BaseComponents.js"
 export default class Ans15 extends BaseThreeCanvasComponent {
   /**
    * メイン
-   * @param {canvas} canvas1 
-   * @param {canvas} canvas2
-   * @param {image} image 
+   * @param {Object} canvas1 
+   * @param {Object} canvas2
+   * @param {Object} image 
    */
   main(canvas1, canvas2, image) {
     const verticalKernel = [
@@ -27,9 +27,9 @@ export default class Ans15 extends BaseThreeCanvasComponent {
   }
   /**
    * ソーベルフィルタ
-   * @param {canvas} canvas 
-   * @param {image} image 
-   * @param {array} kernel 
+   * @param {Object} canvas 
+   * @param {Object} image 
+   * @param {Array} kernel 
    */
   sovelFilter(canvas, image, kernel) {
     let ctx = canvas.getContext("2d");

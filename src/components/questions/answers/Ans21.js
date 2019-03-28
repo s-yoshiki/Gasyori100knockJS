@@ -7,8 +7,8 @@ import { ThreeCanvasHistogramComponent } from "./BaseComponents.js"
 export default class Ans21 extends ThreeCanvasHistogramComponent {
   /**
    * メイン
-   * @param {canvas} canvas 
-   * @param {Image} image 
+   * @param {Object} canvas 
+   * @param {Object} image 
    */
   main(canvas, image) {
     let ctx = canvas.getContext("2d");

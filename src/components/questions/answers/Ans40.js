@@ -8,8 +8,8 @@ import math from "mathjs"
 export default class Ans40 extends BaseTwoCanvasComponent {
   /**
    * メイン
-   * @param {canvas} canvas 
-   * @param {Image} image 
+   * @param {Object} canvas 
+   * @param {Object} image 
    */
   main(canvas1, image) {
     const rgb2ycc = (r, g, b) => [
@@ -72,9 +72,9 @@ export default class Ans40 extends BaseTwoCanvasComponent {
   /**
    * 2次元離散フーリエ変換
    * @param {Array} src 2次元配列
-   * @param {int} imgWidth canvas width 
-   * @param {int} imgHeight canvas height
-   * @param {int} T DCT係数
+   * @param {Number} imgWidth canvas width 
+   * @param {Number} imgHeight canvas height
+   * @param {Number} T DCT係数
    */
   dct2d(src, imgWidth, imgHeight, T, Q) {
     const W = imgWidth
@@ -112,10 +112,10 @@ export default class Ans40 extends BaseTwoCanvasComponent {
   /**
    * 2次元離散逆フーリエ変換
    * @param {Array} src
-   * @param {int} imgWidth canvas width
-   * @param {int} imgHeight canvas height
-   * @param {int} T DCT係数
-   * @param {int} K DCT係数
+   * @param {Number} imgWidth canvas width
+   * @param {Number} imgHeight canvas height
+   * @param {Number} T DCT係数
+   * @param {Number} K DCT係数
    */
   idct2d(src, imgWidth, imgHeight, T, K) {
     const W = imgWidth
@@ -174,8 +174,8 @@ export default class Ans40 extends BaseTwoCanvasComponent {
    * psnr算出
    * @param {Array} src 入力画像
    * @param {Array} dst 出力画像
-   * @param {int} imgWidth 
-   * @param {int} imgHeight 
+   * @param {Number} imgWidth 
+   * @param {Number} imgHeight 
    */
   psnr(srcY, dstY, srcCr, dstCr, srcCb, dstCb, imgWidth, imgHeight) {
     let sum = 0
