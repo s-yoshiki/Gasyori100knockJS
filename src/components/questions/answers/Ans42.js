@@ -115,6 +115,13 @@ export default class Ans42 extends BaseTwoCanvasComponent {
       dst[dstIdx] = k
     }
   }
+  /**
+   * Non-maximum suppression(NMS)
+   * @param {Array} edge edge image
+   * @param {Array} angle angle array
+   * @param {int} imgWidth 
+   * @param {int} imgHeight 
+   */
   nonMaximumSuppression(edge, angle, imgWidth, imgHeight) {
     const getIdx = (x, y) => x + y * imgWidth
     for (let y = 0; y < imgHeight; y++) for (let x = 0; x < imgWidth; x++) {
