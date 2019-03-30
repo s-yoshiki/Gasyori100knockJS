@@ -176,6 +176,18 @@ export default {
     title: "Hough変換・直線検出 (Step.1) Hough変換",
     desc: "",
   },
+  ans45: {
+    title: "Hough変換・直線検出 (Step.2) NMS",
+    desc: "",
+  },
+  ans46: {
+    title: "Hough変換・直線検出 (Step.3) Hough逆変換",
+    desc: "",
+  },
+  ans47: {
+    title: "モルフォロジー処理(膨張)",
+    desc: "",
+  },
   ans60: {
     title: "アルファブレンド",
     desc: "",

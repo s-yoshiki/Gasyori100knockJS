@@ -244,7 +244,6 @@ export default class Ans44 extends BaseTwoCanvasComponent {
       for (let theta = 0; theta < radMax; theta += dtheta) {
         let t = Math.PI / radMax * theta
         let rho = ~~(x * Math.cos(t) + y * Math.sin(t))
-        
         hough[theta + rho * radMax] += 1
       }
     }
