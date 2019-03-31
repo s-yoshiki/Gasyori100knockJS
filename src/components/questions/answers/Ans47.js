@@ -18,11 +18,10 @@ export default class Ans47 extends BaseThreeCanvasComponent {
     let dst1 = ctx1.createImageData(image.width, image.height)
     let ctx2 = canvas2.getContext("2d");
     ctx2.drawImage(image, 0, 0, image.width, image.height)
-    // let src2 = ctx2.getImageData(0, 0, image.width, image.height)
     let dst2 = ctx2.createImageData(image.width, image.height)
     let bin = new Array(image.width * image.height).fill(0)
-    let mol1 = new Array(image.width * image.height).fill(0)
-    let mol2 = new Array(image.width * image.height).fill(0)
+    // let mol1 = new Array(image.width * image.height).fill(0)
+    // let mol2 = new Array(image.width * image.height).fill(0)
     let t = this.threshold(src1.data)
     const kernel = [
       [0, 1, 0],
@@ -31,31 +30,25 @@ export default class Ans47 extends BaseThreeCanvasComponent {
     ]
     for (let i = 0, j = 0; i < dst1.data.length; i += 4, j++) {
       let c = grayscale(src1.data[i], src1.data[i + 1], src1.data[i + 2])
-      if (c < t) {
-        bin[j] = 0
-        dst1.data[i] = dst1.data[i + 1] = dst1.data[i + 2] = 0
-      } else {
-        bin[j] = 255
-        dst1.data[i] = dst1.data[i + 1] = dst1.data[i + 2] = 255
-      }
-      dst1.data[i + 3] = 255
+      bin[j] = c >= t ? 255 : 0
     }
-    ctx1.putImageData(dst1, 0, 0)
-    this.adaptKernel(bin, mol1, image.width, image.height, kernel)
-    mol1.map(e => e > 255 ? 255 : 0)
-    this.adaptKernel(mol1, mol2, image.width, image.height, kernel)
-    mol2.map(e => e > 255 ? 255 : 0)
+    let mol1 = bin.slice()
+    this.adaptKernel(bin, mol1, image.width, image.height, kernel, (e) => {
+      if (e >= 255) return 255
+    })
+    let mol2 = mol1.slice()
+    this.adaptKernel(mol1, mol2, image.width, image.height, kernel, (e) => {
+      if (e >= 255) return 255
+    })
+
     for (let i = 0, j = 0; i < dst1.data.length; i += 4, j++) {
-      // let c = grayscale(src1.data[i], src1.data[i + 1], src1.data[i + 2])
-      // if (c < t) {
-      //   bin[j] = 0
-      //   dst1.data[i] = dst1.data[i + 1] = dst1.data[i + 2] = 0
-      // } else {
-      //   bin[j] = 255
-      // }
+      dst1.data[i] = dst1.data[i + 1] = dst1.data[i + 2] = bin[j]
       dst2.data[i] = dst2.data[i + 1] = dst2.data[i + 2] = mol2[j]
+      dst1.data[i + 3] = 255
       dst2.data[i + 3] = 255
     }
+
+    ctx1.putImageData(dst1, 0, 0)
     ctx2.putImageData(dst2, 0, 0)
   }
   /**
@@ -103,30 +96,34 @@ export default class Ans47 extends BaseThreeCanvasComponent {
     return t
   }
   /**
- * フィルタを適用する
- * @param {Array} src 
- * @param {Array} dst 
- * @param {Number} imgWidth 
- * @param {Number} imgHeight 
- * @param {Array} kernel 
- */
-  adaptKernel(src, dst, imgWidth, imgHeight, kernel) {
+   * フィルタを適用する
+   * @param {Array} src 
+   * @param {Array} dst 
+   * @param {Number} imgWidth 
+   * @param {Number} imgHeight 
+   * @param {Array} kernel 
+   */
+  adaptKernel(src, dst, imgWidth, imgHeight, kernel, callback) {
     const getIndex = (x, y) => {
       x = Math.min(Math.max(x, 0), imgWidth - 1)
       y = Math.min(Math.max(y, 0), imgHeight - 1)
       return y * imgWidth + x
     }
     const kernelSize = kernel.length
-    for (let x = 0; x < imgWidth; x++) for (let y = 0; y < imgHeight; y++) {
+    let d = Math.ceil(kernelSize / 2)
+    for (let x = 1; x < imgWidth + 1; x++) for (let y = 1; y < imgHeight + 1; y++) {
       let k = 0
       for (let i = 0; i < kernelSize; i++) for (let j = 0; j < kernelSize; j++) {
-        let _i = i - ~~(kernelSize / 2)
-        let _j = j - ~~(kernelSize / 2)
-        let srcIdx = getIndex((x + _j), (y + _i))
+        let srcIdx = getIndex((x + i - d), (y + j - d))
         k += kernel[i][j] * src[srcIdx]
       }
       let dstIdx = getIndex(x, y)
-      dst[dstIdx] = k
+      if (callback != null) {
+        k = callback(k)
+        if (k !== undefined) {
+          dst[dstIdx] = k
+        }
+      }
     }
   }
 }

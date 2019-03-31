@@ -188,6 +188,14 @@ export default {
     title: "モルフォロジー処理(膨張)",
     desc: "",
   },
+  ans48: {
+    title: "モルフォロジー処理(収縮)",
+    desc: "",
+  },
+  ans49: {
+    title: "オープニング処理",
+    desc: "",
+  },
   ans60: {
     title: "アルファブレンド",
     desc: "",
