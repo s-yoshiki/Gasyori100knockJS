@@ -7,8 +7,8 @@ import { BaseTwoCanvasComponent } from "./BaseComponents.js"
 export default class Ans6 extends BaseTwoCanvasComponent {
   /**
    * メイン
-   * @param {canvas} canvas 
-   * @param {Image} image 
+   * @param {Object} canvas 
+   * @param {Object} image 
    */
   main(canvas, image) {
     let ctx = canvas.getContext("2d");

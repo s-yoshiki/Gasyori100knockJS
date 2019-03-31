@@ -17,8 +17,8 @@ export default class Ans23 extends ThreeCanvasHistogramComponent {
   }
   /**
    * メイン
-   * @param {canvas} canvas 
-   * @param {Image} image 
+   * @param {Object} canvas 
+   * @param {Object} image 
    */
   main(canvas, image) {
     let ctx = canvas.getContext("2d");

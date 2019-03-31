@@ -7,8 +7,8 @@ import { BaseTwoCanvasComponent } from "./BaseComponents.js"
 export default class Ans4 extends BaseTwoCanvasComponent {
   /**
    * メイン
-   * @param {canvas} canvas 
-   * @param {image} image 
+   * @param {Object} canvas 
+   * @param {Object} image 
    */
   main(canvas, image) {
     const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b

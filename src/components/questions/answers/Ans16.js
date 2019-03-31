@@ -7,8 +7,8 @@ import { BaseThreeCanvasComponent } from "./BaseComponents.js"
 export default class Ans16 extends BaseThreeCanvasComponent {
   /**
    * メイン
-   * @param {canvas} canvas 
-   * @param {image} image 
+   * @param {Object} canvas 
+   * @param {Object} image 
    */
   main(canvas1, canvas2, image) {
     const verticalKernel = [
@@ -26,9 +26,9 @@ export default class Ans16 extends BaseThreeCanvasComponent {
   }
   /**
    * Prewittフィルタ
-   * @param {canvas} canvas 
-   * @param {image} image 
-   * @param {array} kernel 
+   * @param {Object} canvas 
+   * @param {Object} image 
+   * @param {Array} kernel 
    */
   prewittFilter(canvas, image, kernel) {
     let ctx = canvas.getContext("2d");

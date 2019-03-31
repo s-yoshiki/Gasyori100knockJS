@@ -7,8 +7,8 @@ import {BaseTwoCanvasComponent} from "./BaseComponents.js"
 export default class Ans28 extends BaseTwoCanvasComponent {
   /**
    * メイン
-   * @param {canvas} canvas 
-   * @param {Image} image 
+   * @param {Object} canvas 
+   * @param {Object} image 
    */
   main(canvas, image) {
     const getIndex = (x, y, channel) => {

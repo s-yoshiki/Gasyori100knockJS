@@ -3,8 +3,8 @@ import Chart from "chart.js"
 export default class {
   /**
    * canvasに画像を描画する
-   * @param {canvas} canvas 
-   * @param {Image} image 
+   * @param {Object} canvas 
+   * @param {Object} image 
    */
   static drawImage(canvas, image) {
     image.addEventListener("load", () => {
@@ -16,8 +16,8 @@ export default class {
 
   /**
    * ヒストグラムを描画する
-   * @param {canvas} canvas 
-   * @param {Image} data 
+   * @param {Object} canvas 
+   * @param {Object} data 
    */
   static renderHistogram(canvas, data) {
     let labels = new Array(255).fill('')

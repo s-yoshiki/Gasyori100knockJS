@@ -168,6 +168,34 @@ export default {
     title: "Cannyエッジ検出 (Step.2) 細線化",
     desc: "",
   },
+  ans43: {
+    title: "Cannyエッジ検出 (Step.3) ヒステリシス閾処理",
+    desc: "",
+  },
+  ans44: {
+    title: "Hough変換・直線検出 (Step.1) Hough変換",
+    desc: "",
+  },
+  ans45: {
+    title: "Hough変換・直線検出 (Step.2) NMS",
+    desc: "",
+  },
+  ans46: {
+    title: "Hough変換・直線検出 (Step.3) Hough逆変換",
+    desc: "",
+  },
+  ans47: {
+    title: "モルフォロジー処理(膨張)",
+    desc: "",
+  },
+  ans48: {
+    title: "モルフォロジー処理(収縮)",
+    desc: "",
+  },
+  ans49: {
+    title: "オープニング処理",
+    desc: "",
+  },
   ans60: {
     title: "アルファブレンド",
     desc: "",

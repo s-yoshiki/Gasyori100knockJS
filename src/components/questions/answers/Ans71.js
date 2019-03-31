@@ -7,8 +7,8 @@ import {BaseThreeCanvasComponent} from "./BaseComponents.js"
 export default class Ans71 extends BaseThreeCanvasComponent {
     /**
      * メイン
-     * @param {canvas} canvas 
-     * @param {Image} image 
+     * @param {Object} canvas 
+     * @param {Object} image 
      */
     main(canvas1, canvas2, image) {
       let ctx1 = canvas1.getContext("2d");
@@ -55,7 +55,7 @@ export default class Ans71 extends BaseThreeCanvasComponent {
     }
     /**
      * rgb -> hsv
-     * @param {array} rgb
+     * @param {Array} rgb
      * @return {array} hsv
      */
     rgb2hsv(rgb) {

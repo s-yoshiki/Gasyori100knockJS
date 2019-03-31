@@ -7,9 +7,9 @@ import { BaseThreeCanvasComponent } from "./BaseComponents.js"
 export default class Ans14 extends BaseThreeCanvasComponent {
   /**
    * メイン
-   * @param {canvas} canvas1 
-   * @param {canvas} canvas2 
-   * @param {image} image 
+   * @param {Object} canvas1 
+   * @param {Object} canvas2 
+   * @param {Object} image 
    */
   main(canvas1, canvas2, image) {
 

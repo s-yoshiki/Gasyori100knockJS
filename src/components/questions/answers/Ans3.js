@@ -7,8 +7,8 @@ import { BaseTwoCanvasComponent } from "./BaseComponents.js"
 export default class Ans3 extends BaseTwoCanvasComponent {
   /**
    * メイン
-   * @param {canvas} canvas 
-   * @param {image} image 
+   * @param {Object} canvas 
+   * @param {Object} image 
    */
   main(canvas, image) {
     const THRESHOLD = 128

@@ -7,8 +7,8 @@ import { BaseTwoCanvasComponent } from "./BaseComponents.js"
 export default class Ans17 extends BaseTwoCanvasComponent {
   /**
    * メイン
-   * @param {canvas} canvas 
-   * @param {image} image 
+   * @param {Object} canvas 
+   * @param {Object} image 
    */
   main(canvas, image) {
     const kernel = [
@@ -21,9 +21,9 @@ export default class Ans17 extends BaseTwoCanvasComponent {
 
   /**
    * Prewittフィルタ
-   * @param {canvas} canvas 
-   * @param {image} image 
-   * @param {array} kernel 
+   * @param {Object} canvas 
+   * @param {Object} image 
+   * @param {Array} kernel 
    */
   laplacianFilter(canvas, image, kernel) {
     let ctx = canvas.getContext("2d");

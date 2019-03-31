@@ -16,8 +16,8 @@ export default class Ans10 extends BaseTwoCanvasComponent {
   }
   /**
    * メイン処理
-   * @param {canvas} canvas 
-   * @param {image} image 
+   * @param {Object} canvas 
+   * @param {Object} image 
    */
   main(canvas, image) {
     let ctx = canvas.getContext("2d");

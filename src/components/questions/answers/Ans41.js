@@ -7,8 +7,8 @@ import { BaseThreeCanvasComponent } from "./BaseComponents.js"
 export default class Ans41 extends BaseThreeCanvasComponent {
   /**
    * メイン
-   * @param {canvas} canvas 
-   * @param {Image} image 
+   * @param {Object} canvas 
+   * @param {Object} image 
    */
   main(canvas1, canvas2, image) {
     const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
@@ -69,8 +69,8 @@ export default class Ans41 extends BaseThreeCanvasComponent {
   }
   /**
    * ガウシアンカーネル生成
-   * @param {double} kernelSize 
-   * @param {double} sigma 
+   * @param {Number} kernelSize 
+   * @param {Number} sigma 
    */
   getGaussianKernel(kernelSize, sigma) {
     const gaussian = (x, y, sigma) => Math.exp(-(x ** 2 + y ** 2) / (2 * sigma ** 2))
@@ -94,8 +94,8 @@ export default class Ans41 extends BaseThreeCanvasComponent {
    * フィルタを適用する
    * @param {Array} src 
    * @param {Array} dst 
-   * @param {int} imgWidth 
-   * @param {int} imgHeight 
+   * @param {Number} imgWidth 
+   * @param {Number} imgHeight 
    * @param {Array} kernel 
    */
   adaptKernel(src, dst, imgWidth, imgHeight, kernel) {
