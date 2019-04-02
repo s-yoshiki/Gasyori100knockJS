@@ -108,7 +108,7 @@ export default class Ans48 extends BaseThreeCanvasComponent {
       return y * imgWidth + x
     }
     const kernelSize = kernel.length
-    let d = Math.ceil(kernelSize / 2)
+    let d = Math.floor(kernelSize / 2)
     for (let x = 0; x < imgWidth; x++) for (let y = 0; y < imgHeight; y++) {
       let k = 0
       for (let i = 0; i < kernelSize; i++) for (let j = 0; j < kernelSize; j++) {
