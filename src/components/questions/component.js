@@ -52,7 +52,7 @@ import Ans45 from './answers/Ans45.js'
 import Ans47 from './answers/Ans47.js'
 import Ans48 from './answers/Ans48.js'
 import Ans49 from './answers/Ans49.js'
-// import Ans50 from './answers/Ans50.js'
+import Ans50 from './answers/Ans50.js'
 // import Ans51 from './answers/Ans51.js'
 // import Ans52 from './answers/Ans52.js'
 // import Ans53 from './answers/Ans53.js'
@@ -157,7 +157,7 @@ const componentMap = {
   "ans47": new Ans47(),
   "ans48": new Ans48(),
   "ans49": new Ans49(),
-  // "ans50": new Ans50(),
+  "ans50": new Ans50(),
   // "ans51": new Ans51(),
   // "ans52": new Ans52(),
   // "ans53": new Ans53(),

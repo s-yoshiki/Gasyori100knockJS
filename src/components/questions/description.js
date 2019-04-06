@@ -196,6 +196,10 @@ export default {
     title: "オープニング処理",
     desc: "",
   },
+  ans50: {
+    title: "クロージング処理",
+    desc: "",
+  },
   ans60: {
     title: "アルファブレンド",
     desc: "",
