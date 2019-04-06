@@ -131,7 +131,7 @@ export default {
 }
 
 .main {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .msg {

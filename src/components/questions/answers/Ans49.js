@@ -29,21 +29,13 @@ export default class Ans49 extends BaseThreeCanvasComponent {
     for (let i = 0, j = 0; i < dst1.data.length; i += 4, j++) {
       bin[j] = grayscale(src1.data[i], src1.data[i + 1], src1.data[i + 2]) > t ? 255 : 0
     }
-
     let mol = bin.slice()
     this.adaptKernel(mol.slice(), mol, image.width, image.height, kernel, (e) => {
       if (e < 255 * 4) return 0
     })
-    // this.adaptKernel(mol.slice(), mol, image.width, image.height, kernel, (e) => {
-    //   if (e < 255 * 4) return 0
-    // })
     this.adaptKernel(mol.slice(), mol, image.width, image.height, kernel, (e) => {
       if (e >= 255) return 255
     })
-    // this.adaptKernel(mol.slice(), mol, image.width, image.height, kernel, (e) => {
-    //   if (e >= 255) return 255
-    // })
-
     for (let i = 0, j = 0; i < dst1.data.length; i += 4, j++) {
       dst1.data[i] = dst1.data[i + 1] = dst1.data[i + 2] = bin[j]
       dst2.data[i] = dst2.data[i + 1] = dst2.data[i + 2] = mol[j]
@@ -114,7 +106,7 @@ export default class Ans49 extends BaseThreeCanvasComponent {
     }
     // dst = new Array(src.length).fill(0)
     const kernelSize = kernel.length
-    let d = Math.ceil(kernelSize / 2)
+    let d = Math.floor(kernelSize / 2)
     for (let x = 0; x < imgWidth; x++) for (let y = 0; y < imgHeight; y++) {
       let k = 0
       for (let i = 0; i < kernelSize; i++) for (let j = 0; j < kernelSize; j++) {
