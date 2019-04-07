@@ -104,16 +104,13 @@ export default class Ans50 extends BaseThreeCanvasComponent {
       y = Math.min(Math.max(y, 0), imgHeight - 1)
       return y * imgWidth + x
     }
-    // dst = new Array(src.length).fill(0)
     const kernelSize = kernel.length
     let d = Math.floor(kernelSize / 2)
     for (let x = 0; x < imgWidth; x++) for (let y = 0; y < imgHeight; y++) {
       let k = 0
       for (let i = 0; i < kernelSize; i++) for (let j = 0; j < kernelSize; j++) {
-        // let srcIdx = getIndex((x + i - d), (y + j - d))
-        // k += kernel[i][j] * src[srcIdx]
-        let _i = i - ~~(kernelSize / 2)
-        let _j = j - ~~(kernelSize / 2)
+        let _i = i - d
+        let _j = j - d
         let srcIdx = getIndex((x + _j), (y + _i))
         k += kernel[i][j] * src[srcIdx]
       }
@@ -137,10 +134,10 @@ export default class Ans50 extends BaseThreeCanvasComponent {
     const gaussian = (x, y, sigma) => Math.exp(-(x ** 2 + y ** 2) / (2 * sigma ** 2))
     let w = 0
     let kernel = Array.from(new Array(kernelSize), () => new Array(kernelSize).fill(0))
-
+    let d = Math.floor(kernelSize / 2)
     for (let y = 0; y < kernelSize; y++) for (let x = 0; x < kernelSize; x++) {
-      let _x = x - ~~(kernelSize / 2)
-      let _y = y - ~~(kernelSize / 2)
+      let _x = x - d
+      let _y = y - d
       let g = gaussian(_x, _y, sigma)
       kernel[y][x] = g
       kernel[y][x] /= sigma * (Math.sqrt(2 * Math.PI))
