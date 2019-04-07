@@ -29,16 +29,16 @@ export default class Ans50 extends BaseThreeCanvasComponent {
       gray[j] = grayscale(src1.data[i], src1.data[i + 1], src1.data[i + 2])
     }
     let bin = this.cannyEdge(gray, image.width, image.height)
-    let mol = bin.slice()
-    this.adaptKernel(mol.slice(), mol, image.width, image.height, kernel, (e) => {
+    let mor = bin.slice()
+    this.adaptKernel(mor.slice(), mor, image.width, image.height, kernel, (e) => {
       if (e >= 255) return 255
     })
-    this.adaptKernel(mol.slice(), mol, image.width, image.height, kernel, (e) => {
+    this.adaptKernel(mor.slice(), mor, image.width, image.height, kernel, (e) => {
       if (e < 255 * 4) return 0
     })
     for (let i = 0, j = 0; i < dst1.data.length; i += 4, j++) {
       dst1.data[i] = dst1.data[i + 1] = dst1.data[i + 2] = bin[j]
-      dst2.data[i] = dst2.data[i + 1] = dst2.data[i + 2] = mol[j]
+      dst2.data[i] = dst2.data[i + 1] = dst2.data[i + 2] = mor[j]
       dst1.data[i + 3] = 255
       dst2.data[i + 3] = 255
     }
