@@ -6,6 +6,7 @@ const srcImage = {
     dark: branch + "imori_dark.jpg",
     gamma: branch + "imori_gamma.jpg",
     thorino: branch + "thorino.jpg",
+    imori_part: branch + "imori_part.jpg",
     lenna: branch + "lenna.png",
 }
 

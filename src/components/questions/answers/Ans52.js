@@ -1,22 +1,25 @@
-import { BaseTwoCanvasComponent } from "./BaseComponents.js"
+import { BaseThreeCanvasComponent } from "./BaseComponents.js"
 /**
  * Q.52
  * トップハット変換
- * @extends BaseTwoCanvasComponent
+ * @extends BaseThreeCanvasComponent
  */
-export default class Ans52 extends BaseTwoCanvasComponent {
+export default class Ans52 extends BaseThreeCanvasComponent {
   /**
    * メイン
    * @param {Object} canvas 
    * @param {Object} image 
    */
-  main(canvas1, image) {
+  main(canvas1, canvas2, image) {
     const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
     const morphologyTime = 3
     let ctx1 = canvas1.getContext("2d");
     ctx1.drawImage(image, 0, 0, image.width, image.height)
     let src1 = ctx1.getImageData(0, 0, image.width, image.height)
     let dst1 = ctx1.createImageData(image.width, image.height)
+    let ctx2 = canvas2.getContext("2d");
+    ctx2.drawImage(image, 0, 0, image.width, image.height)
+    let dst2 = ctx2.createImageData(image.width, image.height)
     let bin = new Array(image.width * image.height).fill(0)
     let t = this.threshold(src1.data)
     const kernel = [
@@ -40,10 +43,13 @@ export default class Ans52 extends BaseTwoCanvasComponent {
     }
     for (let i = 0, j = 0; i < dst1.data.length; i += 4, j++) {
       let p = bin[j] - mor[j]
-      dst1.data[i] = dst1.data[i + 1] = dst1.data[i + 2] = p
+      dst1.data[i] = dst1.data[i + 1] = dst1.data[i + 2] = bin[j]
+      dst2.data[i] = dst2.data[i + 1] = dst2.data[i + 2] = p
       dst1.data[i + 3] = 255
+      dst2.data[i + 3] = 255
     }
     ctx1.putImageData(dst1, 0, 0)
+    ctx2.putImageData(dst2, 0, 0)
   }
   /**
    * 大津の2値化

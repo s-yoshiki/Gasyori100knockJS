@@ -215,6 +215,14 @@ export default {
     title: "ブラックハット変換",
     desc: "",
   },
+  ans54: {
+    title: "テンプレートマッチング SSD",
+    desc: "",
+  },
+  ans55: {
+    title: "テンプレートマッチング SAD",
+    desc: "",
+  },
   ans60: {
     title: "アルファブレンド",
     desc: "",
