@@ -47,50 +47,6 @@ export default class Ans50 extends BaseThreeCanvasComponent {
     ctx2.putImageData(dst2, 0, 0)
   }
   /**
-   * 大津の2値化
-   * @param {ImageData} src
-   */
-  threshold(src) {
-    const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
-    let histgram = Array(256).fill(0)
-    let t = 0
-    let max = 0
-
-    for (let i = 0; i < src.length; i += 4) {
-      let g = ~~grayscale(src[i], src[i + 1], src[i + 2])
-      histgram[g]++
-    }
-
-    for (let i = 0; i < 256; i++) {
-      let w1 = 0
-      let w2 = 0
-      let sum1 = 0
-      let sum2 = 0
-      let m1 = 0
-      let m2 = 0
-      for (let j = 0; j <= i; ++j) {
-        w1 += histgram[j]
-        sum1 += j * histgram[j]
-      }
-      for (let j = i + 1; j < 256; ++j) {
-        w2 += histgram[j]
-        sum2 += j * histgram[j]
-      }
-      if (w1) {
-        m1 = sum1 / w1
-      }
-      if (w2) {
-        m2 = sum2 / w2
-      }
-      let tmp = (w1 * w2 * (m1 - m2) * (m1 - m2))
-      if (tmp > max) {
-        max = tmp
-        t = i
-      }
-    }
-    return t
-  }
-  /**
    * フィルタを適用する
    * @param {Array} src 
    * @param {Array} dst 
