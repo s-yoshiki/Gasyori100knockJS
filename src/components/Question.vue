@@ -130,10 +130,6 @@ export default {
   text-align: center;
 }
 
-.main {
-  /* text-align: center; */
-}
-
 .msg {
   text-align: left;
 }

@@ -1,7 +1,7 @@
 export default {
   ans1: {
     title: "チャンネル入れ替え",
-    desc: "画像を読み込み、RGBをBGRの順に入れ替える。"
+    desc: `画像を読み込み、RGBをBGRの順に入れ替える。左の画像が入力画像。右の画像が処理後の画像。`
   },
   ans2: {
     title: "グレースケール",
@@ -198,6 +198,18 @@ export default {
   },
   ans50: {
     title: "クロージング処理",
+    desc: "",
+  },
+  ans51: {
+    title: "モルフォロジー勾配",
+    desc: "",
+  },
+  ans52: {
+    title: "トップハット変換",
+    desc: "",
+  },
+  ans53: {
+    title: "ブラックハット変換",
     desc: "",
   },
   ans60: {

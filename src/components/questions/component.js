@@ -53,9 +53,9 @@ import Ans47 from './answers/Ans47.js'
 import Ans48 from './answers/Ans48.js'
 import Ans49 from './answers/Ans49.js'
 import Ans50 from './answers/Ans50.js'
-// import Ans51 from './answers/Ans51.js'
-// import Ans52 from './answers/Ans52.js'
-// import Ans53 from './answers/Ans53.js'
+import Ans51 from './answers/Ans51.js'
+import Ans52 from './answers/Ans52.js'
+import Ans53 from './answers/Ans53.js'
 // import Ans54 from './answers/Ans54.js'
 // import Ans55 from './answers/Ans55.js'
 // import Ans56 from './answers/Ans56.js'
@@ -158,9 +158,9 @@ const componentMap = {
   "ans48": new Ans48(),
   "ans49": new Ans49(),
   "ans50": new Ans50(),
-  // "ans51": new Ans51(),
-  // "ans52": new Ans52(),
-  // "ans53": new Ans53(),
+  "ans51": new Ans51(),
+  "ans52": new Ans52(),
+  "ans53": new Ans53(),
   // "ans54": new Ans54(),
   // "ans55": new Ans55(),
   // "ans56": new Ans56(),
@@ -210,51 +210,62 @@ const componentMap = {
   // "ans100": new Ans100(),  
 }
 
-function makeComponent() {
+/**
+ * 画像処理クラスからVueコンポーネントを作成
+ * @param {String} name Component Name
+ * @param {Object} obj Image processing class
+ * @return {Object} Vue Component
+ */
+const makeComponent = (name, obj) => {
+  return Vue.component(name, {
+    name: name,
+    data() {
+      return {
+        srcImages:config.srcImageOption,
+        selected:'',
+      }
+    },
+    methods: {
+      setImage() {
+        obj.setSrcImage(this.selected)
+        obj._initObject(this)
+      }
+    },
+    mounted() {
+      obj.init(this)
+      obj._initObject(this)
+    },
+    template: `
+    <div>
+      <div style="width=100%;text-align:right">
+        <select v-model="selected" v-on:change="setImage()">
+          <option v-for="option in srcImages" v-bind:value="option.src" >
+            {{ option.label }}
+          </option>
+        </select>
+      </div>
+      <div style="width=100%;text-align:center">
+        ${obj.getTemplate()}
+      </div>
+    </div>`,
+  })
+}
+
+export default (() => {
   let exportComponents = {};
   for (let i = 1; i <= 100; i++) {
     let key = `ans${i}`
     let obj = componentMap[key]
     if (!componentMap[key]) {
       exportComponents[key] = Vue.component(key, {
-        template: BlankTemplate,
-      })
-      continue
-    }
-    exportComponents[key] = Vue.component(key, {
-      name: key,
-      data() {
-        return {
-          srcImages:config.srcImageOption,
-          selected:'',
-        }
-      },
-      methods: {
-        setImage() {
-          obj.setSrcImage(this.selected)
-          obj._initObject(this)
-        }
-      },
-      mounted() {
-        obj.init(this)
-        obj._initObject(this)
-      },
-      template: `
-      <div>
-        <div style="width=100%;text-align:right">
-          <select v-model="selected" v-on:change="setImage()">
-            <option v-for="option in srcImages" v-bind:value="option.src" >
-              {{ option.label }}
-            </option>
-          </select>
-        </div>
+        template: `
         <div style="width=100%;text-align:center">
-          ${obj.getTemplate()}
-        </div>
-      </div>`,
-    })
+          ${BlankTemplate}
+        </div>`,
+      })
+    } else {
+      exportComponents[key] = makeComponent(key, obj)
+    }
   }
   return exportComponents
-}
-
-export default makeComponent()
+})()
