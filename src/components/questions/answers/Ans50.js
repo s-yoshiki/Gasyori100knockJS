@@ -29,66 +29,22 @@ export default class Ans50 extends BaseThreeCanvasComponent {
       gray[j] = grayscale(src1.data[i], src1.data[i + 1], src1.data[i + 2])
     }
     let bin = this.cannyEdge(gray, image.width, image.height)
-    let mol = bin.slice()
-    this.adaptKernel(mol.slice(), mol, image.width, image.height, kernel, (e) => {
+    let mor = bin.slice()
+    this.adaptKernel(mor.slice(), mor, image.width, image.height, kernel, (e) => {
       if (e >= 255) return 255
     })
-    this.adaptKernel(mol.slice(), mol, image.width, image.height, kernel, (e) => {
+    this.adaptKernel(mor.slice(), mor, image.width, image.height, kernel, (e) => {
       if (e < 255 * 4) return 0
     })
     for (let i = 0, j = 0; i < dst1.data.length; i += 4, j++) {
       dst1.data[i] = dst1.data[i + 1] = dst1.data[i + 2] = bin[j]
-      dst2.data[i] = dst2.data[i + 1] = dst2.data[i + 2] = mol[j]
+      dst2.data[i] = dst2.data[i + 1] = dst2.data[i + 2] = mor[j]
       dst1.data[i + 3] = 255
       dst2.data[i + 3] = 255
     }
 
     ctx1.putImageData(dst1, 0, 0)
     ctx2.putImageData(dst2, 0, 0)
-  }
-  /**
-   * 大津の2値化
-   * @param {ImageData} src
-   */
-  threshold(src) {
-    const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
-    let histgram = Array(256).fill(0)
-    let t = 0
-    let max = 0
-
-    for (let i = 0; i < src.length; i += 4) {
-      let g = ~~grayscale(src[i], src[i + 1], src[i + 2])
-      histgram[g]++
-    }
-
-    for (let i = 0; i < 256; i++) {
-      let w1 = 0
-      let w2 = 0
-      let sum1 = 0
-      let sum2 = 0
-      let m1 = 0
-      let m2 = 0
-      for (let j = 0; j <= i; ++j) {
-        w1 += histgram[j]
-        sum1 += j * histgram[j]
-      }
-      for (let j = i + 1; j < 256; ++j) {
-        w2 += histgram[j]
-        sum2 += j * histgram[j]
-      }
-      if (w1) {
-        m1 = sum1 / w1
-      }
-      if (w2) {
-        m2 = sum2 / w2
-      }
-      let tmp = (w1 * w2 * (m1 - m2) * (m1 - m2))
-      if (tmp > max) {
-        max = tmp
-        t = i
-      }
-    }
-    return t
   }
   /**
    * フィルタを適用する
@@ -104,16 +60,13 @@ export default class Ans50 extends BaseThreeCanvasComponent {
       y = Math.min(Math.max(y, 0), imgHeight - 1)
       return y * imgWidth + x
     }
-    // dst = new Array(src.length).fill(0)
     const kernelSize = kernel.length
     let d = Math.floor(kernelSize / 2)
     for (let x = 0; x < imgWidth; x++) for (let y = 0; y < imgHeight; y++) {
       let k = 0
       for (let i = 0; i < kernelSize; i++) for (let j = 0; j < kernelSize; j++) {
-        // let srcIdx = getIndex((x + i - d), (y + j - d))
-        // k += kernel[i][j] * src[srcIdx]
-        let _i = i - ~~(kernelSize / 2)
-        let _j = j - ~~(kernelSize / 2)
+        let _i = i - d
+        let _j = j - d
         let srcIdx = getIndex((x + _j), (y + _i))
         k += kernel[i][j] * src[srcIdx]
       }
@@ -137,10 +90,10 @@ export default class Ans50 extends BaseThreeCanvasComponent {
     const gaussian = (x, y, sigma) => Math.exp(-(x ** 2 + y ** 2) / (2 * sigma ** 2))
     let w = 0
     let kernel = Array.from(new Array(kernelSize), () => new Array(kernelSize).fill(0))
-
+    let d = Math.floor(kernelSize / 2)
     for (let y = 0; y < kernelSize; y++) for (let x = 0; x < kernelSize; x++) {
-      let _x = x - ~~(kernelSize / 2)
-      let _y = y - ~~(kernelSize / 2)
+      let _x = x - d
+      let _y = y - d
       let g = gaussian(_x, _y, sigma)
       kernel[y][x] = g
       kernel[y][x] /= sigma * (Math.sqrt(2 * Math.PI))

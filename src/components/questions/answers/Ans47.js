@@ -20,8 +20,8 @@ export default class Ans47 extends BaseThreeCanvasComponent {
     ctx2.drawImage(image, 0, 0, image.width, image.height)
     let dst2 = ctx2.createImageData(image.width, image.height)
     let bin = new Array(image.width * image.height).fill(0)
-    // let mol1 = new Array(image.width * image.height).fill(0)
-    // let mol2 = new Array(image.width * image.height).fill(0)
+    // let mor1 = new Array(image.width * image.height).fill(0)
+    // let mor2 = new Array(image.width * image.height).fill(0)
     let t = this.threshold(src1.data)
     const kernel = [
       [0, 1, 0],
@@ -32,18 +32,18 @@ export default class Ans47 extends BaseThreeCanvasComponent {
       let c = grayscale(src1.data[i], src1.data[i + 1], src1.data[i + 2])
       bin[j] = c >= t ? 255 : 0
     }
-    let mol1 = bin.slice()
-    this.adaptKernel(bin, mol1, image.width, image.height, kernel, (e) => {
+    let mor1 = bin.slice()
+    this.adaptKernel(bin, mor1, image.width, image.height, kernel, (e) => {
       if (e >= 255) return 255
     })
-    let mol2 = mol1.slice()
-    this.adaptKernel(mol1, mol2, image.width, image.height, kernel, (e) => {
+    let mor2 = mor1.slice()
+    this.adaptKernel(mor1, mor2, image.width, image.height, kernel, (e) => {
       if (e >= 255) return 255
     })
 
     for (let i = 0, j = 0; i < dst1.data.length; i += 4, j++) {
       dst1.data[i] = dst1.data[i + 1] = dst1.data[i + 2] = bin[j]
-      dst2.data[i] = dst2.data[i + 1] = dst2.data[i + 2] = mol2[j]
+      dst2.data[i] = dst2.data[i + 1] = dst2.data[i + 2] = mor2[j]
       dst1.data[i + 3] = 255
       dst2.data[i + 3] = 255
     }

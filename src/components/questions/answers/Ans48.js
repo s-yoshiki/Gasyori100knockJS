@@ -31,17 +31,17 @@ export default class Ans48 extends BaseThreeCanvasComponent {
       let c = grayscale(src1.data[i], src1.data[i + 1], src1.data[i + 2])
       bin[j] = c >= t ? 255 : 0
     }
-    let mol1 = bin.slice()
-    this.adaptKernel(bin, mol1, image.width, image.height, kernel, (e) => {
+    let mor1 = bin.slice()
+    this.adaptKernel(bin, mor1, image.width, image.height, kernel, (e) => {
       if (e < 255 * 4) return 0
     })
-    let mol2 =  mol1.slice()
-    this.adaptKernel(mol1, mol2, image.width, image.height, kernel, (e) => {
+    let mor2 =  mor1.slice()
+    this.adaptKernel(mor1, mor2, image.width, image.height, kernel, (e) => {
       if (e < 255 * 4) return 0
     })
     for (let i = 0, j = 0; i < dst1.data.length; i += 4, j++) {
       dst1.data[i] = dst1.data[i + 1] = dst1.data[i + 2] = bin[j]
-      dst2.data[i] = dst2.data[i + 1] = dst2.data[i + 2] = mol2[j]
+      dst2.data[i] = dst2.data[i + 1] = dst2.data[i + 2] = mor2[j]
       dst1.data[i + 3] = 255
       dst2.data[i + 3] = 255
     }
