@@ -26,12 +26,3 @@ export default class Ans1 extends BaseTwoCanvasComponent {
     ctx.putImageData(dst, 0, 0)
   }
 }
-
-
-
-
-
-
-
-
-
