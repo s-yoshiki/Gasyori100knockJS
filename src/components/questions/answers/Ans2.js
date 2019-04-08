@@ -4,7 +4,7 @@ import { BaseTwoCanvasComponent } from "./BaseComponents.js"
  * グレースケール
  * @extends BaseTwoCanvasComponent
  */
-export default class Ans2 extends BaseTwoCanvasComponent {
+export default class extends BaseTwoCanvasComponent {
   /**
    * メイン
    * @param {Object} canvas 

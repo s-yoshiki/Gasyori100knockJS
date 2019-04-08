@@ -4,7 +4,7 @@ import { BaseTwoCanvasComponent } from "./BaseComponents.js"
  * MAX-MINフィルタ
  * @extends BaseTwoCanvasComponent
  */
-export default class Ans13 extends BaseTwoCanvasComponent {
+export default class extends BaseTwoCanvasComponent {
   /**
    * メイン
    * @param {Object} canvas 

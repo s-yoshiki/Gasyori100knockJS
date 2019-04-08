@@ -5,7 +5,7 @@ import config from "../configure"
  * Hough変換・直線検出 (Step.2) NMS
  * @extends BaseTwoCanvasComponent
  */
-export default class Ans42 extends BaseTwoCanvasComponent {
+export default class extends BaseTwoCanvasComponent {
   /**
    * 初期処理
    */

@@ -4,7 +4,7 @@ import { BaseThreeCanvasComponent } from "./BaseComponents.js"
  * Prewittフィルタ
  * @extends BaseThreeCanvasComponent
  */
-export default class Ans16 extends BaseThreeCanvasComponent {
+export default class extends BaseThreeCanvasComponent {
   /**
    * メイン
    * @param {Object} canvas 

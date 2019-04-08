@@ -5,7 +5,7 @@ import { BaseTwoCanvasComponent } from "./BaseComponents.js"
  * 平滑化フィルタ
  * @extends BaseTwoCanvasComponent
  */
-export default class Ans11 extends BaseTwoCanvasComponent {
+export default class extends BaseTwoCanvasComponent {
   /**
    * メイン
    * @param {Object} canvas 

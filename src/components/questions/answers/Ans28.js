@@ -4,7 +4,7 @@ import {BaseTwoCanvasComponent} from "./BaseComponents.js"
  * アフィン変換(平行移動)
  * @extends BaseTwoCanvasComponent
  */
-export default class Ans28 extends BaseTwoCanvasComponent {
+export default class extends BaseTwoCanvasComponent {
   /**
    * メイン
    * @param {Object} canvas 

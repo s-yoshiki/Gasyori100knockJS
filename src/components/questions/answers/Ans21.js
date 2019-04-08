@@ -4,7 +4,7 @@ import { ThreeCanvasHistogramComponent } from "./BaseComponents.js"
  * 画像正規化 + ヒストグラム
  * @extends ThreeCanvasHistogramComponent
  */
-export default class Ans21 extends ThreeCanvasHistogramComponent {
+export default class extends ThreeCanvasHistogramComponent {
   /**
    * メイン
    * @param {Object} canvas 

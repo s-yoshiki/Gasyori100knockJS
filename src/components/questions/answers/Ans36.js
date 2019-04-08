@@ -4,7 +4,7 @@ import {BaseThreeCanvasComponent} from "./BaseComponents.js"
  * JPEG圧縮 (Step.1)離散コサイン変換
  * @extends BaseThreeCanvasComponent
  */
-export default class Ans36 extends BaseThreeCanvasComponent {
+export default class extends BaseThreeCanvasComponent {
   /**
    * メイン
    * @param {Object} canvas 

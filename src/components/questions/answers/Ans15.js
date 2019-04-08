@@ -4,7 +4,7 @@ import { BaseThreeCanvasComponent } from "./BaseComponents.js"
  * Sobelフィルタ
  * @extends BaseThreeCanvasComponent
  */
-export default class Ans15 extends BaseThreeCanvasComponent {
+export default class extends BaseThreeCanvasComponent {
   /**
    * メイン
    * @param {Object} canvas1 

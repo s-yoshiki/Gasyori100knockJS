@@ -4,7 +4,7 @@ import { BaseTwoCanvasComponent } from "./BaseComponents.js"
  * 大津の2化
  * @extends BaseTwoCanvasComponent
  */
-export default class Ans4 extends BaseTwoCanvasComponent {
+export default class extends BaseTwoCanvasComponent {
   /**
    * メイン
    * @param {Object} canvas 

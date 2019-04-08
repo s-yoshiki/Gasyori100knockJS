@@ -4,7 +4,7 @@ import { BaseThreeCanvasComponent } from "./BaseComponents.js"
  * モルフォロジー処理(膨張)
  * @extends BaseThreeCanvasComponent
  */
-export default class Ans47 extends BaseThreeCanvasComponent {
+export default class extends BaseThreeCanvasComponent {
   /**
    * メイン
    * @param {Object} canvas 

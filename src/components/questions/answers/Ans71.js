@@ -4,7 +4,7 @@ import {BaseThreeCanvasComponent} from "./BaseComponents.js"
  * マスキング
  * @extends BaseThreeCanvasComponent
  */
-export default class Ans71 extends BaseThreeCanvasComponent {
+export default class extends BaseThreeCanvasComponent {
     /**
      * メイン
      * @param {Object} canvas 

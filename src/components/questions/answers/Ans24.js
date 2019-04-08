@@ -5,7 +5,7 @@ import config from "../configure.js"
  * ガンマ補正
  * @extends BaseTwoCanvasComponent
  */
-export default class Ans24 extends BaseTwoCanvasComponent {
+export default class extends BaseTwoCanvasComponent {
   /**
    * 初期処理
    * 

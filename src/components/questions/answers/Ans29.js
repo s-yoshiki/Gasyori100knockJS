@@ -5,7 +5,7 @@ import math from "mathjs"
  * アフィン変換(平行移動)
  * @extends BaseTwoCanvasComponent
  */
-export default class Ans29 extends BaseThreeCanvasComponent {
+export default class extends BaseThreeCanvasComponent {
   /**
    * メイン
    * @param {Object} canvas 

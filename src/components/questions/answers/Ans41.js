@@ -4,7 +4,7 @@ import { BaseThreeCanvasComponent } from "./BaseComponents.js"
  * Cannyエッジ検出 (Step.1) エッジ強度
  * @extends BaseThreeCanvasComponent
  */
-export default class Ans41 extends BaseThreeCanvasComponent {
+export default class extends BaseThreeCanvasComponent {
   /**
    * メイン
    * @param {Object} canvas 

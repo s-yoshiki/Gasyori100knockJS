@@ -5,7 +5,7 @@ import config from "../configure"
  * テンプレートマッチング SSD
  * @extends BaseThreeCanvasComponent
  */
-export default class Ans54 extends BaseThreeCanvasComponent {
+export default class extends BaseThreeCanvasComponent {
   /**
    * メイン
    * @param {Object} canvas 

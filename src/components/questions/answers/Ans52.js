@@ -4,7 +4,7 @@ import { BaseThreeCanvasComponent } from "./BaseComponents.js"
  * トップハット変換
  * @extends BaseThreeCanvasComponent
  */
-export default class Ans52 extends BaseThreeCanvasComponent {
+export default class extends BaseThreeCanvasComponent {
   /**
    * メイン
    * @param {Object} canvas 

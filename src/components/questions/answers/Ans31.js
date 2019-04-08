@@ -5,7 +5,7 @@ import math from "mathjs"
  * アフィン変換(スキュー)
  * @extends BaseTwoCanvasComponent
  */
-export default class Ans31 extends BaseFourCanvasComponent {
+export default class extends BaseFourCanvasComponent {
   /**
    * メイン
    * @param {Object} canvas 
