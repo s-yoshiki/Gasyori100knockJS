@@ -4,7 +4,7 @@ import { BaseTwoCanvasComponent } from "./BaseComponents.js"
  * Cannyエッジ検出 (Step.2) 細線化
  * @extends BaseTwoCanvasComponent
  */
-export default class Ans43 extends BaseTwoCanvasComponent {
+export default class extends BaseTwoCanvasComponent {
   /**
    * メイン
    * @param {Object} canvas 

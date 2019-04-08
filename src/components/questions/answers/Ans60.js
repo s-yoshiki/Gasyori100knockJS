@@ -7,7 +7,7 @@ import config from "../configure.js"
  * アルファブレンド
  * @extends BaseThreeCanvasComponent
  */
-export default class Ans60 extends BaseThreeCanvasComponent {
+export default class extends BaseThreeCanvasComponent {
   /**
    * DOMの初期処理
    * 

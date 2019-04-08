@@ -4,7 +4,7 @@ import { BaseTwoCanvasComponent } from "./BaseComponents.js"
  * LoGフィルタ
  * @extends BaseTwoCanvasComponent
  */
-export default class Ans19 extends BaseTwoCanvasComponent {
+export default class extends BaseTwoCanvasComponent {
   /**
    * 初期処理
    * @param {Document} self 

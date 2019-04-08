@@ -5,7 +5,7 @@ import config from "../configure.js"
  * ヒストグラム平坦化
  * @extends ThreeCanvasHistogramComponent
  */
-export default class Ans23 extends ThreeCanvasHistogramComponent {
+export default class extends ThreeCanvasHistogramComponent {
   /**
    * 初期処理
    * 

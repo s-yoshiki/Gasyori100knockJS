@@ -4,7 +4,7 @@ import {BaseFourCanvasComponent} from "./BaseComponents.js"
  * フーリエ変換
  * @extends BaseFourCanvasComponent
  */
-export default class Ans32 extends BaseFourCanvasComponent {
+export default class extends BaseFourCanvasComponent {
   /**
    * メイン
    * @param {Object} canvas 

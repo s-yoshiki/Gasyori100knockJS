@@ -5,7 +5,7 @@ import math from "mathjs"
  * アフィン変換(回転)
  * @extends BaseTwoCanvasComponent
  */
-export default class Ans30 extends BaseThreeCanvasComponent {
+export default class extends BaseThreeCanvasComponent {
   /**
    * メイン
    * @param {Object} canvas 

@@ -56,10 +56,10 @@ import Ans50 from './answers/Ans50.js'
 import Ans51 from './answers/Ans51.js'
 import Ans52 from './answers/Ans52.js'
 import Ans53 from './answers/Ans53.js'
-// import Ans54 from './answers/Ans54.js'
-// import Ans55 from './answers/Ans55.js'
-// import Ans56 from './answers/Ans56.js'
-// import Ans57 from './answers/Ans57.js'
+import Ans54 from './answers/Ans54.js'
+import Ans55 from './answers/Ans55.js'
+import Ans56 from './answers/Ans56.js'
+import Ans57 from './answers/Ans57.js'
 // import Ans58 from './answers/Ans58.js'
 // import Ans59 from './answers/Ans59.js'
 import Ans60 from './answers/Ans60.js'
@@ -161,10 +161,10 @@ const componentMap = {
   "ans51": new Ans51(),
   "ans52": new Ans52(),
   "ans53": new Ans53(),
-  // "ans54": new Ans54(),
-  // "ans55": new Ans55(),
-  // "ans56": new Ans56(),
-  // "ans57": new Ans57(),
+  "ans54": new Ans54(),
+  "ans55": new Ans55(),
+  "ans56": new Ans56(),
+  "ans57": new Ans57(),
   // "ans58": new Ans58(),
   // "ans59": new Ans59(),
   "ans60": new Ans60(),
@@ -223,6 +223,7 @@ const makeComponent = (name, obj) => {
       return {
         srcImages:config.srcImageOption,
         selected:'',
+        // core:obj
       }
     },
     methods: {

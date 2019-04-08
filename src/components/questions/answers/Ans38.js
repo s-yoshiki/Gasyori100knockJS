@@ -5,7 +5,7 @@ import math from "mathjs"
  * JPEG圧縮 (Step.2)DCT+量子化
  * @extends BaseThreeCanvasComponent
  */
-export default class Ans38 extends BaseThreeCanvasComponent {
+export default class extends BaseThreeCanvasComponent {
   /**
    * メイン
    * @param {Object} canvas 

@@ -4,7 +4,7 @@ import { HistogramComponent } from "./BaseComponents.js"
  * ヒストグラム表示
  * @extends HistogramComponent
  */
-export default class Ans20 extends HistogramComponent {
+export default class extends HistogramComponent {
   /**
    * メイン
    * @param {Object} canvas 

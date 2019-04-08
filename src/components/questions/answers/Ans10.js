@@ -5,7 +5,7 @@ import config from "../configure.js"
  * メディアンフィルタ
  * @extends BaseTwoCanvasComponent
  */
-export default class Ans10 extends BaseTwoCanvasComponent {
+export default class extends BaseTwoCanvasComponent {
   /**
    * 初期処理
    * @param {Document} self 

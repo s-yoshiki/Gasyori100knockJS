@@ -4,7 +4,7 @@ import { BaseTwoCanvasComponent } from "./BaseComponents.js"
  * HSV変換
  * @extends BaseTwoCanvasComponent
  */
-export default class Ans5 extends BaseTwoCanvasComponent {
+export default class extends BaseTwoCanvasComponent {
   /**
    * rgb to hsv
    * @param {Array} rgb 
