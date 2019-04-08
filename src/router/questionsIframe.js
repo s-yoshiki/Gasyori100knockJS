@@ -7,8 +7,8 @@ let exportRoutes = []
 for (let key in ItemComponent) {
   exportRoutes.push(
     {
-      path: branch + key,
-      name: key,
+      path: branch + key + "/iframe",
+      name: key + "_iframe",
       title: description[key] ? description[key].title : '',
       desc: description[key] ? description[key].desc : '',
       component: ItemComponent[key]

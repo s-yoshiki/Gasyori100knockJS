@@ -3,7 +3,9 @@ import Router from 'vue-router'
 import List from '@/components/List'
 import Root from '@/components/Root'
 import Question from '@/components/Question'
+import QuestionIframe from '@/components/QuestionIframe'
 import Questions from './questions'
+import QuestionsIframe from './questionsIframe'
 
 let routes = [
   {
@@ -23,18 +25,28 @@ let routes = [
     children: []
   },
   {
-    path: '/reset',
-    redirect: '/questions/ans1'
-  }
+    path: '/questions/:id/:iframe',
+    name: 'Questioniframe',
+    component: QuestionIframe,
+    children: []
+  },
+  // {
+  //   path: '/reset',
+  //   redirect: '/questions/ans1'
+  // }
 ]
 
 Questions.forEach(e => {
   routes[2].children.push(e)
+  
+})
+
+QuestionsIframe.forEach(e => {
+  routes[3].children.push(e)
 })
 
 Vue.use(Router)
 
 export default new Router({
-  // mode: 'history', //urlの間に#を挟まない
   routes: routes
 })

@@ -223,7 +223,6 @@ const makeComponent = (name, obj) => {
       return {
         srcImages:config.srcImageOption,
         selected:'',
-        // core:obj
       }
     },
     methods: {
