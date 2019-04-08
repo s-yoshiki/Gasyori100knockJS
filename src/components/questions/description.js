@@ -223,6 +223,22 @@ export default {
     title: "テンプレートマッチング SAD",
     desc: "",
   },
+  ans56: {
+    title: "テンプレートマッチング NCC",
+    desc: "",
+  },
+  ans57: {
+    title: "テンプレートマッチング ZNCC",
+    desc: "",
+  },
+  ans58: {
+    title: "ラベリング 4近傍",
+    desc: "",
+  },
+  ans59: {
+    title: "ラベリング 8近傍",
+    desc: "",
+  },
   ans60: {
     title: "アルファブレンド",
     desc: "",
