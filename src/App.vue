@@ -7,7 +7,6 @@
         </h1>
       </div>
     </header>
-    <header v-else></header>
     <router-view/>
     <footer v-if="footer">
       <br>
@@ -20,7 +19,6 @@
         </li>
       </ul>
     </footer>
-    <footer v-else></footer>
   </div>
 </template>
 <script>
