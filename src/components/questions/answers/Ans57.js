@@ -63,7 +63,7 @@ export default class extends BaseThreeCanvasComponent {
         for (let c = 0; c < 3; c++) {
           let idx1 = getSrcIndex(x + i, y + j, c)
           let idx2 = getTplIndex(i, j, c)
-          // sum += Math.abs(src[idx1] - template[idx2])
+          // sum += Math.abs(src[idx1] - template[idx2]) //todo:
           A += (src[idx1] * template[idx2])
           B += (src[idx1]) ** 2
           C += (template[idx2]) ** 2

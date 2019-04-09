@@ -8,6 +8,7 @@ const srcImage = {
     thorino: branch + "thorino.jpg",
     imori_part: branch + "imori_part.jpg",
     lenna: branch + "lenna.png",
+    seg: branch + "seg.png",
 }
 
 export default {
@@ -36,6 +37,10 @@ export default {
         lenna: {
             label: 'lenna',
             src: srcImage.lenna
+        },
+        seq: {
+            label: 'segmentation',
+            src: srcImage.seg
         },
     }
 }

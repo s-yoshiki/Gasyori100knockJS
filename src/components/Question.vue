@@ -18,17 +18,25 @@
     </div>
     <br>
     <hr>
+    <div class="blog-area">
+      <p>
+        <button ref="blog-button" v-on:click="blogFrame = !blogFrame">埋め込みコード取得</button>
+      </p>
+      <div v-if="blogFrame">
+        <textarea cols="30" rows="5" v-model="blogFrameUrl"></textarea>
+      </div>
+      <div v-else></div>
+    </div>
     <br>
     <div>
       <ul v-for="item in questionLinks" :key="item.name">
         <li>
-          <span v-if="item.name === screenId">
-            Q.{{item.name.split("ans").join("")}} {{item.title}}
-          </span>
+          <span v-if="item.name === screenId">Q.{{item.name.split("ans").join("")}} {{item.title}}</span>
           <span v-else>
-            <router-link :to="{path:item.path}" :click="movePage()">
-              Q.{{item.name.split("ans").join("")}} {{item.title}}
-            </router-link>
+            <router-link
+              :to="{path:item.path}"
+              :click="movePage()"
+            >Q.{{item.name.split("ans").join("")}} {{item.title}}</router-link>
           </span>
           <div v-if="Number(item.name.split('ans').join('')) % 10 === 0">
             <hr>
@@ -56,7 +64,9 @@ export default {
         last: "",
         lastLabel: ""
       },
-      questionLinks: ItemComponent
+      questionLinks: ItemComponent,
+      blogFrame: false,
+      blogFrameUrl:''
     };
   },
   methods: {
@@ -80,27 +90,28 @@ export default {
     },
     makePage: function() {
       if (this.screenSeq > 1) {
-        let title = ""
-        let key = "ans" + Number(this.screenSeq - 1)
+        let title = "";
+        let key = "ans" + Number(this.screenSeq - 1);
         if (description[key]) {
-          title = description[key].title
+          title = description[key].title;
         }
         this.pageNation.last = `#/questions/ans${this.screenSeq - 1}`;
         this.pageNation.lastLabel = `Q.${this.screenSeq - 1} ` + title;
       } else {
-        this.pageNation.lastLabel = ""
+        this.pageNation.lastLabel = "";
       }
       if (this.screenSeq < 100) {
-        let title = ""
-        let key = "ans" + Number(this.screenSeq + 1)
+        let title = "";
+        let key = "ans" + Number(this.screenSeq + 1);
         if (description[key]) {
-          title = description[key].title
+          title = description[key].title;
         }
         this.pageNation.next = `#/questions/ans${this.screenSeq + 1}`;
         this.pageNation.nextLabel = `Q.${this.screenSeq + 1} ` + title;
       } else {
-        this.pageNation.nextLabel = ""
+        this.pageNation.nextLabel = "";
       }
+      this.blogFrameUrl = `<iframe src="${location.href}/iframe"></iframe>`
     },
     makeDescription() {
       if (!description[this.screenId]) {
@@ -132,5 +143,9 @@ export default {
 
 .msg {
   text-align: left;
+}
+
+.blog-area {
+  text-align: right;
 }
 </style>
