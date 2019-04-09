@@ -23,7 +23,7 @@
         <button ref="blog-button" v-on:click="blogFrame = !blogFrame">埋め込みコード取得</button>
       </p>
       <div v-if="blogFrame">
-        <textarea cols="30" rows="5" v-model="blogFrameUrl"></textarea>
+        <textarea class="inline-code" v-model="blogFrameUrl"></textarea>
       </div>
       <div v-else></div>
     </div>
@@ -111,7 +111,7 @@ export default {
       } else {
         this.pageNation.nextLabel = "";
       }
-      this.blogFrameUrl = `<iframe src="${location.href}/iframe"></iframe>`
+      this.blogFrameUrl = `<iframe src="${location.href}/iframe" style="width:100%;height:300px;"></iframe>`
     },
     makeDescription() {
       if (!description[this.screenId]) {
@@ -147,5 +147,9 @@ export default {
 
 .blog-area {
   text-align: right;
+}
+
+.inline-code {
+  width:100%;
 }
 </style>
