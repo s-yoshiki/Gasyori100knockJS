@@ -1,6 +1,5 @@
 <template>
   <div>
-    <br>
     <h3>{{"Q" + screenSeq + "." + title}}</h3>
     <div v-html="description"></div>
     <br>
