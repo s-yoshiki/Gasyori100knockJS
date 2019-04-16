@@ -90,24 +90,26 @@ export default {
     },
     makePage: function() {
       if (this.screenSeq > 1) {
+        let seq = this.screenSeq - 1
         let title = "";
-        let key = "ans" + Number(this.screenSeq - 1);
+        let key = "ans" + Number(seq);
         if (description[key]) {
           title = description[key].title;
         }
-        this.pageNation.last = `#/questions/ans${this.screenSeq - 1}`;
-        this.pageNation.lastLabel = `Q.${this.screenSeq - 1} ` + title;
+        this.pageNation.last = `#/questions/ans${seq}`;
+        this.pageNation.lastLabel = `Q.${seq} ` + title;
       } else {
         this.pageNation.lastLabel = "";
       }
       if (this.screenSeq < 100) {
+        let seq = this.screenSeq + 1
         let title = "";
-        let key = "ans" + Number(this.screenSeq + 1);
+        let key = "ans" + Number(seq);
         if (description[key]) {
           title = description[key].title;
         }
-        this.pageNation.next = `#/questions/ans${this.screenSeq + 1}`;
-        this.pageNation.nextLabel = `Q.${this.screenSeq + 1} ` + title;
+        this.pageNation.next = `#/questions/ans${seq}`;
+        this.pageNation.nextLabel = `Q.${seq} ` + title;
       } else {
         this.pageNation.nextLabel = "";
       }
@@ -151,5 +153,9 @@ export default {
 
 .inline-code {
   width:100%;
+}
+
+canvas {
+  min-width :80px;
 }
 </style>

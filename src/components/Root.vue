@@ -8,7 +8,9 @@
     を
     JavaScriptで解いてみました。
     <h2>問題一覧</h2>
-    <router-link to="/list">問題一覧</router-link>
+    <router-link to="/list" class="questions-link">
+      問題一覧ページへ
+    </router-link>
     <h2>関連リンク</h2>
     <ul>
       <li>
@@ -32,3 +34,8 @@ export default {
   name: "Root"
 };
 </script>
+<style>
+.questions-link {
+  font: 1.5em sans-serif;
+}
+</style>

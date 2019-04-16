@@ -9,6 +9,7 @@ const srcImage = {
     imori_part: branch + "imori_part.jpg",
     lenna: branch + "lenna.png",
     seg: branch + "seg.png",
+    renketsu: branch + "renketsu.png",
 }
 
 export default {
@@ -41,6 +42,10 @@ export default {
         seq: {
             label: 'segmentation',
             src: srcImage.seg
+        },
+        renketsu: {
+            label: 'renketsu',
+            src: srcImage.renketsu
         },
     }
 }

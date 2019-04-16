@@ -76,4 +76,8 @@ h1 {
 .msg {
   text-align: left;
 }
+
+canvas {
+  min-width :80px;
+}
 </style>
