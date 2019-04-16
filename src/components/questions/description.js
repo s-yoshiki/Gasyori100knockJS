@@ -243,6 +243,14 @@ export default {
     title: "アルファブレンド",
     desc: "",
   },
+  ans61: {
+    title: "4-連結数",
+    desc: "",
+  },
+  ans62: {
+    title: "8-連結数",
+    desc: "",
+  },
   ans71: {
     title: "マスキング",
     desc: "",

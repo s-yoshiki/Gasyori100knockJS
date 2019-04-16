@@ -1,6 +1,5 @@
 <template>
   <div>
-    <br>
     <h3>{{"Q" + screenSeq + "." + title}}</h3>
     <div v-html="description"></div>
     <br>
@@ -76,5 +75,9 @@ h1 {
 
 .msg {
   text-align: left;
+}
+
+canvas {
+  min-width :80px;
 }
 </style>
