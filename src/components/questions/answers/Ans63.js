@@ -7,7 +7,7 @@ import config from "../configure"
  */
 export default class extends BaseTwoCanvasComponent {
   init() {
-    this.setSrcImage(config.srcImage.renketsu)
+    this.setSrcImage(config.srcImage.gazo)
   }
   /**
    * メイン
@@ -45,55 +45,49 @@ export default class extends BaseTwoCanvasComponent {
       x = Math.min(Math.max(x, 0), W - 1)
       return y * W + x
     }
-    const max = (a, b) => {
-      return Math.max(a, b)
-    }
-    const min = (a, b) => {
-      return Math.min(a, b)
-    }
     const sum = (arr) => {
       return arr.reduce(function (prev, current, i, arr) {
         return prev + current;
       })
-    };
-    let _tmp = src.slice().map(e => e > 0 ? 1 : 0)
-    let tmp = _tmp.slice()
-    tmp = tmp.map(e => 1 - e)
-    let dst = new Array(src.length).fill(0)
+    }
+    let out = src.slice().map(e => e > 0 ? 1 : 0)
     let count = 1
     while (count > 0) {
       count = 0
-      let out = tmp.slice()
+      let tmp = out.slice()
       for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
-        if (_tmp[getIdx(x, y)] < 1) {
-          dst[getIdx(x, y)] = -1
+        if (out[getIdx(x, y)] < 1) {
           continue
         }
   
         let judge = 0
-        if ((tmp[getIdx(min(x + 1, W - 1), y)] + tmp[getIdx(x, max(y - 1, 0))] + tmp[getIdx(max(x - 1, 0), y)] + tmp[getIdx(min(y + 1, H - 1), x)]) < 4) {
+        if ((tmp[getIdx(x + 1, y)] + tmp[getIdx(x, y - 1)] + tmp[getIdx(x - 1, y)] + tmp[getIdx(x, y + 1)]) < 4) {
           judge++
         }
   
         let c = 0
-        c += (tmp[getIdx(min(x + 1, W - 1), y)] - tmp[getIdx(min(x + 1, W - 1), y)] * tmp[getIdx(min(x + 1, W - 1), max(y - 1, 0))] * tmp[getIdx(x, max(y - 1, 0))])
-        c += (tmp[getIdx(x, max(y - 1, 0))] - tmp[getIdx(x, max(y - 1, 0))] * tmp[getIdx(max(x - 1, 0), max(y - 1, 0))] * tmp[getIdx(max(x - 1, 0), y)])
-        c += (tmp[getIdx(max(x - 1, 0), y)] - tmp[getIdx(max(x - 1, 0), y)] * tmp[getIdx(max(x - 1, 0), min(y + 1, H - 1))] * tmp[getIdx(x, min(y + 1, H - 1))])
-        c += (tmp[getIdx(x, min(y + 1, H - 1))] - tmp[getIdx(x, min(y + 1, H - 1))] * tmp[getIdx(min(x + 1, W - 1), min(y + 1, H - 1))] * tmp[getIdx(min(x + 1, W - 1), y)])
+        c += (out[getIdx(x + 1, y)] - out[getIdx(x + 1, y)] * out[getIdx(x + 1, y - 1)] * out[getIdx(x, y - 1)])
+        c += (out[getIdx(x, y - 1)] - out[getIdx(x, y - 1)] * out[getIdx(x - 1, y - 1)] * out[getIdx(x - 1, y)])
+        c += (out[getIdx(x - 1, y)] - out[getIdx(x - 1, y)] * out[getIdx(x - 1, y + 1)] * out[getIdx(x,  y + 1)])
+        c += (out[getIdx(x, y + 1)] - out[getIdx(x, y + 1)] * out[getIdx(x + 1, y + 1)] * out[getIdx(x + 1, y)])
         if (c == 1) {
           judge++
         }
-  
-        // if (sum(out[max(y - 1, 0): min(y + 2, H), max(x - 1, 0): min(x + 2, W)]) >= 4) {
-        //   judge++
-        // }
+
+        let arr = []
+        for (let _y = y - 1; _y < y + 2; _y++) for (let _x = x - 1; _x < x + 2; _x++) {
+          arr.push(out[getIdx(_x, _y)])
+        }
+        if (sum(arr) >= 4) {
+          judge++
+        }
   
         if (judge == 3) {
           out[getIdx(x, y)] = 0
-          count += 1
+          count++
         }
       }
     }
-    return dst
+    return out
   }
 }
