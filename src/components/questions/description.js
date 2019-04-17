@@ -251,6 +251,10 @@ export default {
     title: "8-連結数",
     desc: "",
   },
+  ans63: {
+    title: "細線化処理",
+    desc: "",
+  },
   ans71: {
     title: "マスキング",
     desc: "",
