@@ -255,6 +255,10 @@ export default {
     title: "細線化処理",
     desc: "",
   },
+  ans64: {
+    title: "ヒルディッチの細線化",
+    desc: "",
+  },
   ans71: {
     title: "マスキング",
     desc: "",
