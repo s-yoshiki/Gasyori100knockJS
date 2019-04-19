@@ -259,6 +259,10 @@ export default {
     title: "ヒルディッチの細線化",
     desc: "",
   },
+  ans65: {
+    title: "Zhang-Suenの細線化",
+    desc: "",
+  },
   ans71: {
     title: "マスキング",
     desc: "",
