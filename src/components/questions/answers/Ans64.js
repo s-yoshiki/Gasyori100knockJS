@@ -1,8 +1,8 @@
 import { BaseTwoCanvasComponent } from "./BaseComponents.js"
 import config from "../configure"
 /**
- * Q.63
- * 細線化処理
+ * Q.64
+ * ヒルディッチの細線化
  * @extends BaseTwoCanvasComponent
  */
 export default class extends BaseTwoCanvasComponent {

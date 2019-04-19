@@ -263,6 +263,10 @@ export default {
     title: "Zhang-Suenの細線化",
     desc: "",
   },
+  ans70: {
+    title: "カラートラッキング",
+    desc: "",
+  },
   ans71: {
     title: "マスキング",
     desc: "",
