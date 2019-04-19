@@ -20,38 +20,30 @@
     <hr>
     <div class="blog-area">
       <p>
-        <button ref="blog-button" v-on:click="blogFrame = !blogFrame">埋め込みコード取得</button>
+        <button ref="blog-button" v-on:click="blogFrame = !blogFrame">
+          埋め込みコード取得
+          <span v-if="blogFrame">▲</span>
+          <span v-else>▼</span>
+        </button>
       </p>
       <div v-if="blogFrame">
         <textarea class="inline-code" v-model="blogFrameUrl"></textarea>
       </div>
       <div v-else></div>
     </div>
-    <br>
-    <div>
-      <ul v-for="item in questionLinks" :key="item.name">
-        <li>
-          <span v-if="item.name === screenId">Q.{{item.name.split("ans").join("")}} {{item.title}}</span>
-          <span v-else>
-            <router-link
-              :to="{path:item.path}"
-              :click="movePage()"
-            >Q.{{item.name.split("ans").join("")}} {{item.title}}</router-link>
-          </span>
-          <div v-if="Number(item.name.split('ans').join('')) % 10 === 0">
-            <hr>
-          </div>
-        </li>
-      </ul>
-    </div>
+    <QuestionList></QuestionList>
   </div>
 </template>
 
 <script>
 import description from "./questions/description.js";
+import QuestionList from "./QuestionList.vue";
 import ItemComponent from "@/router/questions.js";
 export default {
   name: "Question",
+  components: {
+    QuestionList,
+  },
   data() {
     return {
       title: "",
@@ -64,7 +56,6 @@ export default {
         last: "",
         lastLabel: ""
       },
-      questionLinks: ItemComponent,
       blogFrame: false,
       blogFrameUrl:''
     };
