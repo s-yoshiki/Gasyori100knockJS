@@ -10,6 +10,7 @@ const srcImage = {
     lenna: branch + "lenna.png",
     seg: branch + "seg.png",
     renketsu: branch + "renketsu.png",
+    gazo: branch + "gazo.png",
 }
 
 export default {
@@ -46,6 +47,10 @@ export default {
         renketsu: {
             label: 'renketsu',
             src: srcImage.renketsu
+        },
+        gazo: {
+            label: 'gazo',
+            src: srcImage.gazo
         },
     }
 }

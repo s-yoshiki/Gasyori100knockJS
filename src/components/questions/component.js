@@ -65,14 +65,14 @@ import Ans59 from './answers/Ans59.js'
 import Ans60 from './answers/Ans60.js'
 import Ans61 from './answers/Ans61.js'
 import Ans62 from './answers/Ans62.js'
-// import Ans63 from './answers/Ans63.js'
-// import Ans64 from './answers/Ans64.js'
-// import Ans65 from './answers/Ans65.js'
+import Ans63 from './answers/Ans63.js'
+import Ans64 from './answers/Ans64.js'
+import Ans65 from './answers/Ans65.js'
 // import Ans66 from './answers/Ans66.js'
 // import Ans67 from './answers/Ans67.js'
 // import Ans68 from './answers/Ans68.js'
 // import Ans69 from './answers/Ans69.js'
-// import Ans70 from './answers/Ans70.js'
+import Ans70 from './answers/Ans70.js'
 import Ans71 from './answers/Ans71.js'
 // import Ans72 from './answers/Ans72.js'
 import Ans73 from './answers/Ans73.js'
@@ -170,14 +170,14 @@ const componentMap = {
   "ans60": new Ans60(),
   "ans61": new Ans61(),
   "ans62": new Ans62(),
-  // "ans63": new Ans63(),
-  // "ans64": new Ans64(),
-  // "ans65": new Ans65(),
+  "ans63": new Ans63(),
+  "ans64": new Ans64(),
+  "ans65": new Ans65(),
   // "ans66": new Ans66(),
   // "ans67": new Ans67(),
   // "ans68": new Ans68(),
   // "ans69": new Ans69(),
-  // "ans70": new Ans70(),
+  "ans70": new Ans70(),
   "ans71": new Ans71(),
   // "ans72": new Ans72(),
   "ans73": new Ans73(),

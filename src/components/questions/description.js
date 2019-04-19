@@ -251,6 +251,22 @@ export default {
     title: "8-連結数",
     desc: "",
   },
+  ans63: {
+    title: "細線化処理",
+    desc: "",
+  },
+  ans64: {
+    title: "ヒルディッチの細線化",
+    desc: "",
+  },
+  ans65: {
+    title: "Zhang-Suenの細線化",
+    desc: "",
+  },
+  ans70: {
+    title: "カラートラッキング",
+    desc: "",
+  },
   ans71: {
     title: "マスキング",
     desc: "",
