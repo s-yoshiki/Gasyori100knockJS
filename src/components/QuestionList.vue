@@ -30,8 +30,8 @@ export default {
           let item1 = getLinkObj(item[j])
           let item2 = getLinkObj(item[j + 10])
           tmp += `<tr>
-          <td>Q.${item1.seq} <a href="${item1.link}"> ${item1.title}</a></td>
-          <td>Q.${item2.seq} <a href="${item2.link}"> ${item2.title}</a></td>
+            <td>Q.${item1.seq} <a href="${item1.link}"> ${item1.title}</a></td>
+            <td>Q.${item2.seq} <a href="${item2.link}"> ${item2.title}</a></td>
           </tr>`
         }
         tmp = `<table class="question-table">${tmp}</table>`

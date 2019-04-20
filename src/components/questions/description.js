@@ -271,6 +271,10 @@ export default {
     title: "マスキング",
     desc: "",
   },
+  ans72: {
+    title: "マスキング(カラートラッキング＋モルフォロジー)",
+    desc: "",
+  },
   ans73: {
     title: "縮小と拡大",
     desc: "",
