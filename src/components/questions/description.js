@@ -279,4 +279,8 @@ export default {
     title: "縮小と拡大",
     desc: "",
   },
+  ans74: {
+    title: "ピラミッド差分による高周波成分の抽出",
+    desc: "",
+  },
 }
