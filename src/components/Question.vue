@@ -38,11 +38,16 @@
 <script>
 import description from "./questions/description.js";
 import QuestionList from "./QuestionList.vue";
-import ItemComponent from "@/router/questions.js";
 export default {
   name: "Question",
   components: {
-    QuestionList,
+    QuestionList
+  },
+  beforeRouteUpdate(to, from, next) {
+    // URLが変わった時モデルを更新する
+    this.init();
+    window.scrollTo(0, 0);
+    next();
   },
   data() {
     return {
@@ -57,7 +62,7 @@ export default {
         lastLabel: ""
       },
       blogFrame: false,
-      blogFrameUrl:''
+      blogFrameUrl: ""
     };
   },
   methods: {
@@ -81,7 +86,7 @@ export default {
     },
     makePage: function() {
       if (this.screenSeq > 1) {
-        let seq = this.screenSeq - 1
+        let seq = this.screenSeq - 1;
         let title = "";
         let key = "ans" + Number(seq);
         if (description[key]) {
@@ -93,7 +98,7 @@ export default {
         this.pageNation.lastLabel = "";
       }
       if (this.screenSeq < 100) {
-        let seq = this.screenSeq + 1
+        let seq = this.screenSeq + 1;
         let title = "";
         let key = "ans" + Number(seq);
         if (description[key]) {
@@ -104,7 +109,9 @@ export default {
       } else {
         this.pageNation.nextLabel = "";
       }
-      this.blogFrameUrl = `<iframe src="${location.href}/iframe" style="width:100%;height:300px;"></iframe>`
+      this.blogFrameUrl = `<iframe src="${
+        location.href
+      }/iframe" style="width:100%;height:300px;"></iframe>`;
     },
     makeDescription() {
       if (!description[this.screenId]) {
@@ -143,10 +150,11 @@ export default {
 }
 
 .inline-code {
-  width:100%;
+  width: 100%;
 }
 
 canvas {
-  min-width :80px;
+  min-width: 80px;
+  margin:10px;
 }
 </style>
