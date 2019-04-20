@@ -35,6 +35,7 @@ export default {
           </tr>`
         }
         tmp = `<table class="question-table">${tmp}</table>`
+        result += `<h3>Q.${i + 1} 〜 Q.${i + 20}</h3>`
         result += tmp
       }
       this.questionLinks = result
@@ -48,6 +49,7 @@ export default {
 <style>
 .question-table {
   width:100%;
+  font-size: 12px;
 }
 tr,td{
   width:500px;
