@@ -1,21 +1,20 @@
 <template>
   <div id="app">
     <h2>概要</h2>
-    画像処理100本ノック
     <a
       href="https://github.com/yoyoyo-yo/Gasyori100knock"
-    >https://github.com/yoyoyo-yo/Gasyori100knock</a>
+    >画像処理100本ノック</a>
     を
     JavaScriptで解いてみました。
     <h2>問題一覧</h2>
     <router-link to="/list" class="questions-link">
       問題一覧ページへ
     </router-link>
-    <h2>関連リンク</h2>
+    <h2>GitHub</h2>
     <ul>
       <li>
         <a href="https://github.com/s-yoshiki/Gasyori100knockJS">
-          GitHub: Gasyori100knockJS - 画像処理100本ノックJS
+          Gasyori100knockJS - 画像処理100本ノックJS
         </a>
       </li>
     </ul>

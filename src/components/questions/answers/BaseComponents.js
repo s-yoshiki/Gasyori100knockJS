@@ -52,9 +52,13 @@ export default class BasePagesComponent {
    * メッセージ出力
    * @param {string} msg 
    */
-  showMessage(msg) {
+  showMessage(msg, escape = true) {
     let dom = this.dom.$refs["msg"]
-    dom.innerHTML = "<pre>" + msg + "</pre>"
+    if (escape) {
+      dom.innerHTML += "<pre>" + msg + "</pre>"
+    } else {
+      dom.innerHTML += msg
+    }
   }
 }
 

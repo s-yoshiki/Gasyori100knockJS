@@ -20,38 +20,35 @@
     <hr>
     <div class="blog-area">
       <p>
-        <button ref="blog-button" v-on:click="blogFrame = !blogFrame">埋め込みコード取得</button>
+        <button ref="blog-button" v-on:click="blogFrame = !blogFrame">
+          埋め込みコード取得
+          <span v-if="blogFrame">▲</span>
+          <span v-else>▼</span>
+        </button>
       </p>
       <div v-if="blogFrame">
         <textarea class="inline-code" v-model="blogFrameUrl"></textarea>
       </div>
       <div v-else></div>
     </div>
-    <br>
-    <div>
-      <ul v-for="item in questionLinks" :key="item.name">
-        <li>
-          <span v-if="item.name === screenId">Q.{{item.name.split("ans").join("")}} {{item.title}}</span>
-          <span v-else>
-            <router-link
-              :to="{path:item.path}"
-              :click="movePage()"
-            >Q.{{item.name.split("ans").join("")}} {{item.title}}</router-link>
-          </span>
-          <div v-if="Number(item.name.split('ans').join('')) % 10 === 0">
-            <hr>
-          </div>
-        </li>
-      </ul>
-    </div>
+    <QuestionList></QuestionList>
   </div>
 </template>
 
 <script>
 import description from "./questions/description.js";
-import ItemComponent from "@/router/questions.js";
+import QuestionList from "./QuestionList.vue";
 export default {
   name: "Question",
+  components: {
+    QuestionList
+  },
+  beforeRouteUpdate(to, from, next) {
+    // URLが変わった時モデルを更新する
+    this.init();
+    window.scrollTo(0, 0);
+    next();
+  },
   data() {
     return {
       title: "",
@@ -64,9 +61,8 @@ export default {
         last: "",
         lastLabel: ""
       },
-      questionLinks: ItemComponent,
       blogFrame: false,
-      blogFrameUrl:''
+      blogFrameUrl: ""
     };
   },
   methods: {
@@ -90,7 +86,7 @@ export default {
     },
     makePage: function() {
       if (this.screenSeq > 1) {
-        let seq = this.screenSeq - 1
+        let seq = this.screenSeq - 1;
         let title = "";
         let key = "ans" + Number(seq);
         if (description[key]) {
@@ -102,7 +98,7 @@ export default {
         this.pageNation.lastLabel = "";
       }
       if (this.screenSeq < 100) {
-        let seq = this.screenSeq + 1
+        let seq = this.screenSeq + 1;
         let title = "";
         let key = "ans" + Number(seq);
         if (description[key]) {
@@ -113,7 +109,9 @@ export default {
       } else {
         this.pageNation.nextLabel = "";
       }
-      this.blogFrameUrl = `<iframe src="${location.href}/iframe" style="width:100%;height:300px;"></iframe>`
+      this.blogFrameUrl = `<iframe src="${
+        location.href
+      }/iframe" style="width:100%;height:300px;"></iframe>`;
     },
     makeDescription() {
       if (!description[this.screenId]) {
@@ -152,10 +150,11 @@ export default {
 }
 
 .inline-code {
-  width:100%;
+  width: 100%;
 }
 
 canvas {
-  min-width :80px;
+  min-width: 80px;
+  margin:10px;
 }
 </style>

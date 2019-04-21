@@ -8,7 +8,6 @@ export const BlankTemplate = `<h3>Comming soon.</h3>`
 export const DefaultTemplate = `
 <div>
 <canvas ref="canvas1"></canvas>
-&nbsp;
 <canvas ref="canvas2"></canvas>
 <br>
 <button ref="button-run" class="bt">run</button>
@@ -22,9 +21,7 @@ export const DefaultTemplate = `
 export const ThreeCanvasTemplate = `
 <div>
 <canvas ref="canvas1"></canvas>
-&nbsp;
 <canvas ref="canvas2"></canvas>
-&nbsp;
 <canvas ref="canvas3"></canvas>
 <br>
 <button ref="button-run" class="bt">run</button>
@@ -38,11 +35,9 @@ export const ThreeCanvasTemplate = `
 export const FourCanvasTemplate = `
 <div>
 <canvas ref="canvas1"></canvas>
-&nbsp;
 <canvas ref="canvas2"></canvas>
 <br>
 <canvas ref="canvas3"></canvas>
-&nbsp;
 <canvas ref="canvas4"></canvas>
 <br>
 <button ref="button-run" class="bt">run</button>

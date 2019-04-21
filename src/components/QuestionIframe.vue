@@ -79,5 +79,6 @@ h1 {
 
 canvas {
   min-width :80px;
+  margin:10px;
 }
 </style>
