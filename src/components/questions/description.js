@@ -283,4 +283,8 @@ export default {
     title: "ピラミッド差分による高周波成分の抽出",
     desc: "",
   },
+  ans75: {
+    title: "ガウシアンピラミッド",
+    desc: "",
+  },
 }
