@@ -13,20 +13,22 @@ export default class extends BaseTwoCanvasComponent {
     main(canvas, image) {
       const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
       let ctx = canvas.getContext("2d")
+      ctx.drawImage(image, 0, 0, image.width, image.height)
+      let src = ctx.getImageData(0, 0, image.width, image.height)
+      let gray = ctx.createImageData(image.width, image.height)
+      for (let i = 0; i < src.data.length; i += 4) {
+        gray.data[i] = gray.data[i + 1] = gray.data[i + 2] = grayscale(
+          src.data[i], src.data[i + 1], src.data[i + 2]
+        )
+        gray.data[i + 3] = 255
+      }
+      this.showMessage('', true, true)
       for (let i = 1; i <= 32; i *= 2) {
         canvas.width = image.width
         canvas.height = image.height
-        ctx.drawImage(image, 0, 0, image.width, image.height)
-        let src = ctx.getImageData(0, 0, image.width, image.height)
-        let gray = ctx.createImageData(image.width, image.height)
-        for (let i = 0; i < src.data.length; i += 4) {
-          gray.data[i] = gray.data[i + 1] = gray.data[i + 2] = grayscale(
-            src.data[i], src.data[i + 1], src.data[i + 2]
-          )
-          gray.data[i + 3] = 255
-        }
         ctx.putImageData(gray, 0, 0)
         this.bilinear(canvas, 1 / i)
+        this.bilinear(canvas, i)
         let url = canvas.toDataURL()
         this.showMessage(`<img src="${url}"/>`, true)
       }
