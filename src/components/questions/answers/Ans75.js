@@ -1,7 +1,7 @@
 import {BaseTwoCanvasComponent} from "./BaseComponents.js"
 /**
  * Q.74
- * ピラミッド差分による高周波成分の抽出
+ * ガウシアンピラミッド
  * @extends BaseTwoCanvasComponent
  */
 export default class extends BaseTwoCanvasComponent {
