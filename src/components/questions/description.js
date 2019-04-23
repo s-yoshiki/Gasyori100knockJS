@@ -291,4 +291,8 @@ export default {
     title: "顕著性マップ",
     desc: "",
   },
+  ans77: {
+    title: "ガボールフィルタ",
+    desc: "",
+  },
 }
