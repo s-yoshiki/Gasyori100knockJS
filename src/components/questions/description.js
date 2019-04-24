@@ -295,4 +295,20 @@ export default {
     title: "ガボールフィルタ",
     desc: "",
   },
+  ans78: {
+    title: "ガボールフィルタの回転",
+    desc: "",
+  },
+  ans79: {
+    title: "ガボールフィルタによるエッジ抽出",
+    desc: "",
+  },
+  ans80: {
+    title: "ガボールフィルタによる特徴抽出",
+    desc: "",
+  },
+  ans81: {
+    title: "Hessianのコーナー検出",
+    desc: "",
+  },
 }
