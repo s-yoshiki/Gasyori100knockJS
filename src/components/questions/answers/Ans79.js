@@ -46,7 +46,6 @@ export default class extends BaseTwoCanvasComponent {
         if (e < 0) return 0
         return Math.floor(e)
       })
-      console.log(out)
       for (let i = 0, j = 0; i < dst1.data.length; i += 4, j++) {
         dst1.data[i] = dst1.data[i + 1] = dst1.data[i + 2] = out[j]
       }

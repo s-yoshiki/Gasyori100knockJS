@@ -303,4 +303,8 @@ export default {
     title: "ガボールフィルタによるエッジ抽出",
     desc: "",
   },
+  ans80: {
+    title: "ガボールフィルタによる特徴抽出",
+    desc: "",
+  },
 }
