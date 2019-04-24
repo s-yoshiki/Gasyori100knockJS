@@ -307,4 +307,8 @@ export default {
     title: "ガボールフィルタによる特徴抽出",
     desc: "",
   },
+  ans81: {
+    title: "Hessianのコーナー検出",
+    desc: "",
+  },
 }
