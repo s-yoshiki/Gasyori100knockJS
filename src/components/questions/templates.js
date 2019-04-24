@@ -3,6 +3,18 @@
  */
 export const BlankTemplate = `<h3>Comming soon.</h3>`
 /**
+ * 1つのcanvasテンプレート
+ */
+export const OneCanvasTemplate = `
+<div>
+<canvas ref="canvas1"></canvas>
+<br>
+<button ref="button-run" class="bt">run</button>
+<br>
+<div ref="msg" class="msg"></div>
+</div>
+`
+/**
  * 通常 && 2つのcanvasテンプレート
  */
 export const DefaultTemplate = `

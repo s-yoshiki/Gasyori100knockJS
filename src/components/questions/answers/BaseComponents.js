@@ -3,8 +3,6 @@ import {
   ThreeCanvasTemplate, DefaultTemplate, FourCanvasTemplate
 } from "../templates.js"
 import CanvasUtility from '@/lib/CanvasTools'
-
-
 /**
  * ページ処理基底
  */
@@ -18,13 +16,11 @@ export default class BasePagesComponent {
   /**
    * Vueでマウントされたdomを受け取る
    * mainの初期処理
-   * 
    * @param {Document} self 
    */
   _initObject() { }
   /**
    * 子クラスでのオブジェクト操作
-   * 
    * @param {Document} self 
    */
   init(self) {
@@ -52,12 +48,17 @@ export default class BasePagesComponent {
    * メッセージ出力
    * @param {string} msg 
    */
-  showMessage(msg, escape = true) {
+  showMessage(msg, escape = true, clear = false) {
     let dom = this.dom.$refs["msg"]
-    if (escape) {
-      dom.innerHTML += "<pre>" + msg + "</pre>"
-    } else {
-      dom.innerHTML += msg
+    if (clear) {
+      dom.innerHTML = ''
+    }
+    if (msg.length > 0) {
+      if (escape) {
+        dom.innerHTML += "<pre>" + msg + "</pre>"
+      } else {
+        dom.innerHTML += msg
+      }
     }
   }
 }
@@ -82,33 +83,25 @@ export class BaseTwoCanvasComponent extends BasePagesComponent {
     let canvas1 = self.$refs["canvas1"]
     let canvas2 = self.$refs["canvas2"]
     let button = self.$refs["button-run"]
-
     let image = new Image()
     image.src = this.imageUrl
-
     image.addEventListener("load", () => {
-      canvas2.width = image.width
-      canvas2.height = image.height
+      canvas1.width = canvas2.width = image.width
+      canvas1.height = canvas2.height = image.height
     })
-
     CanvasUtility.drawImage(canvas1, image)
-
     button.addEventListener("click", () => {
       this.main(canvas2, image)
     })
   }
-
   /**
    * 画像を処理してcanvasに描画
-   * 
    * @param {Object} canvas 
    * @param {Object} image 
    */
   main() { }
-
   /**
    * src画像のセット
-   * 
    * @param {String} url 
    */
   setSrcImage(url) {
@@ -120,7 +113,6 @@ export class BaseTwoCanvasComponent extends BasePagesComponent {
  * 3canvas用オブジェクト
  */
 export class BaseThreeCanvasComponent extends BasePagesComponent {
-
   constructor() {
     super()
     super.setTemplate(ThreeCanvasTemplate)
@@ -128,7 +120,6 @@ export class BaseThreeCanvasComponent extends BasePagesComponent {
   }
   /**
    * DOMの初期処理
-   * 
    * @access private
    * @param {Document} self 
    */
@@ -137,30 +128,23 @@ export class BaseThreeCanvasComponent extends BasePagesComponent {
     let canvas2 = self.$refs["canvas2"]
     let canvas3 = self.$refs["canvas3"]
     let button = self.$refs["button-run"]
-
     let image = new Image()
     image.src = this.imageUrl
-
     image.addEventListener("load", () => {
       canvas3.width = canvas2.width = image.width
       canvas3.height = canvas2.height = image.height
     })
-
     CanvasUtility.drawImage(canvas1, image)
-
     button.addEventListener("click", () => {
       this.main(canvas2, canvas3, image)
     })
   }
-
   /**
    * 画像を処理してcanvasに描画
    */
   main() { }
-
   /**
    * src画像のセット
-   * 
    * @param {String} url 
    */
   setSrcImage(url) {
@@ -171,7 +155,6 @@ export class BaseThreeCanvasComponent extends BasePagesComponent {
  * 4canvas用オブジェクト
  */
 export class BaseFourCanvasComponent extends BasePagesComponent {
-
   constructor() {
     super()
     super.setTemplate(FourCanvasTemplate)
@@ -179,7 +162,6 @@ export class BaseFourCanvasComponent extends BasePagesComponent {
   }
   /**
    * DOMの初期処理
-   * 
    * @access private
    * @param {Document} self 
    */
@@ -189,30 +171,23 @@ export class BaseFourCanvasComponent extends BasePagesComponent {
     let canvas3 = self.$refs["canvas3"]
     let canvas4 = self.$refs["canvas4"]
     let button = self.$refs["button-run"]
-
     let image = new Image()
     image.src = this.imageUrl
-
     image.addEventListener("load", () => {
       canvas4.width = canvas3.width = canvas2.width = image.width
       canvas4.height = canvas3.height = canvas2.height = image.height
     })
-
     CanvasUtility.drawImage(canvas1, image)
-
     button.addEventListener("click", () => {
       this.main(canvas2, canvas3, canvas4, image)
     })
   }
-
   /**
    * 画像を処理してcanvasに描画
    */
   main() { }
-
   /**
    * src画像のセット
-   * 
    * @param {String} url 
    */
   setSrcImage(url) {
@@ -233,7 +208,6 @@ export class HistogramComponent extends BaseTwoCanvasComponent {
   }
   /**
    * DOMの初期処理
-   * 
    * @access private
    * @param {Document} self 
    */
@@ -241,28 +215,21 @@ export class HistogramComponent extends BaseTwoCanvasComponent {
     let canvasSrc = self.$refs["canvas1"]
     this.graph = self.$refs["canvas2"]
     let button = self.$refs["button-run"]
-
     // ダミーデータを表示
     this.renderChart(new Array(255).fill(0))
-
     let image = new Image()
     image.src = this.imageUrl
-
     image.addEventListener("load", () => {
       canvasSrc.width = image.width
       canvasSrc.height = image.height
     })
-
     CanvasUtility.drawImage(canvasSrc, image)
-
     button.addEventListener("click", () => {
       this.main(canvasSrc, image)
     })
   }
-
   /**
    * ヒストグラム表示
-   * 
    * @param {Array} data
    */
   renderChart(data) {
@@ -271,7 +238,7 @@ export class HistogramComponent extends BaseTwoCanvasComponent {
 }
 
 /**
- * 
+ * ヒストグラム表示オブジェクト 3canvas
  */
 export class ThreeCanvasHistogramComponent extends HistogramComponent {
   /**
@@ -283,7 +250,6 @@ export class ThreeCanvasHistogramComponent extends HistogramComponent {
   }
   /**
    * DOMの初期処理
-   * 
    * @access private
    * @param {Document} self 
    */
@@ -292,20 +258,15 @@ export class ThreeCanvasHistogramComponent extends HistogramComponent {
     let canvas2 = self.$refs["canvas2"]
     this.graph = self.$refs["canvas3"]
     let button = self.$refs["button-run"]
-
     // ダミーデータを表示
     this.renderChart(new Array(255).fill(0))
-
     let image = new Image()
     image.src = this.imageUrl
-
     image.addEventListener("load", () => {
       canvas1.width = canvas2.width = image.width
       canvas1.height = canvas2.height = image.height
     })
-
     CanvasUtility.drawImage(canvas1, image)
-
     button.addEventListener("click", () => {
       this.main(canvas2, image)
     })
