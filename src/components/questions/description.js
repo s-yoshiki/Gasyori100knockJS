@@ -295,4 +295,8 @@ export default {
     title: "ガボールフィルタ",
     desc: "",
   },
+  ans78: {
+    title: "ガボールフィルタによるエッジ抽出",
+    desc: "",
+  },
 }
