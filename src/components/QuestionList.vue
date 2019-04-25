@@ -7,6 +7,11 @@
 import ItemComponent from "@/router/questions.js";
 export default {
   name: "Question",
+  beforeRouteUpdate(to, from, next) {
+    // URLが変わった時モデルを更新する
+    window.scrollTo(0, 0);
+    next();
+  },
   data() {
     return {
       questionLinks:'',

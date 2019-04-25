@@ -1,8 +1,8 @@
 import { BaseTwoCanvasComponent } from "./BaseComponents.js"
 import config from "../configure"
 /**
- * Q.77
- * ガボールフィルタ
+ * Q.82
+ * Harrisのコーナー検出 (Step.1) Sobel + Gauusian
  * @extends BaseTwoCanvasComponent
  */
 export default class extends BaseTwoCanvasComponent {
@@ -30,11 +30,6 @@ export default class extends BaseTwoCanvasComponent {
         result.push(tmp)
       }
       return result
-    }
-    const getIdx = (x, y) => {
-      x = Math.min(Math.max(x, 0), W - 1)
-      y = Math.min(Math.max(y, 0), H - 1)
-      return y * W + x
     }
     const sobely = [
       [1, 2, 1],
