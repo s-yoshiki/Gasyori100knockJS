@@ -1,8 +1,8 @@
 import { BaseTwoCanvasComponent } from "./BaseComponents.js"
 import config from "../configure"
 /**
- * Q.77
- * ガボールフィルタ
+ * Q.81
+ * Hessianのコーナー検出
  * @extends BaseTwoCanvasComponent
  */
 export default class extends BaseTwoCanvasComponent {
@@ -41,13 +41,15 @@ export default class extends BaseTwoCanvasComponent {
       [1, 0, -1]
     ]
     const ctx1 = canvas1.getContext("2d")
-
     ctx1.drawImage(image, 0, 0, image.width, image.height)
     let dst1 = ctx1.createImageData(image.width, image.height)
     let src1 = ctx1.getImageData(0, 0, image.width, image.height)
     let gray = new Array(H * W).fill(0)
     let Ix = new Array(H * W).fill(0)
     let Iy = new Array(H * W).fill(0)
+    let Ix2 = new Array(H * W).fill(0)
+    let Iy2 = new Array(H * W).fill(0)
+    let IxIy = new Array(H * W).fill(0)
     let hes = new Array(H * W).fill(0)
     for (let i = 0, j = 0; i < dst1.data.length; i += 4, j++) {
       let c = grayscale(src1.data[i], src1.data[i + 1], src1.data[i + 2])
@@ -56,11 +58,17 @@ export default class extends BaseTwoCanvasComponent {
       gray[j] = c
     }
     ctx1.putImageData(dst1, 0, 0)
-    this.adaptKernel(gray, Iy, W, H, sobely)
-    this.adaptKernel(gray, Ix, W, H, sobelx)
-    let IxIy = multiply(Ix, Iy)
-    let Ix2 = Ix.slice().map(e => e ** 2)
-    let Iy2 = Iy.slice().map(e => e ** 2)
+    this.adaptKernel(gray, Iy, W, H, sobely, (arr, sum) => {
+      return ~~ sum / arr.length
+    })
+    this.adaptKernel(gray, Ix, W, H, sobelx, (arr, sum) => {
+      return ~~ sum / arr.length
+    })
+    for (let i = 0; i < Ix.length; i++) {
+      IxIy[i] = Ix[i] * Iy[i]
+      Ix2[i] = Ix[i] ** 2
+      Iy2[i] = Iy[i] ** 2
+    }
     for (let x = 0; x < W; x++) for (let y = 0; y < H; y++) {
       hes[getIdx(x, y)] = Ix2[getIdx(x, y)] * Iy2[getIdx(x, y)] - IxIy[getIdx(x, y)] ** 2
     }
@@ -109,7 +117,7 @@ export default class extends BaseTwoCanvasComponent {
       }
       let dstIdx = getIndex(x, y)
       if (callback != null) {
-        k = callback(result)
+        k = callback(result, k)
         if (k !== undefined) {
           dst[dstIdx] = k
         }

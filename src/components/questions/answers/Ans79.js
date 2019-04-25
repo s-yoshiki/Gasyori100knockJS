@@ -1,7 +1,7 @@
 import { BaseTwoCanvasComponent } from "./BaseComponents.js"
 /**
- * Q.77
- * ガボールフィルタ
+ * Q.79
+ * ガボールフィルタによるエッジ抽出
  * @extends BaseTwoCanvasComponent
  */
 export default class extends BaseTwoCanvasComponent {

@@ -1,8 +1,8 @@
 import BasePagesComponent from "./BaseComponents.js"
 import { OneCanvasTemplate } from "../templates"
 /**
- * Q.77
- * ガボールフィルタ
+ * Q.78
+ * ガボールフィルタの回転
  * @extends BasePagesComponent
  */
 export default class extends BasePagesComponent {
