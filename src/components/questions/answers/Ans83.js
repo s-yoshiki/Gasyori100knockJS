@@ -60,12 +60,16 @@ export default class extends BaseTwoCanvasComponent {
       M[i] = (Ix2[i] * Iy2[i] - IxIy[i] ** 2) - k * ((Ix2[i] + Iy2[i]) ** 2)
     }
     let threshold = Math.max(...M) * th
-    for (let i = 0, j = 0; i < dst1.data.length; i += 4, j++) {
-      if (M[j] > threshold) {
-        [dst1.data[i], dst1.data[i + 1], dst1.data[i + 2]] = [192, 80, 77]
+    for (let i = 0; i < M.length; i++) {
+      if (M[i] > threshold) {
+        let x = i % W
+        let y = Math.ceil(i / W)
+        ctx1.beginPath()
+        ctx1.fillStyle = 'rgb(192, 80, 77)'
+        ctx1.arc(x, y, 2, 0, Math.PI * 2, false)
+        ctx1.fill()
       }
     }
-    ctx1.putImageData(dst1, 0, 0)
   }
   /**
    * ガウシアンカーネル生成

@@ -18,13 +18,6 @@ export default class extends BaseTwoCanvasComponent {
     const W = image.width
     const H = image.height
     const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
-    const multiply = (a, b) => {
-      let result = []
-      for (let i = 0; i < a.length; i++) {
-        result.push(a[i] * b[i])
-      }
-      return result
-    }
     const getIdx = (x, y) => {
       x = Math.min(Math.max(x, 0), W - 1)
       y = Math.min(Math.max(y, 0), H - 1)
@@ -59,10 +52,10 @@ export default class extends BaseTwoCanvasComponent {
     }
     ctx1.putImageData(dst1, 0, 0)
     this.adaptKernel(gray, Iy, W, H, sobely, (arr, sum) => {
-      return ~~ sum / arr.length
+      return ~~sum / arr.length
     })
     this.adaptKernel(gray, Ix, W, H, sobelx, (arr, sum) => {
-      return ~~ sum / arr.length
+      return ~~sum / arr.length
     })
     for (let i = 0; i < Ix.length; i++) {
       IxIy[i] = Ix[i] * Iy[i]
@@ -82,7 +75,7 @@ export default class extends BaseTwoCanvasComponent {
       if (hes[getIdx(x, y)] === m && hes[getIdx(x, y)] > Math.max(...hes) * 0.1) {
         ctx1.beginPath()
         ctx1.fillStyle = 'rgb(192, 80, 77)'
-        ctx1.arc(x, y, 3, 0, Math.PI*2, false)
+        ctx1.arc(x, y, 2, 0, Math.PI * 2, false)
         ctx1.fill()
       }
     }
