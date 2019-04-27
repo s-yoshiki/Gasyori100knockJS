@@ -315,4 +315,8 @@ export default {
     title: "Harrisのコーナー検出 (Step.1) Sobel + Gauusian",
     desc: "",
   },
+  ans83: {
+    title: "Harrisのコーナー検出 (Step.2) コーナー検出",
+    desc: "",
+  },
 }
