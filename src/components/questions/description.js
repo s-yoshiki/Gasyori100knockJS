@@ -323,4 +323,12 @@ export default {
     title: "簡単な画像認識 (Step.1) 減色化 + ヒストグラム",
     desc: "",
   },
+  ans85: {
+    title: "簡単な画像認識 (Step.2) クラス判別",
+    desc: "",
+  },
+  ans86: {
+    title: "簡単な画像認識 (Step.3) 評価(Accuracy)",
+    desc: "",
+  },
 }

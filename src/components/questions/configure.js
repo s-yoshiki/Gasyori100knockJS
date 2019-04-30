@@ -15,7 +15,7 @@ const srcImage = {
 }
 
 const dataset = {
-  test: [
+  tests: [
     datasetPath + "test_akahara_1.jpg",
     datasetPath + "test_akahara_2.jpg",
     datasetPath + "test_madara_1.jpg",
