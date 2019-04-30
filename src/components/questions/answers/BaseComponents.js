@@ -1,6 +1,6 @@
 import config from '../configure.js'
 import { 
-  ThreeCanvasTemplate, DefaultTemplate, FourCanvasTemplate
+  ThreeCanvasTemplate, DefaultTemplate, FourCanvasTemplate, OneCanvasTemplate
 } from "../templates.js"
 import CanvasUtility from '@/lib/CanvasTools'
 /**
@@ -60,6 +60,42 @@ export default class BasePagesComponent {
         dom.innerHTML += msg
       }
     }
+  }
+}
+
+/**
+ * 1canvas用オブジェクト
+ */
+export class OneCanvasComponent extends BasePagesComponent {
+
+  constructor() {
+    super()
+    super.setTemplate(OneCanvasTemplate)
+  }
+  /**
+   * DOMの初期処理
+   * @access private
+   * @param {Document} self 
+   */
+  _initObject(self) {
+    let canvas = self.$refs["canvas1"]
+    canvas.width = canvas.height = this.kSize
+    self.$refs["button-run"].addEventListener("click", () => {
+      this.main(canvas)
+    })
+  }
+  /**
+   * 画像を処理してcanvasに描画
+   * @param {Object} canvas 
+   * @param {Object} image 
+   */
+  main() { }
+  /**
+   * src画像のセット
+   * @param {String} url 
+   */
+  setSrcImage(url) {
+    super.imageUrl = url
   }
 }
 
@@ -151,6 +187,7 @@ export class BaseThreeCanvasComponent extends BasePagesComponent {
     super.imageUrl = url
   }
 }
+
 /**
  * 4canvas用オブジェクト
  */

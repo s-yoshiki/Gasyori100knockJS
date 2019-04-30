@@ -156,5 +156,6 @@ export default {
 canvas {
   min-width: 80px;
   margin:10px;
+  max-height:400px;
 }
 </style>

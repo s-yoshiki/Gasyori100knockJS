@@ -22,7 +22,7 @@ export default {
   },
   ans6: {
     title: "減色処理",
-    desc: "出力画像は[32, 96, 160, 224]の4色に現職したものである。",
+    desc: "出力画像は[32, 96, 160, 224]の4色に減色したものである。",
   },
   ans7: {
     title: "平均プーリング",
@@ -317,6 +317,18 @@ export default {
   },
   ans83: {
     title: "Harrisのコーナー検出 (Step.2) コーナー検出",
+    desc: "",
+  },
+  ans84: {
+    title: "簡単な画像認識 (Step.1) 減色化 + ヒストグラム",
+    desc: "",
+  },
+  ans85: {
+    title: "簡単な画像認識 (Step.2) クラス判別",
+    desc: "",
+  },
+  ans86: {
+    title: "簡単な画像認識 (Step.3) 評価(Accuracy)",
     desc: "",
   },
 }

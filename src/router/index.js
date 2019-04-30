@@ -30,10 +30,6 @@ let routes = [
     component: QuestionIframe,
     children: []
   },
-  // {
-  //   path: '/reset',
-  //   redirect: '/questions/ans1'
-  // }
 ]
 
 Questions.forEach(e => {
