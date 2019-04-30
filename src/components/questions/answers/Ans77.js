@@ -1,27 +1,13 @@
-import BasePagesComponent from "./BaseComponents.js"
-import { OneCanvasTemplate } from "../templates"
+import { OneCanvasComponent } from "./BaseComponents.js"
 /**
  * Q.77
  * ガボールフィルタ
- * @extends BasePagesComponent
+ * @extends OneCanvasComponent
  */
-export default class extends BasePagesComponent {
+export default class extends OneCanvasComponent {
   constructor() {
     super()
-    super.setTemplate(OneCanvasTemplate)
     this.kSize = 111
-  }
-  /**
-   * DOMの初期処理
-   * @access private
-   * @param {Document} self 
-   */
-  _initObject(self) {
-    let canvas = self.$refs["canvas1"]
-    canvas.width = canvas.height = this.kSize
-    self.$refs["button-run"].addEventListener("click", () => {
-      this.main(canvas)
-    })
   }
   /**
    * メイン
