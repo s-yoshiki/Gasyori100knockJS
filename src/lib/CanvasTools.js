@@ -20,7 +20,7 @@ export default class {
    * @param {Object} data 
    */
   static renderHistogram(canvas, data) {
-    let labels = new Array(255).fill('')
+    let labels = new Array(data.length).fill('')
     new Chart(canvas, {
       type: 'bar',
       data:{
@@ -44,10 +44,13 @@ export default class {
             ticks: {
               // suggestedMax: 100,
               suggestedMin: 0,
-              // stepSize: 10,
+              // stepSize: 10000,
             }
           }]
         },
+        animation: {
+          duration: 0
+        }
       }
     })
     //

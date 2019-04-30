@@ -319,4 +319,8 @@ export default {
     title: "Harrisのコーナー検出 (Step.2) コーナー検出",
     desc: "",
   },
+  ans84: {
+    title: "簡単な画像認識 (Step.1) 減色化 + ヒストグラム",
+    desc: "",
+  },
 }
