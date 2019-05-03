@@ -331,4 +331,8 @@ export default {
     title: "簡単な画像認識 (Step.3) 評価(Accuracy)",
     desc: "",
   },
+  ans87: {
+    title: "簡単な画像認識 (Step.4) k-NN",
+    desc: "",
+  },
 }
