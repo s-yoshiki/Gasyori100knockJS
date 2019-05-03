@@ -1,6 +1,5 @@
 import { OneCanvasComponent } from "./BaseComponents.js"
 import config from "../configure"
-import CanvasTools from "@/lib/CanvasTools"
 /**
  * Q.85
  * 簡単な画像認識 (Step.2) クラス判別
