@@ -1,9 +1,8 @@
 import { OneCanvasComponent } from "./BaseComponents.js"
 import config from "../configure"
-import CanvasTools from "@/lib/CanvasTools"
 /**
- * Q.85
- * 簡単な画像認識 (Step.2) クラス判別
+ * Q.86
+ * 簡単な画像認識 (Step.3) 評価(Accuracy)
  * @extends OneCanvasComponent
  */
 export default class extends OneCanvasComponent {
@@ -16,6 +15,7 @@ export default class extends OneCanvasComponent {
    */
   main(canvas) {
     const basename = (arg) => arg.split("/").reverse()[0]
+    const getLabel = (arg) => basename(arg).split("_")[1]
     const diff = (a, b) => {
       let result = []
       for (let i = 0; i < a.length; i++) {
@@ -65,7 +65,6 @@ export default class extends OneCanvasComponent {
           let train = trainsData[j]
           let t1 = diff(test, train)
           let t2 = sum(t1)
-          // console.log([i,j,t2])
           if (t2 < min) {
             min = t2
             idx = j
@@ -73,9 +72,9 @@ export default class extends OneCanvasComponent {
         }
         this.showMessage(
           `<img src='${tests[i]}'> <img src='${trains[idx]}'>
-          ${basename(tests[i])} is similar >> ${basename(trains[idx])}  Pred >> ${basename(trains[idx]).split("_")[1]}`
+          ${basename(tests[i])} is similar >> ${basename(trains[idx])}  Pred >> ${getLabel(trains[idx])}`
         )
-        if (basename(trains[idx]).split("_")[1] === basename(tests[i]).split("_")[1]) {
+        if (getLabel(trains[idx]) === getLabel(tests[i])) {
           successCount++
         }
       }
