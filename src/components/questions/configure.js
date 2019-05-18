@@ -2,13 +2,14 @@ const imagesPath = "./images/";
 const datasetPath = "./dataset/"
 
 const srcImage = {
+  lenna: imagesPath + "lenna.png",
+  yasai: imagesPath + "yasai.jpg",
   default: imagesPath + "imori.jpg",
   noise: imagesPath + "imori_noise.jpg",
   dark: imagesPath + "imori_dark.jpg",
   gamma: imagesPath + "imori_gamma.jpg",
   thorino: imagesPath + "thorino.jpg",
   imori_part: imagesPath + "imori_part.jpg",
-  lenna: imagesPath + "lenna.png",
   seg: imagesPath + "seg.png",
   renketsu: imagesPath + "renketsu.png",
   gazo: imagesPath + "gazo.png",
@@ -43,6 +44,14 @@ export default {
       label: 'imori',
       src: srcImage.default
     },
+    lenna: {
+      label: 'lenna',
+      src: srcImage.lenna
+    },
+    yasai: {
+      label: 'yasai',
+      src: srcImage.yasai
+    },
     noise: {
       label: 'imori noise',
       src: srcImage.noise
@@ -58,10 +67,6 @@ export default {
     thorino: {
       label: 'thorino',
       src: srcImage.thorino
-    },
-    lenna: {
-      label: 'lenna',
-      src: srcImage.lenna
     },
     seq: {
       label: 'segmentation',
