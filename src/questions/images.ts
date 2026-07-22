@@ -14,6 +14,8 @@ export const srcImage = {
   lenna: `${imagesPath}lenna.png`,
   yasai: `${imagesPath}yasai.jpg`,
   default: `${imagesPath}imori.jpg`,
+  imori1: `${imagesPath}imori_1.jpg`,
+  imoriMany: `${imagesPath}imori_many.jpg`,
   noise: `${imagesPath}imori_noise.jpg`,
   dark: `${imagesPath}imori_dark.jpg`,
   gamma: `${imagesPath}imori_gamma.jpg`,
@@ -54,6 +56,8 @@ export interface SourceImageOption {
 /** 入力画像セレクタに並ぶ選択肢。 */
 export const srcImageOptions: readonly SourceImageOption[] = [
   { label: 'imori', src: srcImage.default },
+  { label: 'imori 1', src: srcImage.imori1 },
+  { label: 'imori many', src: srcImage.imoriMany },
   { label: 'lenna', src: srcImage.lenna },
   { label: 'yasai', src: srcImage.yasai },
   { label: 'imori (noise)', src: srcImage.noise },

@@ -18,8 +18,9 @@ const imports = answers
 const entries = answers.map(({ id, suffix }) => `  ${id}: Ans${suffix},`).join('\n')
 
 const output = `/** 解答レジストリ（自動生成 / DO NOT EDIT）。 */
-import type { AnswerFactory } from './base'
+
 ${imports}
+import type { AnswerFactory } from './base'
 
 export const answers: Readonly<Record<number, AnswerFactory>> = {
 ${entries}
