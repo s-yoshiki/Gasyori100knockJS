@@ -22,14 +22,12 @@
       // 404.html がクエリ文字列に畳んだパスを元に戻す。
       // ルータが立ち上がる前に済ませる必要があるため、ここにインラインで置いている。
       // 詳細は vite.config.ts の githubPagesSpaFallback を参照。
-      ;(function (l) {
+      ;((l) => {
         if (l.search[1] !== '/') return
         var decoded = l.search
           .slice(1)
           .split('&')
-          .map(function (s) {
-            return s.replace(/~and~/g, '&')
-          })
+          .map((s) => s.replace(/~and~/g, '&'))
           .join('?')
         window.history.replaceState(null, '', l.pathname.slice(0, -1) + decoded + l.hash)
       })(window.location)

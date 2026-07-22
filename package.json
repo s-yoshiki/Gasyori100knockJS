@@ -9,22 +9,25 @@
     "type": "git",
     "url": "git+https://github.com/s-yoshiki/Gasyori100knockJS.git"
   },
+  "packageManager": "pnpm@11.15.0",
   "engines": {
-    "node": ">=20.19"
+    "node": ">=20.19",
+    "pnpm": ">=10"
   },
   "scripts": {
     "dev": "vite",
-    "gen:registry": "node scripts/gen-registry.mjs",
+    "gen:registry": "tsx scripts/gen-registry.ts",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "fix": "biome check --write .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "check": "npm run typecheck && npm run lint && npm run format:check && npm run test"
+    "check": "tsc --noEmit && biome check . && vitest run"
   },
   "dependencies": {
     "react": "^19.2.0",
@@ -32,19 +35,14 @@
     "react-router": "^8.2.0"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
+    "@biomejs/biome": "^2.5.5",
     "@types/node": "^26.1.1",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^6.0.0",
-    "eslint": "^10.7.0",
-    "eslint-plugin-react-hooks": "^7.1.0",
-    "eslint-plugin-react-refresh": "^0.5.0",
-    "globals": "^17.0.0",
     "jsdom": "^29.0.0",
-    "prettier": "^3.9.0",
+    "tsx": "^4.20.0",
     "typescript": "^5.9.0",
-    "typescript-eslint": "^8.65.0",
     "vite": "^8.0.0",
     "vitest": "^4.0.0"
   }

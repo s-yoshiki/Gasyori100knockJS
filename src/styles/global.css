@@ -48,9 +48,9 @@
   --content-width: 1080px;
 
   --font-sans:
-    system-ui, -apple-system, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', Meiryo, sans-serif;
+    system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Noto Sans JP", Meiryo, sans-serif;
   --font-mono:
-    ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -79,7 +79,7 @@
 }
 
 /* ヘッダのトグルによる明示的な指定は、OS の設定より優先する。 */
-:root[data-theme='light'] {
+:root[data-theme="light"] {
   --bg: #fbfbfd;
   --surface: #ffffff;
   --surface-subtle: #f4f5f8;
@@ -99,7 +99,7 @@
   --shadow: 0 4px 16px rgb(16 18 27 / 8%);
 }
 
-:root[data-theme='dark'] {
+:root[data-theme="dark"] {
   --bg: #0f1116;
   --surface: #171a21;
   --surface-subtle: #1e222b;
@@ -281,7 +281,7 @@ code {
 }
 
 .site-header__link:hover,
-.site-header__link[aria-current='page'] {
+.site-header__link[aria-current="page"] {
   background: var(--surface-subtle);
   color: var(--text);
   text-decoration: none;

@@ -4,27 +4,26 @@ Q.46 を例に、未実装の問題を追加する手順を示す。
 
 ## 1. レイアウトを決める
 
-「入力画像と結果を並べたい」だけなら `TwoCanvasAnswer`。
-途中経過も見せたいなら `ThreeCanvasAnswer`。選択肢は
+「入力画像と結果を並べたい」だけなら `createTwoCanvasAnswer`。
+途中経過も見せたいなら `createThreeCanvasAnswer`。選択肢は
 [architecture.md のレイアウト表](architecture.md#レイアウト)を参照。
 
 ## 2. 解答ファイルを作る
 
-ファイル名は `src/questions/answers/Ans<問題番号>.ts` に固定。
+ファイル名は問題番号を3桁にゼロ埋めした `src/questions/answers/AnsNNN.ts` に固定。
 レジストリの生成がこの命名に依存している。
 
 ```ts
-// src/questions/answers/Ans46.ts
-import { TwoCanvasAnswer } from '../base'
+// src/questions/answers/Ans046.ts
 import { context2d } from '@/lib/canvas'
+import { createTwoCanvasAnswer } from '../base'
 
 /**
  * Q.46
  * 問題のタイトル
- * @extends TwoCanvasAnswer
  */
-export default class extends TwoCanvasAnswer {
-  main(canvas: HTMLCanvasElement, image: HTMLImageElement) {
+export default createTwoCanvasAnswer(() => {
+  const main = (canvas: HTMLCanvasElement, image: HTMLImageElement) => {
     const ctx = context2d(canvas)
     ctx.drawImage(image, 0, 0, image.width, image.height)
 
@@ -41,39 +40,45 @@ export default class extends TwoCanvasAnswer {
 
     ctx.putImageData(dst, 0, 0)
   }
-}
+
+  return { main }
+})
 ```
 
 `canvas.getContext('2d')` は `null` を返しうるので、直接呼ばずに `context2d()` を使う。
 
 ### 入力画像を変えたい場合
 
-既定の入力画像（imori）以外を使いたいときは、コンストラクタで指定する。
+既定の入力画像（imori）以外を使いたいときは、ファクトリのオプションで指定する。
 
 ```ts
 import config from '../images'
 
-export default class extends TwoCanvasAnswer {
-  constructor() {
-    super()
-    this.setSrcImage(config.srcImage.thorino)
-  }
-  // ...
-}
+export default createTwoCanvasAnswer(
+  () => {
+    // ...
+    return { main }
+  },
+  { imageUrl: config.srcImage.thorino },
+)
 ```
 
 ### 数値をログに出したい場合
 
-`this.showMessage()` を使う。第 2 引数を `false` にすると、等幅ではなく通常の HTML として表示される。
+ファクトリから受け取る `showMessage()` を使う。第 2 引数を `false` にすると、等幅ではなく通常の HTML として表示される。
 
 ```ts
-this.showMessage(`閾値: ${threshold}`)
+export default createTwoCanvasAnswer(({ showMessage }) => {
+  // main 内で利用する
+  showMessage(`閾値: ${threshold}`)
+  return { main }
+})
 ```
 
 ### 非同期の準備が必要な場合
 
 追加の画像を読み込むなど、実行前に非同期の準備が要るときは `mount()` を上書きして
-Promise を返す。UI 側は解決するまで実行ボタンを押せない状態を保つ。実例は `Ans60.ts`。
+Promise を返す。UI 側は解決するまで実行ボタンを押せない状態を保つ。実例は `Ans060.ts`。
 
 ## 3. 説明を書く
 
@@ -89,7 +94,7 @@ Promise を返す。UI 側は解決するまで実行ボタンを押せない状
 ## 4. レジストリを再生成する
 
 ```bash
-npm run gen:registry
+pnpm gen:registry
 ```
 
 `src/questions/registry.ts` が更新される。このファイルは生成物なので手で編集しない。
@@ -97,8 +102,8 @@ npm run gen:registry
 ## 5. 確認する
 
 ```bash
-npm run check   # 型検査・Lint・整形検査・テスト
-npm run dev     # 実際に動かす
+pnpm check   # 型検査・Lint・整形検査・テスト
+pnpm dev     # 実際に動かす
 ```
 
 `http://localhost:5173/Gasyori100knockJS/questions/46` を開いて実行ボタンを押す。

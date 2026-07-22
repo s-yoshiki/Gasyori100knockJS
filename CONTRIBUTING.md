@@ -7,18 +7,18 @@ Node.js 20.19 以上（22 を推奨）が必要です。
 ```bash
 git clone https://github.com/s-yoshiki/Gasyori100knockJS.git
 cd Gasyori100knockJS
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 ## 変更を投げる前に
 
 ```bash
-npm run check
+pnpm check
 ```
 
-型検査・ESLint・Prettier 検査・Vitest をまとめて実行します。CI と同じ内容です。
-整形の指摘は `npm run format`、Lint の指摘の多くは `npm run lint:fix` で自動修正できます。
+型検査・Biome lint・format 検査・Vitest をまとめて実行します。CI と同じ内容です。
+整形の指摘は `pnpm format`、Lint の指摘の多くは `pnpm lint:fix` で自動修正できます。
 
 ## 何を変えるか別の手引き
 

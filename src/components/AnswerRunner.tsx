@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { loadImage } from '@/lib/canvas'
-import { CANVAS_COUNT, type AnswerLayout } from '@/questions/base'
+import { type AnswerLayout, CANVAS_COUNT } from '@/questions/base'
 import { srcImageOptions } from '@/questions/images'
 import { createAnswer } from '@/questions/registry'
 import './AnswerRunner.css'
@@ -172,7 +172,7 @@ export function AnswerRunner({ id }: AnswerRunnerProps) {
       <div className={`runner__canvases runner__canvases--${layout}`}>
         {Array.from({ length: canvasCount }, (_, index) => (
           <figure
-            key={index}
+            key={labels[index]}
             className={`runner__figure${isGraph(layout, index) ? ' runner__figure--graph' : ''}`}
           >
             <canvas

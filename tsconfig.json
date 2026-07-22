@@ -1,5 +1,5 @@
 {
-  "include": ["src", "vite.config.ts", "eslint.config.js"],
+  "include": ["src", "scripts", "vite.config.ts"],
   "compilerOptions": {
     "target": "ES2022",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
@@ -12,7 +12,7 @@
     "noUncheckedIndexedAccess": false,
     "noUnusedLocals": true,
     // 未使用引数は reduce のコールバックなど「位置合わせで必要」な場合がある。
-    // ESLint 側で `_` プレフィックスの慣習付きで見るため tsc では無効化する。
+    // Biome 側で `_` プレフィックスの慣習付きで見るため tsc では無効化する。
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
