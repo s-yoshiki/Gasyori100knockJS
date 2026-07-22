@@ -10,7 +10,7 @@ pages/          画面（ルーティング単位）
   ↓
 components/     AnswerRunner が canvas を用意して解答を動かす
   ↓
-questions/      解答クラス群。React を import しない
+questions/      解答関数群。React を import しない
   ↓
 lib/            canvas / 行列 / ヒストグラム。DOM 以外に依存しない
 ```
@@ -19,12 +19,12 @@ lib/            canvas / 行列 / ヒストグラム。DOM 以外に依存しな
 UI を作り替えても 83 問の実装に手を入れる必要がない。実際、Vue 2 から React への移行では
 画像処理のロジックを一行も変えていない。
 
-## 解答クラスのライフサイクル
+## 解答関数のライフサイクル
 
 `AnswerRunner` が次の順で解答を扱う。
 
 ```
-createAnswer(id)                    レジストリからインスタンスを作る
+createAnswer(id)                    レジストリのファクトリから実行オブジェクトを作る
   ↓
 answer.attach(host)                 showMessage() の出力先を注入する
   ↓
@@ -36,10 +36,10 @@ await answer.mount(canvases, image) 初期描画。Promise を返してもよい
   ↓ （ここで実行ボタンが押せるようになる）
 answer.run(canvases, image)         実行ボタン押下時
   ↓
-answer.main(...)                    各問題が実装する唯一のメソッド
+main(...)                           各問題が返す画像処理関数
 ```
 
-`mount()` と `run()` はレイアウト別の基底クラスが実装済みで、
+`mount()` と `run()` はレイアウト別のファクトリ関数が実装済みで、
 個々の問題が書くのは `main()` だけになっている。
 
 ## レイアウト

@@ -1,0 +1,9 @@
+# pnpm 10 以降、依存パッケージのビルドスクリプトは既定で実行されない。
+# ネイティブバイナリを展開する必要があるものだけを明示的に許可する。
+onlyBuiltDependencies:
+  - '@biomejs/biome'
+  - esbuild
+managePackageManagerVersions: false
+verifyDepsBeforeRun: false
+allowBuilds:
+  esbuild: false

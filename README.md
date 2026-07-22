@@ -18,8 +18,8 @@
 ## クイックスタート
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 <http://localhost:5173/Gasyori100knockJS/> が開きます。
@@ -28,17 +28,17 @@ npm run dev
 
 | コマンド               | 内容                                                            |
 | ---------------------- | --------------------------------------------------------------- |
-| `npm run dev`          | 開発サーバを起動する                                            |
-| `npm run build`        | 型チェックののち `dist/` へ本番ビルドする                       |
-| `npm run preview`      | ビルド結果をローカルで配信する                                  |
-| `npm run typecheck`    | `tsc --noEmit` で型検査する                                     |
-| `npm run lint`         | ESLint を実行する（`lint:fix` で自動修正）                      |
-| `npm run format`       | Prettier で整形する（`format:check` で検査のみ）                |
+| `pnpm dev`          | 開発サーバを起動する                                            |
+| `pnpm build`        | 型チェックののち `dist/` へ本番ビルドする                       |
+| `pnpm preview`      | ビルド結果をローカルで配信する                                  |
+| `pnpm typecheck`    | `tsc --noEmit` で型検査する                                     |
+| `pnpm lint`         | Biome を実行する（`lint:fix` で自動修正）                      |
+| `pnpm format`       | Biome で整形する（`format:check` で検査のみ）                |
 | `npm test`             | Vitest を実行する（`test:watch` で監視）                        |
-| `npm run gen:registry` | 解答ファイルを走査して `src/questions/registry.ts` を再生成する |
-| `npm run check`        | 型検査・Lint・整形検査・テストをまとめて実行する                |
+| `pnpm gen:registry` | 解答ファイルを走査して `src/questions/registry.ts` を再生成する |
+| `pnpm check`        | 型検査・Lint・整形検査・テストをまとめて実行する                |
 
-変更を投げる前に `npm run check` が通ることを確認してください。CI も同じものを実行します。
+変更を投げる前に `pnpm check` が通ることを確認してください。CI も同じものを実行します。
 
 ## ディレクトリ構成
 
@@ -50,11 +50,11 @@ src/
 │   ├── matrix.ts             逆行列・要素ごとの積と商（旧 mathjs の置き換え）
 │   └── pixels.ts             画素バッファまわりの共通型
 ├── questions/              問題そのもの
-│   ├── base.ts               解答の基底クラス群（React 非依存）
+│   ├── base.ts               解答ファクトリ群（React 非依存）
 │   ├── images.ts             入力画像とデータセットのパス
 │   ├── descriptions.ts       各問題のタイトルと解説
-│   ├── registry.ts           問題番号 -> 解答クラス（自動生成）
-│   └── answers/AnsN.ts       各問題の実装
+│   ├── registry.ts           問題番号 -> 解答ファクトリ（自動生成）
+│   └── answers/AnsNNN.ts     各問題の実装（3桁ゼロ埋め）
 ├── components/             React コンポーネント
 │   └── AnswerRunner.tsx      canvas の配置と実行を担う中核
 ├── pages/                  ルーティング単位の画面
@@ -67,8 +67,8 @@ src/
 
 [docs/adding-a-question.md](docs/adding-a-question.md) に手順をまとめています。要点は次の 2 つです。
 
-1. `src/questions/answers/AnsN.ts` にレイアウト別の基底クラスを継承したクラスを書き、`main()` を実装する。
-2. `npm run gen:registry` を実行してレジストリを更新する。
+1. `src/questions/answers/AnsNNN.ts` でレイアウト別ファクトリに `main` アロー関数を渡す。
+2. `pnpm gen:registry` を実行してレジストリを更新する。
 
 ## 実装状況
 

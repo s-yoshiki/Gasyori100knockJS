@@ -13,39 +13,18 @@ concurrency:
 
 jobs:
   check:
-    name: 型検査 / Lint / 整形 / テスト
+    name: ci
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: npm
-
-      - run: npm ci
-
-      - name: レジストリが最新か確認する
-        run: |
-          npm run gen:registry
-          git diff --exit-code src/questions/registry.ts \
-            || (echo "::error::registry.ts が古くなっています。'npm run gen:registry' を実行してコミットしてください。" && exit 1)
-
-      - run: npm run typecheck
-      - run: npm run lint
-      - run: npm run format:check
-      - run: npm test
-
-  build:
-    name: ビルド
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
 
       - uses: actions/setup-node@v6
         with:
           node-version: 22
-          cache: npm
+          cache: pnpm
 
-      - run: npm ci
-      - run: npm run build
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+      - run: pnpm typecheck
