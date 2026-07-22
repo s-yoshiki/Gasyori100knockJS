@@ -5,3 +5,5 @@ onlyBuiltDependencies:
   - esbuild
 managePackageManagerVersions: false
 verifyDepsBeforeRun: false
+allowBuilds:
+  esbuild: false
