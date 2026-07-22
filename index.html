@@ -18,6 +18,22 @@
     <meta property="og:image" content="./common/og-image.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <script>
+      // 404.html がクエリ文字列に畳んだパスを元に戻す。
+      // ルータが立ち上がる前に済ませる必要があるため、ここにインラインで置いている。
+      // 詳細は vite.config.ts の githubPagesSpaFallback を参照。
+      ;(function (l) {
+        if (l.search[1] !== '/') return
+        var decoded = l.search
+          .slice(1)
+          .split('&')
+          .map(function (s) {
+            return s.replace(/~and~/g, '&')
+          })
+          .join('?')
+        window.history.replaceState(null, '', l.pathname.slice(0, -1) + decoded + l.hash)
+      })(window.location)
+    </script>
   </head>
   <body>
     <div id="root"></div>
