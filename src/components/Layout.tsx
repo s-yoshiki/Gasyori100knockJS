@@ -14,7 +14,7 @@ export function Layout() {
             <span className="site-header__mark" aria-hidden="true">
               G
             </span>
-            画像処理100本ノック JS
+            <span className="site-header__brand-text">画像処理100本ノック JS</span>
           </Link>
           <nav className="site-header__nav">
             <NavLink to="/questions" className="site-header__link">
