@@ -18,23 +18,22 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - uses: pnpm/action-setup@v4
+
       - uses: actions/setup-node@v6
         with:
           node-version: 22
-          cache: npm
+          cache: pnpm
 
-      - run: npm ci
+      - run: pnpm install --frozen-lockfile
 
       - name: レジストリが最新か確認する
         run: |
-          npm run gen:registry
+          pnpm gen:registry
           git diff --exit-code src/questions/registry.ts \
-            || (echo "::error::registry.ts が古くなっています。'npm run gen:registry' を実行してコミットしてください。" && exit 1)
+            || (echo "::error::registry.ts が古くなっています。'pnpm gen:registry' を実行してコミットしてください。" && exit 1)
 
-      - run: npm run typecheck
-      - run: npm run lint
-      - run: npm run format:check
-      - run: npm test
+      - run: pnpm check
 
   build:
     name: ビルド
@@ -42,10 +41,12 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - uses: pnpm/action-setup@v4
+
       - uses: actions/setup-node@v6
         with:
           node-version: 22
-          cache: npm
+          cache: pnpm
 
-      - run: npm ci
-      - run: npm run build
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
