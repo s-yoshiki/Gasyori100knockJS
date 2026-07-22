@@ -1,0 +1,37 @@
+name: 未実装の問題を実装する
+description: まだ実装されていない問題の実装を提案・宣言する
+labels: [enhancement, question-impl]
+body:
+  - type: input
+    id: number
+    attributes:
+      label: 問題番号
+      placeholder: 'Q.46'
+    validations:
+      required: true
+
+  - type: input
+    id: title
+    attributes:
+      label: 問題のタイトル
+      placeholder: 'Hough変換・直線検出 (Step.3) ハフ逆変換'
+
+  - type: dropdown
+    id: layout
+    attributes:
+      label: 想定するレイアウト
+      description: docs/architecture.md のレイアウト表を参照してください。
+      options:
+        - one-canvas（出力のみ）
+        - two-canvas（入力 / 出力）
+        - three-canvas（入力 / 出力1 / 出力2）
+        - four-canvas（入力 / 出力1 / 出力2 / 出力3）
+        - histogram（入力 / グラフ）
+        - three-canvas-histogram（入力 / 出力 / グラフ）
+        - まだ決めていない
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: 補足
+      description: アルゴリズム上の懸念点や、参考にした資料があれば。

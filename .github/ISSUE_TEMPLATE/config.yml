@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 原案リポジトリ（画像処理100本ノック）
+    url: https://github.com/yoyoyo-yo/Gasyori100knock
+    about: 問題文そのものやアルゴリズムの解説については、原案リポジトリを参照してください。

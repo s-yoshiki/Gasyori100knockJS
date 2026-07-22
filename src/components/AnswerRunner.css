@@ -1,0 +1,141 @@
+.runner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.runner--empty {
+  padding: var(--space-6);
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.runner__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.runner__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.runner__field-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.runner__toolbar .button--primary {
+  margin-left: auto;
+}
+
+.runner__error {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+}
+
+.runner__canvases {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* 4 枚構成は 2x2 に落ち着かせる */
+.runner__canvases--four-canvas {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.runner__figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--space-3);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ヒストグラムは画像より横に長いので 1 行占有させる */
+.runner__figure--graph {
+  grid-column: 1 / -1;
+}
+
+.runner__canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  background: var(--surface-subtle);
+  /* 拡大時に補間せず画素を見せる */
+  image-rendering: pixelated;
+}
+
+.runner__figure--graph .runner__canvas {
+  image-rendering: auto;
+  max-height: none;
+}
+
+.runner__caption {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.runner__logs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  max-height: 420px;
+  overflow: auto;
+}
+
+.runner__log {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--text-muted);
+}
+
+.runner__log img {
+  max-width: 100%;
+  vertical-align: middle;
+  border-radius: var(--radius-sm);
+}
+
+.runner__log strong {
+  color: var(--text);
+}
+
+@media (max-width: 640px) {
+  .runner__canvases,
+  .runner__canvases--four-canvas {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .runner__toolbar .button--primary {
+    margin-left: 0;
+    width: 100%;
+  }
+}

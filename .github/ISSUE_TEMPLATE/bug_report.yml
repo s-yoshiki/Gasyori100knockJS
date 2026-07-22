@@ -1,0 +1,42 @@
+name: バグ報告
+description: 処理結果がおかしい、動かない、といった不具合の報告
+labels: [bug]
+body:
+  - type: input
+    id: question
+    attributes:
+      label: 問題番号
+      description: 特定の問題で起きている場合は番号を書いてください。
+      placeholder: 'Q.38'
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 何が起きたか
+      description: 期待した結果と実際の結果を書いてください。スクリーンショットがあると助かります。
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 再現手順
+      placeholder: |
+        1. /questions/38 を開く
+        2. 入力画像を lenna に切り替える
+        3. 実行を押す
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: 環境
+      placeholder: 'macOS 15 / Chrome 140'
+
+  - type: textarea
+    id: console
+    attributes:
+      label: コンソールのエラー
+      description: ブラウザの開発者ツールにエラーが出ていれば貼ってください。
+      render: text

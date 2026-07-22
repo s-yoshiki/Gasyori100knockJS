@@ -1,0 +1,28 @@
+.embed-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+}
+
+.embed-page__header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+.embed-page__title {
+  font-size: 18px;
+}
+
+.embed-page__empty {
+  padding: var(--space-6);
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.embed-page__footer {
+  font-size: 12.5px;
+  text-align: right;
+  color: var(--text-muted);
+}
