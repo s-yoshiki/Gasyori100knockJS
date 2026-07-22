@@ -26,13 +26,6 @@ jobs:
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
-
-      - name: レジストリが最新か確認する
-        run: |
-          pnpm gen:registry
-          git diff --exit-code src/questions/registry.ts \
-            || (echo "::error::registry.ts が古くなっています。'pnpm gen:registry' を実行してコミットしてください。" && exit 1)
-
       - run: pnpm check
 
   build:

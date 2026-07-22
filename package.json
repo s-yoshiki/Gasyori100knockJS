@@ -16,7 +16,6 @@
   },
   "scripts": {
     "dev": "vite",
-    "gen:registry": "tsx scripts/gen-registry.ts",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
