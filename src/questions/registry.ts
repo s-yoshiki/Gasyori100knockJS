@@ -45,6 +45,7 @@ import Ans042 from './answers/Ans042'
 import Ans043 from './answers/Ans043'
 import Ans044 from './answers/Ans044'
 import Ans045 from './answers/Ans045'
+import Ans046 from './answers/Ans046'
 import Ans047 from './answers/Ans047'
 import Ans048 from './answers/Ans048'
 import Ans049 from './answers/Ans049'
@@ -64,6 +65,10 @@ import Ans062 from './answers/Ans062'
 import Ans063 from './answers/Ans063'
 import Ans064 from './answers/Ans064'
 import Ans065 from './answers/Ans065'
+import Ans066 from './answers/Ans066'
+import Ans067 from './answers/Ans067'
+import Ans068 from './answers/Ans068'
+import Ans069 from './answers/Ans069'
 import Ans070 from './answers/Ans070'
 import Ans071 from './answers/Ans071'
 import Ans072 from './answers/Ans072'
@@ -83,6 +88,18 @@ import Ans085 from './answers/Ans085'
 import Ans086 from './answers/Ans086'
 import Ans087 from './answers/Ans087'
 import Ans088 from './answers/Ans088'
+import Ans089 from './answers/Ans089'
+import Ans090 from './answers/Ans090'
+import Ans091 from './answers/Ans091'
+import Ans092 from './answers/Ans092'
+import Ans093 from './answers/Ans093'
+import Ans094 from './answers/Ans094'
+import Ans095 from './answers/Ans095'
+import Ans096 from './answers/Ans096'
+import Ans097 from './answers/Ans097'
+import Ans098 from './answers/Ans098'
+import Ans099 from './answers/Ans099'
+import Ans100 from './answers/Ans100'
 import type { AnswerFactory } from './base'
 
 export const answers: Readonly<Record<number, AnswerFactory>> = {
@@ -131,6 +148,7 @@ export const answers: Readonly<Record<number, AnswerFactory>> = {
   43: Ans043,
   44: Ans044,
   45: Ans045,
+  46: Ans046,
   47: Ans047,
   48: Ans048,
   49: Ans049,
@@ -150,6 +168,10 @@ export const answers: Readonly<Record<number, AnswerFactory>> = {
   63: Ans063,
   64: Ans064,
   65: Ans065,
+  66: Ans066,
+  67: Ans067,
+  68: Ans068,
+  69: Ans069,
   70: Ans070,
   71: Ans071,
   72: Ans072,
@@ -169,6 +191,18 @@ export const answers: Readonly<Record<number, AnswerFactory>> = {
   86: Ans086,
   87: Ans087,
   88: Ans088,
+  89: Ans089,
+  90: Ans090,
+  91: Ans091,
+  92: Ans092,
+  93: Ans093,
+  94: Ans094,
+  95: Ans095,
+  96: Ans096,
+  97: Ans097,
+  98: Ans098,
+  99: Ans099,
+  100: Ans100,
 }
 
 export const implementedIds: readonly number[] = Object.keys(answers)

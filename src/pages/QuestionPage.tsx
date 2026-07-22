@@ -46,6 +46,11 @@ export function QuestionPage() {
           // 解説はリポジトリ内で管理している固定の文字列。外部入力は含まれない。
           <div className="question__desc" dangerouslySetInnerHTML={{ __html: desc }} />
         )}
+        {available && (
+          <p className="question__hint">
+            入力画像を確認して「実行」を押してください。数値結果がある問題では画像の下にログも表示されます。
+          </p>
+        )}
       </header>
 
       {available ? (

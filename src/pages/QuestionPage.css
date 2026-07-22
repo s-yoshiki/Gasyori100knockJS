@@ -20,6 +20,14 @@
   max-width: 68ch;
 }
 
+.question__hint {
+  padding: var(--space-2) var(--space-3);
+  border-left: 3px solid var(--accent);
+  background: var(--accent-subtle);
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
 .question__unimplemented {
   padding: var(--space-6);
   text-align: center;
