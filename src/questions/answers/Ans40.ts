@@ -210,11 +210,11 @@ export default class extends TwoCanvasAnswer {
       const dst = e[1]
       for (let i = 0; i < src.length; i++) {
         const d = Math.abs(src[i] - dst[i])
-        sum += d ** d
+        sum += d ** 2
       }
     })
     const mse = sum / (imgWidth * imgHeight)
-    const ans = Math.log10(255 ** 2 / mse)
+    const ans = 10 * Math.log10(255 ** 2 / mse)
     return ans
   }
 }
