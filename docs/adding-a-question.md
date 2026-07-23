@@ -103,7 +103,7 @@ pnpm check   # 型検査・Lint・整形検査・テスト
 pnpm dev     # 実際に動かす
 ```
 
-`http://localhost:5173/Gasyori100knockJS/questions/46` を開いて実行ボタンを押す。
+`http://localhost:5173/questions/46` を開いて実行ボタンを押す。
 
 ## 気をつけること
 

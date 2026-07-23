@@ -9,7 +9,7 @@ import { QuestionPage } from './pages/QuestionPage'
 /**
  * ルーティング。
  *
- * GitHub Pages ではリポジトリ名がパスの先頭に付くため、BASE_URL を basename に渡す。
+ * 配信先のベースパスを扱えるよう、BASE_URL を basename に渡す。
  * 未知のパスは 404.html（= index.html の複製）が返るので、SPA 側で解決できる。
  */
 export function App() {

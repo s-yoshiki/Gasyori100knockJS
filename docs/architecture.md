@@ -94,8 +94,9 @@ export type Pixels = number[] | ImageData['data']
 | `/questions/:id` | 問題ページ                       |
 | `/embed/:id`     | 埋め込み用（ヘッダ・フッタなし） |
 
-GitHub Pages はプロジェクトページのため、パスの先頭にリポジトリ名が付く。
-Vite の `base` と React Router の `basename` の両方に `import.meta.env.BASE_URL` を通している。
+本番環境はカスタムドメインのルートから配信する。
+サブパス配信にも対応できるよう、Vite の `base` と React Router の `basename` の両方に
+`import.meta.env.BASE_URL` を通している。
 
 またクリーン URL を使っているので、直接アクセスされたパスをサーバが解決できない。
 GitHub Pages が未知のパスに `404.html` を返す性質を利用してフォールバックしているが、

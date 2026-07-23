@@ -5,10 +5,10 @@ import type { Plugin } from 'vite'
 import { defineConfig } from 'vitest/config'
 
 /**
- * GitHub Pages はリポジトリ名がパスの先頭に付く。
- * 独自ドメインやルート配信に切り替える場合は BASE_PATH=/ を渡す。
+ * カスタムドメインではルートから配信する。
+ * サブパスで配信する場合は BASE_PATH=/path/ を渡す。
  */
-const base = process.env.BASE_PATH ?? '/Gasyori100knockJS/'
+const base = process.env.BASE_PATH ?? '/'
 
 /**
  * GitHub Pages 向けの SPA フォールバックを出力する。
