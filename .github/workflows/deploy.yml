@@ -29,10 +29,13 @@ jobs:
           node-version: 22
           cache: pnpm
 
-      - uses: actions/configure-pages@v5
+      - id: pages
+        uses: actions/configure-pages@v5
 
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}/
 
       - uses: actions/upload-pages-artifact@v4
         with:
