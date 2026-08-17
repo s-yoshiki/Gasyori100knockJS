@@ -1,6 +1,7 @@
 name: バグ報告
 description: 処理結果がおかしい、動かない、といった不具合の報告
 labels: [bug]
+projects: ["s-yoshiki/1"]
 body:
   - type: input
     id: question

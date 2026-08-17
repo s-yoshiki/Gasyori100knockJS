@@ -1,6 +1,7 @@
 name: 未実装の問題を実装する
 description: まだ実装されていない問題の実装を提案・宣言する
 labels: [enhancement, question-impl]
+projects: ["s-yoshiki/1"]
 body:
   - type: input
     id: number
