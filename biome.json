@@ -32,33 +32,20 @@
   },
   "linter": {
     "enabled": true,
+    "domains": {
+      "next": "none",
+      "qwik": "none",
+      "react": "all",
+      "reactNative": "none",
+      "solid": "none",
+      "svelte": "none",
+      "project": "none",
+      "test": "all",
+      "tailwind": "none",
+      "vue": "none"
+    },
     "rules": {
-      "preset": "recommended",
-      "correctness": {
-        "noUnusedVariables": {
-          "level": "error",
-          "options": { "ignoreRestSiblings": true }
-        },
-        "noUnusedFunctionParameters": "off",
-        "useExhaustiveDependencies": "error"
-      },
-      "style": {
-        "useConst": "error",
-        "useTemplate": "error",
-        "noNonNullAssertion": "off",
-        "useNamingConvention": "off"
-      },
-      "suspicious": {
-        "noExplicitAny": "error",
-        "noAssignInExpressions": "off"
-      },
-      "complexity": {
-        "noExcessiveCognitiveComplexity": "off",
-        "noForEach": "off"
-      },
-      "performance": {
-        "noAccumulatingSpread": "off"
-      }
+      "preset": "all"
     }
   },
   "assist": {
@@ -88,11 +75,7 @@
             "noDoubleEquals": "off"
           },
           "style": {
-            "noParameterAssign": "off",
-            "useNumberNamespace": "off"
-          },
-          "complexity": {
-            "useWhile": "off"
+            "noParameterAssign": "off"
           }
         }
       }

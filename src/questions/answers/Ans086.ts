@@ -99,8 +99,10 @@ export default createOneCanvasAnswer(({ showMessage }) => {
       return c
     }
     const ctx1 = context2d(canvas)
-    const W = (canvas.width = image.width)
-    const H = (canvas.height = image.height)
+    canvas.width = image.width
+    canvas.height = image.height
+    const W = image.width
+    const H = image.height
     ctx1.drawImage(image, 0, 0, W, H)
     const src = ctx1.getImageData(0, 0, W, H)
     const dst1 = ctx1.createImageData(W, H)

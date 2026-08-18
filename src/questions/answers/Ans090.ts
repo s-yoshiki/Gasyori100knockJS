@@ -33,7 +33,9 @@ export default createOneCanvasAnswer(
         )
       }
       const groups = result.labels.reduce<Record<number, string[]>>((all, label, index) => {
-        ;(all[label] ??= []).push(paths[index].split('/').pop() ?? '')
+        const group = all[label] ?? []
+        group.push(paths[index].split('/').pop() ?? '')
+        all[label] = group
         return all
       }, {})
       showMessage(`反復回数: ${result.iterations}\n${JSON.stringify(groups, null, 2)}`)
