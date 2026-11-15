@@ -25,7 +25,7 @@ React はあくまで「canvas を並べて実行ボタンを出す」ための�
 pnpm check
 ```
 
-型検査・Biome lint・format 検査・Vitest をまとめて実行する。CI と同じ内容なので、
+型検査・Oxlint / Oxfmt lint・format 検査・Vitest をまとめて実行する。CI と同じ内容なので、
 これが通れば CI も通る。個別に回したい場合は `typecheck` / `lint` / `format:check` / `test`。
 
 `pnpm build` は `tsc --noEmit` を経由するため、ビルドが通ることは型が通ることを含意する。
@@ -48,8 +48,8 @@ UI を差し替えても問題の実装が影響を受けない、というの�
 
 ファクトリ関数は `src/questions/base.ts` にある。
 
-| ファクトリ関数                   | canvas | `main()` の引数                      |
-| ---------------------------- | ------ | ------------------------------------ |
+| ファクトリ関数                     | canvas | `main()` の引数                      |
+| ---------------------------------- | ------ | ------------------------------------ |
 | `createOneCanvasAnswer`            | 1      | `(canvas)`                           |
 | `createTwoCanvasAnswer`            | 2      | `(canvas, image)`                    |
 | `createThreeCanvasAnswer`          | 3      | `(canvas1, canvas2, image)`          |
@@ -77,7 +77,7 @@ canvas の 0 枚目は原則「入力画像」であり、`main()` には渡ら�
 - **画像処理コードの中身は既存のスタイルに合わせる。** 添字計算、ビット演算（`~~x`）、
   多重ループの一行書きなどは意図的なもの。「きれいに」書き直すために
   アルゴリズムを触らないこと。
-- 一方で **`let` / `const`、型注釈、命名は Biome と型検査に従う。** 自動修正は `pnpm lint:fix`。
+- 一方で **`let` / `const`、型注釈、命名は Oxlint / Oxfmt と型検査に従う。** 自動修正は `pnpm lint:fix`。
 - 画素バッファを受けるヘルパの引数は `Pixels` 型（`src/lib/pixels.ts`）を使う。
   `ImageData.data` と `number[]` の両方が渡ってくるため。
 - コメントは日本語。既存ファイルの密度に合わせる。

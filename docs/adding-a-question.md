@@ -15,8 +15,8 @@
 
 ```ts
 // src/questions/answers/Ans046.ts
-import { context2d } from '@/lib/canvas'
-import { createTwoCanvasAnswer } from '../base'
+import { context2d } from '@/lib/canvas';
+import { createTwoCanvasAnswer } from '../base';
 
 /**
  * Q.46
@@ -24,25 +24,25 @@ import { createTwoCanvasAnswer } from '../base'
  */
 export default createTwoCanvasAnswer(() => {
   const main = (canvas: HTMLCanvasElement, image: HTMLImageElement) => {
-    const ctx = context2d(canvas)
-    ctx.drawImage(image, 0, 0, image.width, image.height)
+    const ctx = context2d(canvas);
+    ctx.drawImage(image, 0, 0, image.width, image.height);
 
-    const src = ctx.getImageData(0, 0, image.width, image.height)
-    const dst = ctx.createImageData(image.width, image.height)
+    const src = ctx.getImageData(0, 0, image.width, image.height);
+    const dst = ctx.createImageData(image.width, image.height);
 
     for (let i = 0; i < src.data.length; i += 4) {
       // ここに処理を書く
-      dst.data[i] = src.data[i]
-      dst.data[i + 1] = src.data[i + 1]
-      dst.data[i + 2] = src.data[i + 2]
-      dst.data[i + 3] = src.data[i + 3]
+      dst.data[i] = src.data[i];
+      dst.data[i + 1] = src.data[i + 1];
+      dst.data[i + 2] = src.data[i + 2];
+      dst.data[i + 3] = src.data[i + 3];
     }
 
-    ctx.putImageData(dst, 0, 0)
-  }
+    ctx.putImageData(dst, 0, 0);
+  };
 
-  return { main }
-})
+  return { main };
+});
 ```
 
 `canvas.getContext('2d')` は `null` を返しうるので、直接呼ばずに `context2d()` を使う。
@@ -52,15 +52,15 @@ export default createTwoCanvasAnswer(() => {
 既定の入力画像（imori）以外を使いたいときは、ファクトリのオプションで指定する。
 
 ```ts
-import config from '../images'
+import config from '../images';
 
 export default createTwoCanvasAnswer(
   () => {
     // ...
-    return { main }
+    return { main };
   },
   { imageUrl: config.srcImage.thorino },
-)
+);
 ```
 
 ### 数値をログに出したい場合
@@ -70,9 +70,9 @@ export default createTwoCanvasAnswer(
 ```ts
 export default createTwoCanvasAnswer(({ showMessage }) => {
   // main 内で利用する
-  showMessage(`閾値: ${threshold}`)
-  return { main }
-})
+  showMessage(`閾値: ${threshold}`);
+  return { main };
+});
 ```
 
 ### 非同期の準備が必要な場合

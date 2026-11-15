@@ -1,10 +1,10 @@
-import { BrowserRouter, Route, Routes } from 'react-router'
-import { Layout } from './components/Layout'
-import { EmbedPage } from './pages/EmbedPage'
-import { HomePage } from './pages/HomePage'
-import { NotFoundPage } from './pages/NotFoundPage'
-import { QuestionListPage } from './pages/QuestionListPage'
-import { QuestionPage } from './pages/QuestionPage'
+import { BrowserRouter, Route, Routes } from 'react-router';
+import { Layout } from './components/Layout';
+import { EmbedPage } from './pages/EmbedPage';
+import { HomePage } from './pages/HomePage';
+import { NotFoundPage } from './pages/NotFoundPage';
+import { QuestionListPage } from './pages/QuestionListPage';
+import { QuestionPage } from './pages/QuestionPage';
 
 /**
  * ルーティング。
@@ -27,5 +27,5 @@ export function App() {
         </Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }

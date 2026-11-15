@@ -1,8 +1,8 @@
 /** 問題一覧と各ページに表示するタイトル・解説。 */
 export interface QuestionDescription {
-  title: string
+  title: string;
   /** リポジトリ内で管理する固定HTML。外部入力を混ぜないこと。 */
-  desc: string
+  desc: string;
 }
 
 const questionRows: readonly (readonly [title: string, description: string])[] = [
@@ -289,15 +289,15 @@ const questionRows: readonly (readonly [title: string, description: string])[] =
     '簡単な物体検出 Step.4 評価',
     'IoU 0.5を正解条件としてRecall・Precision・F-score・mAPを計算し、100問の処理を完成させる。',
   ],
-]
+];
 
 export const descriptions: Record<number, QuestionDescription> = Object.fromEntries(
   questionRows.map(([title, desc], index) => [index + 1, { title, desc }]),
-)
+);
 
 /** 指定した番号の説明を返す。範囲外ならタイトル・解説とも空。 */
 export function getDescription(id: number): QuestionDescription {
-  return descriptions[id] ?? { title: '', desc: '' }
+  return descriptions[id] ?? { title: '', desc: '' };
 }
 
-export default descriptions
+export default descriptions;

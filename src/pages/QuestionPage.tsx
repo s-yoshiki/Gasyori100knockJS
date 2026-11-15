@@ -1,41 +1,41 @@
-import { useEffect, useState } from 'react'
-import { Link, Navigate, useParams } from 'react-router'
-import { AnswerRunner } from '@/components/AnswerRunner'
-import { QuestionGrid } from '@/components/QuestionGrid'
-import { getDescription } from '@/questions/descriptions'
-import { implementedIds, isImplemented, TOTAL_QUESTIONS } from '@/questions/registry'
-import './QuestionPage.css'
+import { useEffect, useState } from 'react';
+import { Link, Navigate, useParams } from 'react-router';
+import { AnswerRunner } from '@/components/AnswerRunner';
+import { QuestionGrid } from '@/components/QuestionGrid';
+import { getDescription } from '@/questions/descriptions';
+import { implementedIds, isImplemented, TOTAL_QUESTIONS } from '@/questions/registry';
+import './QuestionPage.css';
 
 /** 実装済みの問題の中で、前後に当たる番号を返す。 */
 function neighbours(id: number): { prev?: number; next?: number } {
-  const index = implementedIds.indexOf(id)
-  if (index === -1) return {}
+  const index = implementedIds.indexOf(id);
+  if (index === -1) return {};
   return {
     prev: index > 0 ? implementedIds[index - 1] : undefined,
     next: index < implementedIds.length - 1 ? implementedIds[index + 1] : undefined,
-  }
+  };
 }
 
 export function QuestionPage() {
-  const { id: rawId } = useParams()
-  const id = Number(rawId)
+  const { id: rawId } = useParams();
+  const id = Number(rawId);
 
   useEffect(() => {
     if (Number.isInteger(id)) {
-      const { title } = getDescription(id)
+      const { title } = getDescription(id);
       document.title = title
         ? `Q.${id} ${title} | 画像処理100本ノック JS`
-        : '画像処理100本ノック JS'
+        : '画像処理100本ノック JS';
     }
-  }, [id])
+  }, [id]);
 
   if (!Number.isInteger(id) || id < 1 || id > TOTAL_QUESTIONS) {
-    return <Navigate to="/questions" replace />
+    return <Navigate to="/questions" replace />;
   }
 
-  const { title, desc } = getDescription(id)
-  const { prev, next } = neighbours(id)
-  const available = isImplemented(id)
+  const { title, desc } = getDescription(id);
+  const { prev, next } = neighbours(id);
+  const available = isImplemented(id);
 
   return (
     <article className="question">
@@ -92,14 +92,14 @@ export function QuestionPage() {
         <QuestionGrid currentId={id} />
       </section>
     </article>
-  )
+  );
 }
 
 /** ブログ等に貼り付けるための iframe スニペット。 */
 function EmbedSnippet({ id }: { id: number }) {
-  const [open, setOpen] = useState(false)
-  const url = `${window.location.origin}${import.meta.env.BASE_URL}embed/${id}`
-  const snippet = `<iframe src="${url}" style="width:100%;height:520px;border:0" loading="lazy"></iframe>`
+  const [open, setOpen] = useState(false);
+  const url = `${window.location.origin}${import.meta.env.BASE_URL}embed/${id}`;
+  const snippet = `<iframe src="${url}" style="width:100%;height:520px;border:0" loading="lazy"></iframe>`;
 
   return (
     <section className="embed">
@@ -116,5 +116,5 @@ function EmbedSnippet({ id }: { id: number }) {
         />
       )}
     </section>
-  )
+  );
 }

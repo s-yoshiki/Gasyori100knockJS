@@ -1,14 +1,14 @@
-import { writeFileSync } from 'node:fs'
-import { fileURLToPath, URL } from 'node:url'
-import react from '@vitejs/plugin-react'
-import type { Plugin } from 'vite'
-import { defineConfig } from 'vitest/config'
+import { writeFileSync } from 'node:fs';
+import { fileURLToPath, URL } from 'node:url';
+import react from '@vitejs/plugin-react';
+import type { Plugin } from 'vite';
+import { defineConfig } from 'vitest/config';
 
 /**
  * カスタムドメインではルートから配信する。
  * サブパスで配信する場合は BASE_PATH=/path/ を渡す。
  */
-const base = process.env.BASE_PATH ?? '/'
+const base = process.env.BASE_PATH ?? '/';
 
 /**
  * GitHub Pages 向けの SPA フォールバックを出力する。
@@ -24,7 +24,7 @@ const base = process.env.BASE_PATH ?? '/'
  */
 function githubPagesSpaFallback(basePath: string): Plugin {
   // base のセグメント数だけはリダイレクト後も残す（プロジェクトページのリポジトリ名など）
-  const segmentsToKeep = basePath.split('/').filter(Boolean).length
+  const segmentsToKeep = basePath.split('/').filter(Boolean).length;
 
   const html = `<!doctype html>
 <html lang="ja">
@@ -62,15 +62,15 @@ function githubPagesSpaFallback(basePath: string): Plugin {
   </head>
   <body></body>
 </html>
-`
+`;
 
   return {
     name: 'github-pages-spa-fallback',
     apply: 'build',
     closeBundle() {
-      writeFileSync('dist/404.html', html)
+      writeFileSync('dist/404.html', html);
     },
-  }
+  };
 }
 
 export default defineConfig({
@@ -89,4 +89,4 @@ export default defineConfig({
     environment: 'jsdom',
     include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
   },
-})
+});
