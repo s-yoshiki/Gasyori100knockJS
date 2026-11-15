@@ -10,20 +10,20 @@
   },
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "tsc --noEmit && vite build",
-    "preview": "vite preview",
-    "gen:registry": "tsx scripts/gen-registry.ts",
+    "dev": "vite",
     "typecheck": "tsc --noEmit",
     "lint": "oxlint .",
     "lint:fix": "oxlint --fix .",
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
-    "fix": "pnpm lint:fix && pnpm format",
     "test": "vitest run",
-    "test:watch": "vitest",
-    "check": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm test",
-    "verify": "pnpm check && pnpm build"
+    "check": "pnpm lint && pnpm format:check && pnpm typecheck",
+    "check:fix": "pnpm lint:fix && pnpm format",
+    "verify": "pnpm check && pnpm test && pnpm build",
+    "preview": "vite preview",
+    "gen:registry": "tsx scripts/gen-registry.ts",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "react": "catalog:",
