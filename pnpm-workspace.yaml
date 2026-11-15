@@ -1,9 +1,30 @@
 # pnpm 10 以降、依存パッケージのビルドスクリプトは既定で実行されない。
 # ネイティブバイナリを展開する必要があるものだけを明示的に許可する。
+packages:
+  - 'apps/*'
+  - 'configs/*'
+  - 'packages/*'
+  - 'infra/*'
+  - 'scripts/*'
+  - 'docs/*'
+
 onlyBuiltDependencies:
-  - '@biomejs/biome'
   - esbuild
-managePackageManagerVersions: false
-verifyDepsBeforeRun: false
 allowBuilds:
-  esbuild: false
+  esbuild: true
+
+catalog:
+  '@types/node': '^26.0.0'
+  '@types/react': '^19.2.0'
+  '@types/react-dom': '^19.2.0'
+  '@vitejs/plugin-react': '^6.0.0'
+  'jsdom': '^29.0.0'
+  'oxfmt': '0.78.0'
+  'oxlint': '1.93.0'
+  'react': '^19.2.0'
+  'react-dom': '^19.2.0'
+  'react-router': '^8.2.0'
+  'tsx': '^4.20.0'
+  'typescript': '^5.9.0'
+  'vite': '^8.0.0'
+  'vitest': '^4.0.0'

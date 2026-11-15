@@ -92,7 +92,7 @@
 }
 
 .home__steps strong::before {
-  content: counter(step) ". ";
+  content: counter(step) '. ';
   color: var(--accent);
 }
 

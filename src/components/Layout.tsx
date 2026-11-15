@@ -1,8 +1,8 @@
-import { Link, NavLink, Outlet } from 'react-router'
-import { ThemeToggle } from './ThemeToggle'
+import { Link, NavLink, Outlet } from 'react-router';
+import { ThemeToggle } from './ThemeToggle';
 
-const REPOSITORY_URL = 'https://github.com/s-yoshiki/Gasyori100knockJS'
-const ORIGINAL_URL = 'https://github.com/yoyoyo-yo/Gasyori100knock'
+const REPOSITORY_URL = 'https://github.com/s-yoshiki/Gasyori100knockJS';
+const ORIGINAL_URL = 'https://github.com/yoyoyo-yo/Gasyori100knock';
 
 /** ヘッダとフッタを備えた通常ページの外枠。埋め込みページでは使わない。 */
 export function Layout() {
@@ -56,5 +56,5 @@ export function Layout() {
         </div>
       </footer>
     </div>
-  )
+  );
 }

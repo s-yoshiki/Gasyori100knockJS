@@ -2,7 +2,7 @@
 
 ## セットアップ
 
-Node.js 20.19 以上（22 を推奨）が必要です。
+Node.js 26 と pnpm 12 が必要です。
 
 ```bash
 git clone https://github.com/s-yoshiki/Gasyori100knockJS.git
@@ -17,7 +17,7 @@ pnpm dev
 pnpm check
 ```
 
-型検査・Biome lint・format 検査・Vitest をまとめて実行します。CI と同じ内容です。
+型検査・Oxlint / Oxfmt lint・format 検査・Vitest をまとめて実行します。CI と同じ内容です。
 整形の指摘は `pnpm format`、Lint の指摘の多くは `pnpm lint:fix` で自動修正できます。
 
 ## 何を変えるか別の手引き

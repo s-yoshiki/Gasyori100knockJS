@@ -1,11 +1,11 @@
-import { useEffect } from 'react'
-import { QuestionGrid } from '@/components/QuestionGrid'
-import { implementedIds, TOTAL_QUESTIONS } from '@/questions/registry'
+import { useEffect } from 'react';
+import { QuestionGrid } from '@/components/QuestionGrid';
+import { implementedIds, TOTAL_QUESTIONS } from '@/questions/registry';
 
 export function QuestionListPage() {
   useEffect(() => {
-    document.title = '問題一覧 | 画像処理100本ノック JS'
-  }, [])
+    document.title = '問題一覧 | 画像処理100本ノック JS';
+  }, []);
 
   return (
     <section style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
@@ -17,5 +17,5 @@ export function QuestionListPage() {
       </header>
       <QuestionGrid />
     </section>
-  )
+  );
 }

@@ -5,9 +5,9 @@
  * Vite の BASE_URL を前置して、どの階層からでも解決できる絶対パスにする。
  */
 
-const base = import.meta.env.BASE_URL
-const imagesPath = `${base}images/`
-const datasetPath = `${base}dataset/`
+const base = import.meta.env.BASE_URL;
+const imagesPath = `${base}images/`;
+const datasetPath = `${base}dataset/`;
 
 /** 単体の入力画像。 */
 export const srcImage = {
@@ -24,7 +24,7 @@ export const srcImage = {
   seg: `${imagesPath}seg.png`,
   renketsu: `${imagesPath}renketsu.png`,
   gazo: `${imagesPath}gazo.png`,
-} as const
+} as const;
 
 /** 識別問題（Q.83〜89）で使う学習・評価データセット。ファイル名がラベルを兼ねる。 */
 export const dataset: { tests: string[]; train: string[] } = {
@@ -46,11 +46,11 @@ export const dataset: { tests: string[]; train: string[] } = {
     `${datasetPath}train_madara_4.jpg`,
     `${datasetPath}train_madara_5.jpg`,
   ],
-}
+};
 
 export interface SourceImageOption {
-  label: string
-  src: string
+  label: string;
+  src: string;
 }
 
 /** 入力画像セレクタに並ぶ選択肢。 */
@@ -67,6 +67,6 @@ export const srcImageOptions: readonly SourceImageOption[] = [
   { label: 'segmentation', src: srcImage.seg },
   { label: 'renketsu', src: srcImage.renketsu },
   { label: 'gazo', src: srcImage.gazo },
-]
+];
 
-export default { srcImage, dataset, srcImageOptions }
+export default { srcImage, dataset, srcImageOptions };

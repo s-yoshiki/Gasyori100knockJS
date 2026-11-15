@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
-type Theme = 'light' | 'dark' | 'system'
+type Theme = 'light' | 'dark' | 'system';
 
-const STORAGE_KEY = 'gasyori:theme'
+const STORAGE_KEY = 'gasyori:theme';
 
 function readStoredTheme(): Theme {
-  const stored = localStorage.getItem(STORAGE_KEY)
-  return stored === 'light' || stored === 'dark' ? stored : 'system'
+  const stored = localStorage.getItem(STORAGE_KEY);
+  return stored === 'light' || stored === 'dark' ? stored : 'system';
 }
 
 /**
@@ -17,26 +17,26 @@ function readStoredTheme(): Theme {
  */
 export function ThemeToggle() {
   // クライアント専用のページなので、初期値は localStorage から直接読んでよい
-  const [theme, setTheme] = useState<Theme>(readStoredTheme)
+  const [theme, setTheme] = useState<Theme>(readStoredTheme);
 
   useEffect(() => {
-    const root = document.documentElement
+    const root = document.documentElement;
     if (theme === 'system') {
-      root.removeAttribute('data-theme')
-      localStorage.removeItem(STORAGE_KEY)
+      root.removeAttribute('data-theme');
+      localStorage.removeItem(STORAGE_KEY);
     } else {
-      root.setAttribute('data-theme', theme)
-      localStorage.setItem(STORAGE_KEY, theme)
+      root.setAttribute('data-theme', theme);
+      localStorage.setItem(STORAGE_KEY, theme);
     }
-  }, [theme])
+  }, [theme]);
 
-  const next: Record<Theme, Theme> = { system: 'light', light: 'dark', dark: 'system' }
+  const next: Record<Theme, Theme> = { system: 'light', light: 'dark', dark: 'system' };
   const label: Record<Theme, string> = {
     system: 'テーマ: OS に追従',
     light: 'テーマ: ライト',
     dark: 'テーマ: ダーク',
-  }
-  const icon: Record<Theme, string> = { system: '◐', light: '☀', dark: '☾' }
+  };
+  const icon: Record<Theme, string> = { system: '◐', light: '☀', dark: '☾' };
 
   return (
     <button
@@ -48,5 +48,5 @@ export function ThemeToggle() {
     >
       <span aria-hidden="true">{icon[theme]}</span>
     </button>
-  )
+  );
 }

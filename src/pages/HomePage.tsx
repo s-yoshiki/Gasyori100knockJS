@@ -1,9 +1,9 @@
-import { Link } from 'react-router'
-import { implementedIds, TOTAL_QUESTIONS } from '@/questions/registry'
-import './HomePage.css'
+import { Link } from 'react-router';
+import { implementedIds, TOTAL_QUESTIONS } from '@/questions/registry';
+import './HomePage.css';
 
-const ORIGINAL_URL = 'https://github.com/ryoppippi/Gasyori100knock'
-const REPOSITORY_URL = 'https://github.com/s-yoshiki/Gasyori100knockJS'
+const ORIGINAL_URL = 'https://github.com/ryoppippi/Gasyori100knock';
+const REPOSITORY_URL = 'https://github.com/s-yoshiki/Gasyori100knockJS';
 
 export function HomePage() {
   return (
@@ -94,5 +94,5 @@ export function HomePage() {
         </blockquote>
       </section>
     </div>
-  )
+  );
 }

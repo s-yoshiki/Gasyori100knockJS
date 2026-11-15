@@ -12,7 +12,7 @@
     "noUncheckedIndexedAccess": false,
     "noUnusedLocals": true,
     // 未使用引数は reduce のコールバックなど「位置合わせで必要」な場合がある。
-    // Biome 側で `_` プレフィックスの慣習付きで見るため tsc では無効化する。
+    // `_` プレフィックス付きの引数を許容するため、tsc ではチェックを無効化する。
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,

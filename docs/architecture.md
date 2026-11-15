@@ -80,7 +80,7 @@ canvas を作業領域としてしか使わない識別系（Q.84〜88）で使�
 ヘルパは `Pixels` 型（`src/lib/pixels.ts`）で受ける。
 
 ```ts
-export type Pixels = number[] | ImageData['data']
+export type Pixels = number[] | ImageData['data'];
 ```
 
 `slice()` や `map()` を呼ぶ必要がある場合は `number[]` に限定する。
