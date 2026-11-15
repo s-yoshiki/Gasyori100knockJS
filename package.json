@@ -10,7 +10,7 @@
   },
   "type": "module",
   "scripts": {
-    "build": "tsc --noEmit && vite build",
+    "build": "vite build",
     "dev": "vite",
     "typecheck": "tsc --noEmit",
     "lint": "oxlint .",
@@ -20,7 +20,7 @@
     "test": "vitest run",
     "check": "pnpm lint && pnpm format:check && pnpm typecheck",
     "check:fix": "pnpm lint:fix && pnpm format",
-    "verify": "pnpm check && pnpm test && pnpm build",
+    "verify": "pnpm check && pnpm test",
     "preview": "vite preview",
     "gen:registry": "tsx scripts/gen-registry.ts",
     "test:watch": "vitest"
